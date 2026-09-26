@@ -1,4 +1,6 @@
 /images/
 /img/
 /logs/
-
+/cache/
+/systemxtr/user/cache/*
+!/systemxtr/user/cache/index.html
