@@ -140,6 +140,10 @@ class ImageAction
                 self::$imageExt = 'jpg';
                              $ext = 'jpg';
                 break;
+            case IMAGETYPE_WEBP:
+                self::$imageExt = 'webp';
+                             $ext = 'webp';
+                break;
             default:
                 return false;
         }
@@ -155,6 +159,9 @@ class ImageAction
             case 'jpg':
             case 'jpeg':
                 self::$imageResource = @imagecreatefromjpeg($file);
+                break;
+            case 'webp':
+                self::$imageResource = @imagecreatefromwebp($file);
                 break;
             default:
                 return false;
@@ -199,6 +206,9 @@ class ImageAction
                 }
                 imagejpeg($resource, $dest_file, $this->image_jpeg_quality);
                 break;
+            case 'webp':
+                imagewebp($resource, $dest_file);
+                break;
             default:
                 return false;
         }
@@ -232,6 +242,9 @@ class ImageAction
                 break;
             case IMAGETYPE_JPEG:
                 $info['ext'] = 'jpg';
+                break;
+            case IMAGETYPE_WEBP:
+                $info['ext'] = 'webp';
                 break;
             default:
                 return false;

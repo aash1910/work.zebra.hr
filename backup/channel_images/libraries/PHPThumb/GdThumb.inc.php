@@ -113,6 +113,9 @@ class GdThumb extends ThumbBase
 			case 'PNG':
 				$this->oldImage = imagecreatefrompng($this->fileName);
 				break;
+			case 'WEBP':
+				$this->oldImage = imagecreatefromwebp($this->fileName);
+				break;
 			case 'STRING':
 				$this->oldImage = imagecreatefromstring($this->fileName);
 				break;
@@ -880,6 +883,13 @@ class GdThumb extends ThumbBase
 				}
 				imagepng($this->oldImage);
 				break;
+			case 'WEBP':
+				if ($rawData === false)
+				{
+					header('Content-type: image/webp');
+				}
+				imagewebp($this->oldImage);
+				break;
 		}
 
 		return $this;
@@ -916,12 +926,12 @@ class GdThumb extends ThumbBase
 	 * TODO: Create additional paramter for color matte when saving images with alpha to non-alpha formats (i.e. PNG => JPG)
 	 *
 	 * @param string $fileName The full path and filename of the image to save
-	 * @param string $format The format to save the image in (optional, must be one of [GIF,JPG,PNG]
+	 * @param string $format The format to save the image in (optional, must be one of [GIF,JPG,PNG,WEBP]
 	 * @return GdThumb
 	 */
 	public function save ($fileName, $format = null)
 	{
-		$validFormats = array('GIF', 'JPG', 'PNG');
+		$validFormats = array('GIF', 'JPG', 'PNG', 'WEBP');
 		$format = ($format !== null) ? strtoupper($format) : $this->format;
 
 		if (!in_array($format, $validFormats))
@@ -961,6 +971,9 @@ class GdThumb extends ThumbBase
 				break;
 			case 'PNG':
 				imagepng($this->oldImage, $fileName);
+				break;
+			case 'WEBP':
+				imagewebp($this->oldImage, $fileName);
 				break;
 		}
 
@@ -1386,6 +1399,9 @@ class GdThumb extends ThumbBase
 			case 'image/png':
 				$this->format = 'PNG';
 				break;
+			case 'image/webp':
+				$this->format = 'WEBP';
+				break;
 			default:
 				$this->triggerError('Image format not supported: ' . $mimeType);
 		}
@@ -1410,6 +1426,9 @@ class GdThumb extends ThumbBase
 				break;
 			case 'PNG':
 				$isCompatible = $gdInfo[$this->format . ' Support'];
+				break;
+			case 'WEBP':
+				$isCompatible = isset($gdInfo['WebP Support']) ? $gdInfo['WebP Support'] : false;
 				break;
 			default:
 				$isCompatible = false;
@@ -1439,7 +1458,7 @@ class GdThumb extends ThumbBase
 	 */
 	protected function preserveAlpha ()
 	{
-		if ($this->format == 'PNG' && $this->options['preserveAlpha'] === true)
+		if (($this->format == 'PNG' || $this->format == 'WEBP') && $this->options['preserveAlpha'] === true)
 		{
 			imagealphablending($this->workingImage, false);
 
