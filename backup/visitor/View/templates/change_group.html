@@ -1,0 +1,30 @@
+{layout="visitor_example/layout" page_title="Change Group"}
+
+{layout:set name="content"}
+    <h2>Account - Change Member Group</h2>
+
+    {if logged_in}
+        {if segment_3 == "success"}
+            <div class="alert success">Member Group Updated!</div>
+        {/if}
+
+        {exp:visitor:update_form return="visitor_example/change_group/success" allowed_groups="5|6"}
+            <div class="alert info">Your current member group is: <span id="logged_in_group_title">{logged_in_group_title}</span>  (Group ID: <span id="logged_in_group_id">{logged_in_group_id}</span>)</div>
+
+            <fieldset>
+                <p><label class="form-label"><b>New Member Group:</b></label></p>
+                <p><label><input type="radio" name="group_id" id="group_id-5" value="5"> Members (Group ID: 5)</label></p>
+                <p><label><input type="radio" name="group_id" id="group_id-6" value="6"> Visitor Test Group (Group ID: 6)</label></p>
+            </fieldset>
+
+            <p>
+                <input type="submit" value="Submit" class="btn btn-primary" />
+            </p>
+        {/exp:visitor:update_form}
+    {if:else}
+        <p>You are not logged in.</p>
+        <br />
+
+        <p><a class="btn btn-primary" href="{path=visitor_example/login}">Login</a> &nbsp;&nbsp;&nbsp; <a class="btn btn-primary" href="{path=visitor_example/register}">Register</a></p>
+    {/if}
+{/layout:set}

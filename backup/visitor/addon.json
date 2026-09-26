@@ -1,0 +1,16 @@
+{
+    "name": "Visitor",
+    "shortname": "visitor",
+    "version": "4.4.0",
+    "foundation_version": "4.11.0",
+    "description": "",
+    "license": "EEHarbor",
+    "namespace": "EEHarbor\\Visitor",
+    "require": {
+        "php": ">=5.3.*",
+        "expressionengine/core": ">=2.11"
+    },
+    "resources": {
+        "themes": true
+    }
+}

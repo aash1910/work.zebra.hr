@@ -1,0 +1,66 @@
+{layout="visitor_example/layout" page_title="Register"}
+
+{layout:set name="content"}
+    <h2>Account &raquo; Edit Profile</h2>
+
+    {if logged_in}
+        {if segment_3 == "success"}
+            <div class="alert success">Profile Updated!</div>
+        {/if}
+
+        {exp:visitor:update_form return="visitor_example/profile/success"}
+            {if visitor:no_results}
+                We were unable to locate your member details.
+            {/if}
+
+            <fieldset>
+                <p>
+                    <label for="member_firstname">{label:member_firstname}:</label>
+                    <input type="text" name="member_firstname" id="member_firstname" value="{if member_firstname}{member_firstname}{/if}"/>
+                </p>
+
+                <p>
+                    <label for="member_lastname">{label:member_lastname}:</label>
+                    <input type="text" name="member_lastname" id="member_lastname" value="{if member_lastname}{member_lastname}{/if}"/>
+                </p>
+
+                <p>
+                    <label for="">{label:member_gender}</label>
+                    {options:member_gender}
+                        <label><input type="radio" id="member_gender" name="member_gender" value="{option_value}" {checked} /> {option_value}</label> &nbsp;&nbsp;
+                    {/options:member_gender}
+                </p>
+
+                <p>
+                    <label for="member_birthday">{label:member_birthday}</label>
+                    <input type="text" name="member_birthday" id="member_birthday" value="{member_birthday}" maxlength="23" size="25"/>
+                </p>
+
+                {!--
+                <p>
+                    <label for="member_address">{label:member_birthday} Select</label>
+                    {native:birthday_month}
+                    {native:birthday_day}
+                    {native:birthday_year}
+                </p>
+                --}
+
+                <p>
+                    <label for="member_signature">Member Signature</label>
+                    <input type="text" name="member_signature" id="member_signature" value="{if member_signature}{member_signature}{/if}"/>
+                </p>
+                <p>
+                    <label for="member_location">Member Location</label>
+                    <input type="text" name="member_location" id="member_location" value="{if member_location}{member_location}{/if}"/>
+                </p>
+            </fieldset>
+
+            <input type="submit" value="Update Profile" class="btn btn-primary"/>
+        {/exp:visitor:update_form}
+    {if:else}
+        <p>You are not logged in.</p>
+        <br />
+
+        <p><a class="btn btn-primary" href="{path=visitor_example/login}">Login</a> &nbsp;&nbsp;&nbsp; <a class="btn btn-primary" href="{path=visitor_example/register}">Register</a></p>
+    {/if}
+{/layout:set}

@@ -1,0 +1,255 @@
+<html>
+<head>
+<title>Visitor Example Templates</title>
+<style>
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    }
+body {
+    font-size: 14px;
+    font-family: 'Open Sans', sans-serif;
+    background-color: #f5f5f5;
+    }
+header {
+    padding: 10px 30px 15px 30px;
+    background-color: #542873;
+    }
+header h1 {
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    font-size: 24px;
+    }
+header nav {
+    position: absolute;
+    top: 19px;
+    right: 10px;
+    width: 150px;
+    }
+header nav ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    list-style: none;
+    justify-content: space-around;
+    }
+header nav a {
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    text-transform: uppercase;
+    }
+div.main {
+    display: grid;
+    grid-template-columns: 2fr 12fr;
+    grid-template-areas: "sidebar main";
+    }
+section.sidebar {
+    grid-area: sidebar;
+    padding: 30px;
+    }
+section.sidebar nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    }
+section.sidebar nav ul li {
+    margin-bottom: 10px;
+    }
+section.sidebar nav a {
+    position: relative;
+    font-size: 14px;
+    font-weight: normal;
+    text-decoration: none;
+    }
+section.sidebar nav a:before {
+    content: "►";
+    font-size: 12px;
+    margin-right: 5px;
+    }
+section.sidebar nav ul.disabled a {
+    color: #999;
+    text-decoration: line-through;
+    }
+section.main {
+    grid-area: main;
+    padding: 30px;
+    background-color: #fff;
+    }
+h2 {
+    margin-top: 0;
+    font-size: 22px;
+    }
+h3 {
+    font-size: 20px;
+    }
+h4 {
+    font-size: 16px;
+    }
+a {
+    color: #333;
+    text-decoration: underline;
+    }
+footer {
+    color: #666;
+    padding: 30px;
+    text-align: center;
+    border-top: 1px solid #ccc;
+    }
+footer a {
+    text-decoration: none;
+    }
+fieldset {
+    margin-bottom: 30px;
+    padding: 20px;
+    border: 0;
+    box-shadow: inset 0px 0px 4px 1px #ccc;
+    background-color: #f5f5f5;
+    }
+fieldset > h4 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+    }
+fieldset label[for] {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    }
+fieldset input[type="text"], fieldset input[type="password"] {
+    width: 250px;
+    font-size: 16px;
+    padding: 5px 10px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    }
+fieldset input[type="radio"] {
+    margin-right: 5px;
+    }
+.btn {
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    text-decoration: none;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    }
+.btn-sm {
+    padding: 5px 10px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
+    }
+.btn-primary {
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+    }
+.btn-warning {
+    color: #fff;
+    background-color: #f0ad4e;
+    border-color: #eea236;
+    }
+.alert {
+    position: relative;
+    padding: .75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    }
+.success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    }
+.error {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    }
+.info {
+    color: #004085;
+    background-color: #cce5ff;
+    border-color: #b8daff;
+    }
+#member_signature {
+    width: 375px;
+    }
+.table {
+    border: 1px solid #ccc;
+    }
+.table thead {
+    color: #fff;
+    text-align: left;
+    background-color: #542873;
+    }
+.table td {
+    border: 1px solid #ccc;
+    }
+</style>
+</head>
+<body>
+<header>
+    <h1>Visitor Example Templates</h1>
+    <nav>
+        <ul>
+        {if logged_in}
+            <li><a href="{path=visitor_example/profile}">Profile</a></li>
+            <li><a id="logout" href="{path=visitor_example/logout}">Logout</a></li>
+        {if:else}
+            <li><a href="{path=visitor_example/login}">Login</a></li>
+        {/if}
+        </ul>
+    </nav>
+</header>
+<div class="main">
+    <section class="sidebar">
+        <nav>
+            <h4>Logged Out Functions</h4>
+            {if logged_in}<p><small>You are currently logged in.</small></p>{/if}
+            <ul class="{if logged_in}disabled{/if}">
+                <li><a href="{path=visitor_example/register}">Register</a></li>
+                <li><a href="{path=visitor_example/login}">Login</a></li>
+                <li><a href="{path=visitor_example/login_ajax}">AJAX Login</a></li>
+                <li><a href="{path=visitor_example/forgot_password}">Forgot Password</a></li>
+            </ul>
+            <br />
+
+            <hr>
+
+            <h4>Logged In Functions</h4>
+            {if !logged_in}<p><small>You are currently logged out.</small></p>{/if}
+            <ul class="{if !logged_in}disabled{/if}">
+                <li><a href="{path=visitor_example/change_password}">Change Password</a></li>
+                <li><a href="{path=visitor_example/change_login}">Change Login</a></li>
+                <li><a href="{path=visitor_example/change_group}">Change Member Group</a></li>
+                <li><a href="{path=visitor_example/profile}">Edit Profile</a></li>
+                <li><a href="{path=visitor_example/delete_account}">Delete Account</a></li>
+                <li><a href="{path=visitor_example/members}">Members</a></li>
+            </ul>
+        </nav>
+    </section>
+
+    <section class="main">
+            {layout:content}
+    </section>
+</div>
+
+<footer>
+    <a href="https://eeharbor.com">Brought to you by your friends at <b>EEHarbor</b></a>
+</footer>
+</body>
+</html>
