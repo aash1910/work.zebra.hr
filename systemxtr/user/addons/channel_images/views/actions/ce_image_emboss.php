@@ -1,0 +1,1 @@
+<small><?php echo lang('ce:emboss:exp')?></small>

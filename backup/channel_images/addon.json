@@ -1,0 +1,16 @@
+{
+    "name": "Channel Images",
+    "shortname": "channel_images",
+    "version": "7.7.1",
+    "foundation_version": "4.11.0",
+    "description": "Enables images to be associated with an entry.",
+    "license": "EEHarbor",
+    "namespace": "EEHarbor\\ChannelImages",
+    "require": {
+        "php": ">5.3",
+        "expressionengine/core": "^4"
+    },
+    "resources": {
+        "themes": true
+    }
+}

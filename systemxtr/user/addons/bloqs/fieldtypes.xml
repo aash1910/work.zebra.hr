@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<fieldtypes xmlns="tag:eeblocks.com,2014:addon/fieldtypes">
+    <allowlist>
+        <!-- Built-in field types -->
+        <fieldtype name="checkboxes" adapter="\BoldMinded\Bloqs\Adapter\BuiltinContentTypeAdapter"/>
+        <fieldtype name="colorpicker" adapter="\BoldMinded\Bloqs\Adapter\BuiltinContentTypeAdapter"/>
+        <fieldtype name="date" adapter="\BoldMinded\Bloqs\Adapter\BuiltinContentTypeAdapter"/>
+        <fieldtype name="duration" adapter="\BoldMinded\Bloqs\Adapter\BuiltinContentTypeAdapter"/>
+        <fieldtype name="email_address" adapter="\BoldMinded\Bloqs\Adapter\BuiltinContentTypeAdapter"/>
+        <fieldtype name="file"/>
+        <fieldtype name="multi_select"/>
+        <!-- This does not work unless accepts_content_type returns true in the ft.notes.php file -->
+        <fieldtype name="notes" adapter="\BoldMinded\Bloqs\Adapter\BuiltinContentTypeAdapter"/>
+        <fieldtype name="radio" adapter="\BoldMinded\Bloqs\Adapter\BuiltinContentTypeAdapter"/>
+        <fieldtype name="range_slider" adapter="\BoldMinded\Bloqs\Adapter\BuiltinContentTypeAdapter"/>
+        <fieldtype name="relationship" adapter="\BoldMinded\Bloqs\Adapter\RelationshipContentTypeAdapter"/>
+        <fieldtype name="rte" adapter="\BoldMinded\Bloqs\Adapter\BuiltinContentTypeAdapter"/>
+        <fieldtype name="selectable_buttons" adapter="\BoldMinded\Bloqs\Adapter\BuiltinContentTypeAdapter"/>
+        <fieldtype name="select" adapter="\BoldMinded\Bloqs\Adapter\BuiltinContentTypeAdapter"/>
+        <fieldtype name="slider" adapter="\BoldMinded\Bloqs\Adapter\BuiltinContentTypeAdapter"/>
+        <fieldtype name="text" adapter="\BoldMinded\Bloqs\Adapter\BuiltinContentTypeAdapter"/>
+        <fieldtype name="textarea" adapter="\BoldMinded\Bloqs\Adapter\BuiltinContentTypeAdapter"/>
+        <fieldtype name="toggle" adapter="\BoldMinded\Bloqs\Adapter\BuiltinContentTypeAdapter"/>
+        <fieldtype name="url" adapter="\BoldMinded\Bloqs\Adapter\BuiltinContentTypeAdapter"/>
+
+        <!-- External field types -->
+        <fieldtype name="expresso" version="ge:3.2"/>
+        <fieldtype name="wygwam" version="ge:3.3"/>
+        <fieldtype name="assets" version="ge:3.0.0-b.2"/>
+
+        <!-- https://github.com/mithra62/ee-datalist-ft -->
+        <fieldtype name="datalist" version="ge:1.0.0"/>
+    </allowlist>
+</fieldtypes>

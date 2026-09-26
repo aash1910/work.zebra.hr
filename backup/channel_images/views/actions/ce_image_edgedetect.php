@@ -1,0 +1,1 @@
+<small><?php echo lang('ce:edgedetect:exp')?></small>

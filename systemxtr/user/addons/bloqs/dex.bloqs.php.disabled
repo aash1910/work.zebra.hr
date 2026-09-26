@@ -1,0 +1,68 @@
+<?php
+
+use BoldMinded\Bloqs\Entity\AtomDefinition;
+use BoldMinded\Bloqs\Entity\Block;
+use BoldMinded\Dexter\Dependency\Litzinger\DexterCore\Contracts\IndexableInterface;
+use BoldMinded\Dexter\Dependency\Litzinger\DexterCore\Contracts\ConfigInterface;
+use BoldMinded\Dexter\Dependency\Litzinger\DexterCore\Service\Field\AbstractField;
+use BoldMinded\Dexter\Service\FieldTypeHandlerFactory;
+use ExpressionEngine\Model\Content\FieldFacade;
+
+class BloqsDexter extends AbstractField
+{
+    public function process(
+        IndexableInterface $indexable,
+        ConfigInterface $config,
+        int $fieldId,
+        array $fieldSettings,
+        $fieldValue,
+        $fieldFacade = null
+    ): array {
+        $blocks = ee('bloqs:getContent', $indexable->getId(), $fieldId);
+
+        return array_map(function (Block $block) use ($indexable, $config, $fieldFacade) {
+            return $block->toArray(
+                function (AtomDefinition $definition, $fieldValue) use ($indexable, $config, $fieldFacade, $block) {
+                    return $this->atomCallback(
+                        $definition,
+                        $fieldValue,
+                        $indexable,
+                        $config,
+                        $fieldFacade,
+                        $block
+                    );
+                });
+        }, $blocks);
+    }
+
+    public function atomCallback(
+        AtomDefinition $definition,
+        \Stringable|string|array $value,
+        IndexableInterface $indexable,
+        ConfigInterface $config,
+        FieldFacade|null $fieldFacade,
+        Block $block
+    ) {
+        $fieldType = $definition->getType();
+        $handler = FieldTypeHandlerFactory::create($fieldType);
+
+        if (!$handler) {
+            return $value;
+        }
+
+        return $handler->process(
+            $indexable,
+            $config,
+            $definition->getId(),
+            array_merge($definition->getSettings(), [
+                'content_type' => 'grid',
+                'field_type' => $fieldFacade->getType(),
+                'field_id' => $fieldFacade->getItem('field_id'),
+                'grid_row_id' => $block->getId(),
+                'grid_col_id' => $definition->getId(),
+            ]),
+            $value,
+            $fieldFacade
+        );
+    }
+}
