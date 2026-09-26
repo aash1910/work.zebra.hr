@@ -1,0 +1,42 @@
+{embed="{segment_1}/_header"}
+
+<header class="p-5 rounded text-center mb-4">
+    <h1 class="h2">Example Store.</h1>
+    <p class="lead">Get your e-commerce site up and running quickly, using our handy example templates.</p>
+</header>
+
+<div class="row g-5">
+    <div class="col-md-7 col-lg-8">
+        <div class="page-header pb-1 my-1">
+            <h2 class="h3">Products
+                <small class="text-body-tertiary fw-normal fs-6 d-block">all of your products, listed alphabetically</small>
+            </h2>
+            <hr class="border-primary" />
+        </div>
+
+        {exp:store:search orderby="title" sort="asc"}
+            {exp:store:product entry_id="{entry_id}"}
+            <h3 class="fw-medium"><a href="{url_title_path='{segment_1}/product'}" class="text-decoration-none">{title}</a></h3>
+            <p class="fw-semibold">
+                {if on_sale}
+                    <del>{regular_price}</del>
+                    {price}
+                    <span class="label label-success">Save {you_save} ({you_save_percent}%)</span>
+                {if:else}
+                    {price}
+                {/if}
+            </p>
+            <p class="mb-0">
+                <a href="{url_title_path='{segment_1}/product'}" class="btn btn-primary bg-gradient">Learn More</a>
+            </p>
+            {/exp:store:product}
+            <hr class="border-primary" />
+        {/exp:store:search}
+    </div>
+
+    <div class="col-md-5 col-lg-4 order-md-last">
+        {embed="{segment_1}/_cart"}
+    </div>
+</div>
+
+{embed="{segment_1}/_footer"}

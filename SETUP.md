@@ -75,14 +75,6 @@ Configure Apache to point to the project directory.
 - **Frontend**: `http://127.0.0.1:8000/`
 - **Control Panel**: `http://127.0.0.1:8000/admin.php`
 
-## Before Going Live
-
-EEHarbor add-ons (Visitor, Channel Images) run unlicensed during local development only. Before deploying to production:
-
-1. Purchase or retrieve license keys from [EEHarbor.com](https://eeharbor.com/members).
-2. Enter each key under **Add-ons → [Add-on] → License** in the Control Panel.
-3. Set the production domain for each license on your EEHarbor account page.
-
 ## Troubleshooting
 
 ### Database Connection Issues

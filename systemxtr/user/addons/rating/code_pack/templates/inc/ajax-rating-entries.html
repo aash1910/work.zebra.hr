@@ -1,0 +1,83 @@
+<ul class="ratingEntries media-list">
+{exp:rating:entries
+	entry_id="{segment_3}"
+	limit="10" paginate="bottom"
+}
+	<li id="rating-{rating_id}" class="ratingItem media">
+	<!-- Review Voting Controls -->
+		<div class="refreshVoteData pull-right text-right">
+			{exp:rating:rating_vote_stats rating_id="{rating_id}"}
+				{if total_votes > 0}
+					<small>{total_votes} vote{if total_votes > 1}s{/if}</small><br />
+				{/if}
+				{if not_already_voted}
+					<small>{up_percent}%</small> <a class="ratingVote" href="{path='%prefix%inc/vote'}/{rating_id}/up/" title="vote this review up"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></a><br />
+					<small>{down_percent}%</small> <a class="ratingVote" href="{path='%prefix%inc/vote'}/{rating_id}/down/" title="vote this review down"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></a>
+				{/if}
+				{if already_voted}
+					<small>{up_percent}%</small> <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span><br />
+					<small>{down_percent}%</small> <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+				{/if}
+			{/exp:rating:rating_vote_stats}
+		</div>
+		<div class="media-left">
+			<a href="{path='members'}/{member_id}/">
+				<img src="{if avatar_filename}{avatar_url}{if:else}{exp:rating:theme_folder_url}code_pack/images/no-profile-pic.jpg{/if}" class="media-object img-rounded" height="70" width="70" alt="{screen_name}'s avatar" />
+			</a>
+		</div>
+		<div class="media-body">
+			<p>Dev: Rating_id: {rating_id}</p>
+			<h4 class="media-heading comments-width-fix">{if screen_name}<a href="{path='members'}/{member_id}/">{screen_name}</a>{if:else}{name} (Guest){/if} <small>on {rating_date format="%F %j, %Y at %g:%i %a"}</small></h4>
+			<p class="comments-width-fix">{stars}{rating}{/stars}</p>
+			<p class="comments-width-fix">{review}</p>
+		<!-- Moderation Controls -->
+		{if logged_in}
+			<div class="btn-group pull-right" role="group" aria-label="...">
+				{exp:rating:reporting_allowed rating_id="{rating_id}"}
+					{if success} {!-- Is this a member in a member group allowed to report ratings? --}
+						<a href="{path='%prefix%inc/report'}/{rating_id}/" class="ratingFlag btn btn-xs btn-default" title="flag as spam/inappropriate"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span> flag</a>
+					{/if}
+					{if failure}{/if}
+				{/exp:rating:reporting_allowed}
+				{if can_edit} {!-- Is this the author of the comment or a Super Admin? --}
+					<a href="{path='%prefix%inc/ajax-edit-rating'}/{rating_id}/{url_title}" class="btn btn-xs btn-default" title="edit this review"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> edit</a>
+				{/if}
+				{if can_delete} {!-- Is this the author of the comment, a Super Admin, or another member group with sufficient deleting privileges? --}
+					<a href="{path='%prefix%inc/delete'}/rating/{rating_id}/{url_title}" class="ratingDelete btn btn-xs btn-default" title="delete this review"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> remove</a>
+				{/if}
+			</div>
+		{/if}
+		<!-- Nested Rating Comments -->
+			<button class="btn btn-sm btn-info" type="button" data-toggle="collapse" data-target="#review-comments-{rating_id}" aria-expanded="false" aria-controls="review-comments-{rating_id}">
+				<span class="glyphicon glyphicon-comment" aria-hidden="true"></span>&nbsp; Add Comment
+			</button>
+			{embed="%prefix%inc/rating_comments" rating_id="{rating_id}"}
+		</div>
+	</li>
+	<hr />
+	{if rating_no_results}
+		<p>This entry has not been rated yet.</p>
+	{/if}
+	{rating_paginate}
+		<ul class="pagination pagination-lg">
+			{rating_pagination_links}
+				{first_page}
+					<li><a href="{pagination_url}">First</a></li>
+				{/first_page}
+				{previous_page}
+					<li><a href="{pagination_url}">&larr; Previous</a></li>
+				{/previous_page}
+				{page}
+					<li{if current_page} class="active"{/if}><a href="{pagination_url}">{pagination_page_number}</a></li>
+				{/page}
+				{next_page}
+					<li><a href="{pagination_url}">Next &raquo;</a></li>
+				{/next_page}
+				{last_page}
+					<li><a href="{pagination_url}">Last</a></li>
+				{/last_page}
+			{/rating_pagination_links}
+		</ul>
+	{/rating_paginate}
+{/exp:rating:entries}
+</ul>

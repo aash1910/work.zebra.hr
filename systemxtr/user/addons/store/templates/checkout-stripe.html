@@ -1,0 +1,180 @@
+{embed="{segment_1}/_header"}
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb py-3 bg-body-tertiary rounded-3">
+    <li class="breadcrumb-item"><a href="{path='{segment_1}'}">Example Store</a></li>
+    <li class="breadcrumb-item"><a href="{path='{segment_1}/checkout'}">Checkout</a></li>
+    <li class="breadcrumb-item"><a href="{path='{segment_1}/checkout2'}">Customer Details</a></li>
+    <li class="breadcrumb-item"><a href="{path='{segment_1}/checkout-shipping'}">Shipping Method</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Confirm Order</li>
+  </ol>
+</nav>
+
+<div class="row g-5">
+  <div class="col-12">
+    <div class="page-header d-flex align-items-center mb-4">
+      <h1 class="h2 col-10">Confirm Order
+        <small class="text-body-tertiary fw-normal fs-6 d-block">the third and final step of a sample checkout process</small>
+      </h1>
+
+      <div class="progress col-2">
+          <div class="progress-bar bg-info progress-bar-striped" role="progressbar" style="width: 90%;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{exp:store:checkout
+    form_class="form-horizontal"
+    form_id="payment-form"
+    return="{segment_1}/order/ORDER_HASH"
+    error_handling="inline"
+    error_delimiters='<span class="help-inline">|</span>'}
+
+    {if no_items}
+        {redirect="{segment_1}/checkout"}
+    {/if}
+
+<div class="row">
+  <div class="col-12">
+    <div class="row">
+      <div class="col-md-6">
+        <fieldset>
+            <legend class="h4">Billing Details</legend>
+            <div class="mb-3">
+                <div><b>{billing_name}</b></div>
+                <div>{billing_address1}</div>
+                <div>{billing_address2}</div>
+                <div>{billing_city} {billing_postcode}</div>
+                <div>{billing_state_name}</div>
+                <div>{billing_country_name}</div>
+                <div>{billing_phone}</div>
+                <div>{order_email}</div>
+            </div>
+        </fieldset>
+      </div>
+      <div class="col-md-6">
+        <fieldset>
+            <legend class="h4">Shipping Details</legend>
+            <div class="mb-3">
+                {if shipping_same_as_billing}
+                    Same as Billing Details
+                {if:else}
+                  <div><b>{shipping_name}</b></div>
+                  <div>{shipping_address1}</div>
+                  <div>{shipping_address2}</div>
+                  <div>{shipping_city} {shipping_postcode}</div>
+                  <div>{shipping_state_name}</div>
+                  <div>{shipping_country_name}</div>
+                  <div>{shipping_phone}</div>
+                {/if}
+            </div>
+        </fieldset>
+      </div>
+    </div>
+
+    <hr class="border-primary">
+
+    <div class="row">
+      <div class="col-12">
+          <section>
+            <p class="h4 mb-3">Payment</p>
+
+            {if error:payment_method}
+              <div class="control-group">
+                <div class="alert alert-error">{error:payment_method}</div>
+              </div>
+            {/if}
+
+            <input type="hidden" id="payment_method" name="payment_method" value="Stripe_PaymentIntents" />
+
+            <p class="alert alert-info" role="alert">
+              <strong>Note:</strong>
+              To accept credit card payments directly on your site, you will need to set up an SSL certificate. For more information, contact your web host.
+            </p>
+
+            <div class="col-6">
+                <label for="card-number-element" class="form-label">Card Number</label>
+                <div id="card-number-element" class="checkout-stripe-input"></div> <!-- A Stripe Element will be inserted here. -->
+                <div id="card-number-errors" role="alert"></div> <!-- Used to display Element errors. -->
+            </div>
+
+            <div class="col-3">
+                <label for="card-cvv-element" class="form-label">Card CVV</label>
+                <div id="card-cvv-element" class="checkout-stripe-input"></div>
+                <div id="card-cvv-errors" role="alert"></div>
+            </div>
+
+            <div class="col-3">
+                <label for="card-expiry-element" class="form-label">Card Expiry</label>
+                <div id="card-expiry-element" class="checkout-stripe-input"></div>
+                <div id="card-expiry-errors" role="alert"></div>
+            </div>
+          </section>
+      </div>
+    </div>
+
+    <div class="row mt-4">
+      <div class="col-12">
+        <fieldset>
+          <legend class="h4">Order Summary</legend>
+          <div class="table-responsive">
+            <table class="table align-middle border">
+              <thead>
+                <tr>
+                  <th style="width:60%">Product</th>
+                  <th style="text-align:right">Total</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {items}
+                  <tr>
+                    <td>{item_qty} &times; {title}</td>
+                    <td style="text-align:right">{item_subtotal}</td>
+                  </tr>
+                {/items}
+                  <tr>
+                    <th>Subtotal</th>
+                    <th style="text-align:right">{order_subtotal}</th>
+                  </tr>
+                {if shipping_method}
+                  <tr>
+                    <td>Shipping ({shipping_method_name})</td>
+                    <td style="text-align:right">{order_shipping}</td>
+                  </tr>
+                {/if}
+                {if order_handling_val}
+                  <tr>
+                    <td>Handling</td>
+                    <td style="text-align:right">{order_handling}</td>
+                  </tr>
+                {/if}
+                {if order_tax_val}
+                  <tr>
+                    <td>{tax_name} ({tax_percent}%)</td>
+                    <td style="text-align:right">{order_tax}</td>
+                  </tr>
+                {/if}
+                  <tr>
+                    <th>Total</th>
+                    <th style="text-align:right">{order_total}</th>
+                  </tr>
+              </tbody>
+            </table>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+
+    <div class="form-actions">
+        <a href="{path='{segment_1}/checkout2'}" class="btn btn-dark">Back</a>
+        <button type="submit" class="btn btn-primary">Place Order</button>
+    </div>
+  </div>
+</div>
+
+{/exp:store:checkout}
+
+{exp:store:stripe_js}
+{embed="{segment_1}/_footer"}

@@ -1,0 +1,1 @@
+use Store\Dependency\Exception;

@@ -1,0 +1,11 @@
+{if segment_4}
+	{if segment_3 == "entry"}
+		{exp:rating:delete entry_id="{segment_4}"}
+			{if success}<h4>Successful!</h4>
+			{if:else}<h4>Error!</h4>{/if}
+			<p>{message}</p>
+		{/exp:rating:delete}
+	{/if}
+{if:else}
+	<p>No rating or entry was specified.</p>
+{/if}

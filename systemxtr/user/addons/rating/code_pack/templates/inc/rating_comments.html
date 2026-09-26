@@ -1,0 +1,98 @@
+	<div class="collapse" id="review-comments-{embed:rating_id}" style="margin-top:15px;">
+		<div class="well">
+		{exp:rating:comment_form
+			rating_id="{embed:rating_id}"
+			return="%prefix%main/entry/{segment_3}/comment_success"
+			form:class="form-horizontal"
+		}
+			{if logged_out}
+				<div class="form-group required">
+					<label for="comment-name-{embed:rating_id}" class="col-sm-3 col-md-2 control-label">Name</label>
+					<div class="col-sm-9 col-md-10">
+						<input type="text" name="name" id="comment-name-{embed:rating_id}" value="{rating_comment_name}" placeholder="Enter your name here" class="form-control">
+					</div>
+				</div>
+				<div class="form-group required">
+					<label for="comment-email-{embed:rating_id}" class="col-sm-3 col-md-2 control-label">Email</label>
+					<div class="col-sm-9 col-md-10">
+						<input type="text" name="email" id="comment-email-{embed:rating_id}" value="{rating_comment_email}" placeholder="Enter your email address" class="form-control">
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-3 col-sm-offset-2 col-sm-9 col-md-10">
+						<div class="checkbox">
+							<label for="comments-save_info-{embed:rating_id}">
+								<input type="checkbox" name="save_info" id="comments-save_info-{embed:rating_id}" value="y" {save_info} />
+								Remember my contact info for next time? (Guests)
+							</label>
+						</div>
+					</div>
+				</div>
+			{/if}
+			<div class="form-group required">
+				<label for="comment-comment-{embed:rating_id}" class="col-sm-3 col-md-2 control-label">Comment</label>
+				<div class="col-sm-9 col-md-10">
+					<textarea name="comment" id="comment-comment-{embed:rating_id}" placeholder="Enter your comment here" class="form-control" rows="3"></textarea>
+				</div>
+			</div>
+			{if rating_comment_captcha}
+				<div class="form-group required">
+					<label for="comment-captcha-{embed:rating_id}" class="col-sm-3 col-md-2 control-label">{rating_comment_captcha}</label>
+					<div class="col-sm-9 col-md-10">
+						<input type="text" name="captcha" id="comment-captcha-{embed:rating_id}" placeholder="Please enter in the word you see on the left" class="form-control">
+					</div>
+				</div>
+			{/if}
+			<div class="form-group">
+				<div class="col-sm-offset-3 col-sm-offset-2 col-sm-9 col-md-10">
+					<button type="submit" class="btn btn-success">Submit Comment</button>
+				</div>
+			</div>
+			{if rating_comment_no_results}
+				<div class="alert alert-warning" role="alert">
+					Sorry, you currently do not have sufficient privileges to submit rating comments for this site. You may also be required to log in to submit rating comments.<br />
+					<strong>Site Admins:</strong> make sure the appropriate member group privileges have been assigned in the Preferences area of the Rating control panel.
+				</div>
+			{/if}
+		{/exp:rating:comment_form}
+		</div>
+	</div>
+
+	{exp:rating:comments
+		rating_id="{embed:rating_id}"
+		orderby="date" sort="desc"
+		limit="10"
+	}
+		<div id="ratingCommentId-{rating_comment_id}" class="ratingCommentItem media">
+			<!-- Moderation Controls -->
+			{if logged_in}
+				{if logged_in_member_id == rating_comment_author_id OR logged_in_group_id == "1"} {!-- Is this the author of the comment or a Super Admin? --}
+					<p class="pull-right">
+						<a class="ratingCommentEdit" href="{path='%prefix%inc/ajax-edit-comment'}/{rating_comment_id}/{segment_3}/" title="edit this comment">
+						<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a> &nbsp;
+						<a class="ratingCommentDelete" href="{path='%prefix%inc/delete-rating-comments'}/{rating_comment_id}/" title="delete this comment"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+					</p>
+				{/if}
+			{/if}
+			<div class="media-left">
+				{if rating_comment_author_id != "0"} {!-- Don't link to it if it's a guest --}
+					<a href="{path='members'}/{rating_comment_author_id}/">
+				{/if}
+						<img src="{if rating_comment_avatar_filename}{rating_comment_avatar_url}{if:else}{exp:rating:theme_folder_url}code_pack/images/no-profile-pic.jpg{/if}" class="media-object img-rounded" height="70" width="70" alt="{rating_comment_screen_name}'s avatar" />
+				{if rating_comment_author_id != "0"} {!-- Don't link to it if it's a guest --}
+					</a>
+				{/if}
+			</div>
+			<div class="media-body">
+				<h4 class="media-heading">
+					{if rating_comment_screen_name}
+						<a href="{path='members'}/{rating_comment_author_id}/">{rating_comment_name}</a>
+					{if:else}
+						{rating_comment_name} (Guest)
+					{/if}
+					<small>on {rating_comment_date format="%F %j, %Y at %g:%i %a"}</small>
+				</h4>
+				<p>{rating_comment}</p>
+			</div>
+		</div>
+	{/exp:rating:comments}

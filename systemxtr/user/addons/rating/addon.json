@@ -1,0 +1,16 @@
+{
+    "name": "Rating",
+    "shortname": "rating",
+    "version": "5.4.0",
+    "foundation_version": "4.11.0",
+    "description": "Accept ratings and reviews from your site visitors and members.",
+    "license": "EEHarbor",
+    "namespace": "EEHarbor\\Rating",
+    "require": {
+        "php": ">=5.3.*",
+        "expressionengine/core": ">=2.11"
+    },
+    "resources": {
+        "themes": true
+    }
+}

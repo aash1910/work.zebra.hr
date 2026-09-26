@@ -1,0 +1,16 @@
+{
+    "name": "Fieldpack",
+    "shortname": "fieldpack",
+    "version": "4.3.0",
+    "foundation_version": "4.11.0",
+    "description": "All the essentials in one zip - useful fieldtypes.",
+    "license": "EEHarbor",
+    "namespace": "EEHarbor\\Fieldpack",
+    "require": {
+        "php": "^5.3.*",
+        "expressionengine/core": "^4.*"
+    },
+    "resources": {
+        "themes": true
+    }
+}

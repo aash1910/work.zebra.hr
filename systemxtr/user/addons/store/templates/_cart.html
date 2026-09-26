@@ -1,0 +1,50 @@
+<div class="">
+
+    <h4 style="margin-bottom:0.5em">Sidebar Cart</h4>
+
+    {exp:store:cart}
+
+        {if no_items}
+            <p>Your cart is empty!</p>
+        {/if}
+
+        <ul class="list-group mb-3">
+            {items}
+            <li class="list-group-item d-flex justify-content-between lh-sm">
+                <div>
+                    <h6 class="my-0">{item_qty} &times; {title}</h6>
+                    {modifiers}
+                      <small class="text-muted">{modifier_name}: {modifier_value}</small><br />
+                    {/modifiers}
+                </div>
+                <span class="text-body-secondary">{item_subtotal}</span>
+            </li>
+            {/items}
+            <li class="list-group-item d-flex justify-content-between lh-sm">
+                <div>
+                    <h6 class="my-0 fw-bold text-dark">Total</h6>
+                </div>
+                <span class="text-dark fw-bold">{order_subtotal}</span>
+            </li>
+        </ul>
+
+<!--         <table class="table table-condensed border">
+            {items}
+                <tr>
+                    <td>{item_qty} &times; {title}</td>
+                    <td style="text-align:right">{item_subtotal}</td>
+                </tr>
+            {/items}
+            <tr>
+                <th>Total</th>
+                <th style="text-align:right">{order_subtotal}</th>
+            </tr>
+        </table> -->
+
+        <div class="justify-content-center">
+            <a href="{path='{segment_1}/checkout'}" class="w-100 btn btn-primary btn-lg bg-gradient">Checkout</a>
+        </div>
+
+    {/exp:store:cart}
+
+</div>

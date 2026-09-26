@@ -1,0 +1,107 @@
+<?php
+/**
+ * Freeform for ExpressionEngine
+ *
+ * @package       Solspace:Freeform
+ * @author        Solspace, Inc.
+ * @copyright     Copyright (c) 2008-2025, Solspace, Inc.
+ * @link          https://docs.solspace.com/expressionengine/freeform/v3/
+ * @license       https://docs.solspace.com/license-agreement/
+ */
+
+namespace Solspace\Addons\FreeformNext\Library\Session;
+
+use JsonSerializable;
+class Honeypot implements JsonSerializable
+{
+    public const NAME_PREFIX = "freeform_form_handle";
+
+    private string $name;
+
+    private string $hash;
+
+    /** @var int */
+    private $timestamp;
+
+    /**
+     * @return Honeypot
+     */
+    public static function createFromUnserializedData(array $data): \Solspace\Addons\FreeformNext\Library\Session\Honeypot
+    {
+        $honeypot            = new Honeypot();
+        $honeypot->name      = $data["name"];
+        $honeypot->hash      = $data["hash"];
+        $honeypot->timestamp = $data["timestamp"];
+
+        return $honeypot;
+    }
+
+    /**
+     * Honeypot constructor.
+     */
+    public function __construct(bool $isEnhanced = false)
+    {
+        $this->name      = $isEnhanced ? $this->generateUniqueName() : self::NAME_PREFIX;
+        $this->hash      = $isEnhanced ? $this->generateHash() : '';
+        $this->timestamp = time();
+    }
+
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getHash(): string
+    {
+        return $this->hash;
+    }
+
+    /**
+     * @return int
+     */
+    public function getTimestamp()
+    {
+        return $this->timestamp;
+    }
+
+    /**
+     * Specify data which should be serialized to JSON
+     *
+     * @return array
+     */
+    public function jsonSerialize(): array
+    {
+        return [
+            "name"      => $this->getName(),
+            "hash"      => $this->getHash(),
+            "timestamp" => $this->getTimestamp(),
+        ];
+    }
+
+    /**
+     * @return string
+     */
+    private function generateUniqueName(): string
+    {
+        $hash = $this->generateHash(6);
+
+        return self::NAME_PREFIX . '_' . $hash;
+    }
+
+    /**
+     * @return string
+     */
+    private function generateHash(int $length = 9): string
+    {
+        $random = time() . random_int(111, 999) . (time() + 999);
+        $hash   = sha1($random);
+
+        return substr($hash, 0, $length);
+    }
+}

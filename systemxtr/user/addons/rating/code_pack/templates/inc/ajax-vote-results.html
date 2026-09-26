@@ -1,0 +1,13 @@
+{exp:rating:rating_vote_stats rating_id="{segment_3}"}
+	{if total_votes > 0}
+		<small>{total_votes} vote{if total_votes > 1}s{/if}</small><br />
+	{/if}
+	{if not_already_voted}
+		<small>{up_percent}%</small> <a class="ratingVote" href="{path='%prefix%inc/vote'}/{segment_3}/up/" title="vote this review up"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></a><br />
+		<small>{down_percent}%</small> <a class="ratingVote" href="{path='%prefix%inc/vote'}/{segment_3}/down/" title="vote this review down"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></a>
+	{/if}
+	{if already_voted}
+		<small>{up_percent}%</small> <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span><br />
+		<small>{down_percent}%</small> <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+	{/if}
+{/exp:rating:rating_vote_stats}

@@ -1,0 +1,6 @@
+Array
+(
+    [./vendor-build/illuminate/database/Connectors/ConnectionFactory.php] => 
+Parse error: syntax error, unexpected token "public", expecting ";" in ./vendor-build/illuminate/database/Connectors/ConnectionFactory.php on line 198
+Errors parsing ./vendor-build/illuminate/database/Connectors/ConnectionFactory.php
+)

@@ -1,0 +1,206 @@
+{embed="%prefix%inc/index" page_title="Entry Details"}
+	</head>
+
+	<body role="document">
+
+{embed="%prefix%inc/header"}
+
+		<div class="container">
+
+			<div class="page-header">
+				<h1>Entry Details</h1>
+				<p class="lead">This page displays a specific entry and rating stats, as well as options to submit, view, and vote on ratings.</p>
+			</div>
+
+			<div class="row">
+				<div class="col-md-8">
+				{if segment_4 == "success"}
+					<div class="alert alert-success" role="alert">
+						<p class="lead">Your rating/review has been successfully submitted!</p>
+					</div>
+				{/if}
+				{if segment_4 == "updated"}
+					<div class="alert alert-success" role="alert">
+						<p class="lead">Your rating/review has been successfully updated!</p>
+					</div>
+				{/if}
+				{if segment_4 == "comment_success"}
+					<div class="alert alert-success" role="alert">
+						<p class="lead">Your comment has been successfully added!</p>
+					</div>
+				{/if}
+				{if segment_4 == "comment_updated"}
+					<div class="alert alert-success" role="alert">
+						<p class="lead">Your comment has been successfully updated!</p>
+					</div>
+				{/if}
+					{exp:channel:entries
+						require_entry="yes"
+					}
+					<h3>
+						{title}
+						<small class="pull-right">
+						{exp:rating:stats
+							entry_id="{entry_id}"
+							precision="1"
+						}
+							{stars_overall_avg} ({overall_avg}/5, based on {overall_count} review{if overall_count !="1"}s{/if})
+							{if rating_no_results}
+								This entry has not been rated yet.
+							{/if}
+						{/exp:rating:stats}
+						</small>
+					</h3>
+					<p>
+						Author:
+						<a href="{path='%prefix%main/author_profile'}/{author_id}/">{author}</a>
+					</p>
+					<p>
+					{if body}
+						{body}
+					{if:else}
+						<div class="alert alert-warning" role="alert">
+							No <b>body</b> field available. You'll need to either rename this field to one that exists on
+							your site, or create a new field called 'body' for this field to work.
+						</div>
+					{/if}
+					</p>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">Submit a Rating</h3>
+						</div>
+						<div class="ratingFormDiv panel-body">
+							{exp:rating:form
+								collection="Reviews"
+								entry_id="{entry_id}"
+								allow_duplicates="no"
+								return="%prefix%main/entry/{segment_3}/success/"
+								user_template="user_template"
+								form:class="ratingForm form-horizontal" 
+							}
+								{if duplicate}
+									<p>You have already submitted a rating for this entry.</p>
+								{/if}
+								{if not_duplicate}
+									{if logged_out}
+										<div class="form-group required">
+											<label for="name" class="col-sm-3 col-md-2 control-label">Name</label>
+											<div class="col-sm-9 col-md-10">
+												<input type="text" name="name" id="name" value="{name}" placeholder="Enter your name here" class="form-control">
+											</div>
+										</div>
+										<div class="form-group required">
+											<label for="email" class="col-sm-3 col-md-2 control-label">Email</label>
+											<div class="col-sm-9 col-md-10">
+												<input type="text" name="email" id="email" value="{logged_in_email}" placeholder="Enter your email address" class="form-control">
+											</div>
+										</div>
+										<div class="form-group">
+											<div class="col-sm-offset-3 col-sm-offset-2 col-sm-9 col-md-10">
+												<div class="checkbox">
+													<label for="save_info">
+														<input type="checkbox" name="save_info" id="save_info" value="y" {save_info} />
+														Remember my contact info for next time? (Guests)
+													</label>
+												</div>
+											</div>
+										</div>
+									{/if}
+									<div class="form-group required">
+										<label for="rating" class="col-sm-3 col-md-2 control-label">Rating</label>
+										<div class="col-sm-9 col-md-10">
+											<select name="rating" id="rating" class="form-control" style="width: 65px;">
+												<option value="1">1</option>
+												<option value="2">2</option>
+												<option value="3">3</option>
+												<option value="4">4</option>
+												<option value="5">5</option>
+											</select>
+										</div>
+									</div>
+									<div class="form-group required">
+										<label for="review" class="col-sm-3 col-md-2 control-label">Review</label>
+										<div class="col-sm-9 col-md-10">
+											<textarea name="review" id="review" placeholder="Enter your review here" class="form-control" rows="5"></textarea>
+										</div>
+									</div>
+									{if captcha}
+										<div class="form-group required">
+											<label for="captcha" class="col-sm-3 col-md-2 control-label">{captcha}</label>
+											<div class="col-sm-9 col-md-10">
+												<input type="text" name="captcha" id="captcha" placeholder="Please enter in the word you see on the left" class="form-control">
+											</div>
+										</div>
+									{/if}
+									<div class="form-group">
+										<div class="col-sm-offset-3 col-sm-offset-2 col-sm-9 col-md-10">
+											<div class="checkbox">
+												<label for="notify_me">
+													<input type="checkbox" name="notify_me" id="notify_me" value="y" {notify_me} />
+													Notify me of future Ratings?
+												</label>
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="col-sm-offset-3 col-sm-offset-2 col-sm-9 col-md-10">
+											<button type="submit" class="btn btn-lg btn-success">Submit Review</button>
+										</div>
+									</div>
+								{/if}
+								{if rating_no_results}
+									<div class="alert alert-warning" role="alert">
+										Sorry, you currently do not have sufficient privileges to submit ratings for this site. You may also be required to log in to submit ratings.<br />
+										<strong>Site Admins:</strong> make sure the appropriate member group privileges have been assigned in the Preferences area of the Rating control panel.
+									</div>
+								{/if}
+							{/exp:rating:form}
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							{if logged_in_group_id == "1"}
+								<a href="{path='%prefix%inc/ajax-delete-all-ratings'}/entry/{entry_id}/" class="ratingsDeleteAll btn btn-xs btn-danger pull-right"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp; Remove ALL Reviews</a>
+							{/if}
+							<h3 class="panel-title">Ratings</h3>
+						</div>
+						<div class="panel-body">
+{embed="%prefix%inc/rating_entries" entry_id="{entry_id}"}
+						</div>
+					</div>
+					{if rating_no_results}
+						<div class="alert alert-warning" role="alert">
+ 							<p><strong>Sorry, no channel entry was found.</strong> If you continue to have trouble getting channel entries to display, make sure that:</p>
+							<ul>
+								<li>Channel entries exist for your site.</li>
+								<li>If any of your entries have a status other than <i>closed</i>, have <i>future</i> entry dates, are <i>expired</i>, etc, you'll need to include the necessary parameters on the <i>Rating:Rank</i> loop for this template.</li>
+							</ul>
+						</div>
+					{/if}
+					{/exp:channel:entries}
+				</div>
+
+				<div class="col-md-4">				
+{embed="%prefix%inc/sidebar"}
+				</div>
+      		</div>
+
+			<div class="well ss-pageinfo">
+				<h2>About This Page</h2>
+				<p>The "Entry Details" page displays a specific entry and rating stats, as well as options to submit, view, and vote on ratings.</p>
+				<p>It makes use of the following tags:</p>
+				<ul>
+					<li><a href="https://docs.expressionengine.com/v3/channel/channel_entries.html">Channel:Entries</a> to display details of the entry.</li>
+					<li><a href="https://solspace.com/expressionengine/rating/docs/stats/">Rating:Stats</a> to display stats about ratings for this entry.</li>
+					<li><a href="https://solspace.com/expressionengine/rating/docs/form/">Rating:Form</a> to allow users to submit ratings for this entry.</li>
+					<li><a href="https://solspace.com/expressionengine/rating/docs/entries/">Rating:Entries</a> to display a list of ratings for this entry.</li>
+					<li><a href="https://solspace.com/expressionengine/rating/docs/reporting_allowed/">Rating:Reporting_Allowed</a> to check to see if user has permissions to report ratings, and then display "report" link.</li>
+					<li><a href="https://solspace.com/expressionengine/rating/docs/rating_vote_stats/">Rating:Rating_Vote_Stats</a> to display stats and options for voting the ratings 'up' or 'down'.</li>
+				</ul>
+				<p>The global sidebar on the right makes use of the following tags:</p>
+				<ul>
+					<li><a href="https://solspace.com/expressionengine/rating/docs/rank/">Rating:Rank</a> to display a list of top rated entries.</li>
+				</ul>
+			</div>
+
+{embed="%prefix%inc/footer"}

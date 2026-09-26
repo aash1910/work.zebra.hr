@@ -1,0 +1,78 @@
+{
+    "autoload": {
+        "psr-4": {
+            "Store\\": "src/"
+        },
+        "files": [
+            "config.php",
+            "src/helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Store\\": "tests/store/"
+        }
+    },
+    "require": {
+        "php": ">=7.4|>=8.0",
+        "illuminate/database": "^9",
+        "nesbot/carbon": "^2",
+        "league/omnipay": "^3",
+        "omnipay/common": "^3",
+        "omnipay/dummy": "^3",
+        "omnipay/manual": "^3",
+        "omnipay/stripe": "^3.2",
+        "omnipay/sagepay": "^3",
+        "omnipay/paypal": "^3.0.2",
+        "omnipay/authorizenet": "^3",
+        "omnipay/mollie": "^5",
+        "academe/omnipay-authorizenetapi": "^3",
+        "symfony/http-foundation": "^5.4",
+        "symfony/string": "^5.4",
+        "psr/http-factory": "^1.0",
+        "expressodev/laravel-codeigniter-db": "dev-develop",
+        "guzzlehttp/guzzle": "^7"
+    },
+    "require-dev": {
+        "mockery/mockery": "^1.6",
+        "phpunit/phpunit": "^11",
+        "composer/composer": "^2.8",
+        "bamarni/composer-bin-plugin": "^1.8"
+    },
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/matthewjohns0n/laravel-codeigniter-db.git"
+        }
+    ],
+    "config": {
+        "preferred-install": {
+            "*": "dist"
+        },
+        "allow-plugins": {
+            "kylekatarnls/update-helper": true,
+            "php-http/discovery": true,
+            "bamarni/composer-bin-plugin": true
+        }
+    },
+    "scripts": {
+        "scope-dependencies": [
+            "rm -rf vendor-build",
+            "vendor/bin/php-scoper add-prefix --output-dir=vendor-build --force --quiet",
+            "COMPOSER_VENDOR_DIR=vendor-build composer dump-autoload",
+            "php scoper.fix.php"
+        ],
+        "post-update-cmd": [
+            "@scope-dependencies"
+        ],
+        "post-install-cmd": [
+            "@scope-dependencies"
+        ]
+    },
+    "extra": {
+        "bamarni-bin": {
+            "bin-links": true,
+            "forward-command": false
+        }
+    }
+}

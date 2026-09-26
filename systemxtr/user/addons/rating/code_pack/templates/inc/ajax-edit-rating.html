@@ -1,0 +1,52 @@
+{exp:rating:form
+	collection="Reviews"
+	edit="yes" rating_id="{segment_3}"
+	return="%prefix%main/entry/{segment_4}/updated/"
+	form:class="form-horizontal"
+}
+	{if rating_author_id == "0"}
+		<div class="form-group required">
+			<label for="name" class="col-sm-3 col-md-2 control-label">Name</label>
+			<div class="col-sm-9 col-md-10">
+				<input type="text" name="name" id="name" value="{name}" placeholder="Enter your name here" class="form-control">
+			</div>
+		</div>
+		<div class="form-group required">
+			<label for="email" class="col-sm-3 col-md-2 control-label">Email</label>
+			<div class="col-sm-9 col-md-10">
+				<input type="text" name="email" id="email" value="{email}" placeholder="Enter your email address" class="form-control">
+			</div>
+		</div>
+	{/if}
+	<div class="form-group required">
+		<label for="rating" class="col-sm-3 col-md-2 control-label">Rating</label>
+		<div class="col-sm-9 col-md-10">
+			<select name="rating" id="rating" class="form-control" style="width: 65px;">
+				<option value="1"{if rating == "1"} selected="selected"{/if}>1</option>
+				<option value="2"{if rating == "2"} selected="selected"{/if}>2</option>
+				<option value="3"{if rating == "3"} selected="selected"{/if}>3</option>
+				<option value="4"{if rating == "4"} selected="selected"{/if}>4</option>
+				<option value="5"{if rating == "5"} selected="selected"{/if}>5</option>
+			</select>
+		</div>
+	</div>
+	<div class="form-group required">
+		<label for="review" class="col-sm-3 col-md-2 control-label">Review</label>
+		<div class="col-sm-9 col-md-10">
+			<textarea name="review" id="review" placeholder="Enter your review here" class="form-control" rows="5">{review}</textarea>
+		</div>
+	</div>
+	{if captcha}
+		<div class="form-group required">
+			<label for="captcha" class="col-sm-3 col-md-2 control-label">{captcha}</label>
+			<div class="col-sm-9 col-md-10">
+				<input type="text" name="captcha" id="captcha" placeholder="Please enter in the word you see on the left" class="form-control">
+			</div>
+		</div>
+	{/if}
+	<div class="form-group">
+		<div class="col-sm-offset-3 col-sm-offset-2 col-sm-9 col-md-10">
+			<button type="submit" class="ratingEditBtn btn btn-sm btn-success">Update Review</button>
+		</div>
+	</div>
+{/exp:rating:form}

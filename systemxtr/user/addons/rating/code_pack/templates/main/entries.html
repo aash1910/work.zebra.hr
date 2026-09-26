@@ -1,0 +1,125 @@
+{embed="%prefix%inc/index" page_title="{if segment_3 != "author"}All {/if}Entries{if segment_3 == "author"} by Author{/if}"}
+	</head>
+
+	<body role="document">
+
+{embed="%prefix%inc/header"}
+
+		<div class="container">
+
+			<div class="page-header">
+				<h1>{if segment_3 != "author"}All {/if}Entries{if segment_3 == "author"} by Author{/if}</h1>
+				<p class="lead">This page displays list of all entries for your site. It simply makes it easier for you during testing phase to navigate to your entries and submit ratings for them.</p>
+			</div>
+
+			<div class="row">
+				<div class="col-md-8">
+{if segment_3 == "author"}
+					<div class="alert alert-info" role="alert">
+						<p class="lead">Currently filtered to show entries authored by {exp:member:custom_profile_data member_id="{segment_4}"}<strong>{screen_name}</strong>{/exp:member:custom_profile_data}.</p>
+					</div>
+{/if}
+						{exp:channel:entries
+						{if segment_3 == "author"}
+							author_id="{segment_4}"
+						{/if}
+							limit="10" paginate="bottom"
+							dynamic="no"
+						}
+					<h3>
+						<a href="{url_title_path='%prefix%main/entry'}">{title}</a>
+						{exp:rating:stats
+							entry_id="{entry_id}"
+							precision="1"
+						}
+							<small class="pull-right">
+								{stars_overall_avg} ({overall_avg}/5, based on {overall_count} review{if overall_count !="1"}s{/if})
+							</small>
+						{/exp:rating:stats}
+					</h3>
+					<p>
+						Author:
+						<a href="{path='%prefix%main/author_profile'}/{author_id}/">{author}</a>
+					</p>
+					<p>
+					{if body}
+						{body}
+					{if:else}
+						<div class="alert alert-warning" role="alert">
+							No <b>body</b> field available. You'll need to either rename this field to one that exists on
+							your site, or create a new field called 'body' for this field to work.
+						</div>
+					{/if}
+					</p>
+					{!-- Begin Testing and Debugging --}
+					<div class="panel panel-default solspace-debug">
+						<div class="panel-heading">
+							<h3 class="panel-title">Channel Entry Testing &amp; Debugging</h3>
+						</div>
+						<div class="panel-body">
+							<ul>
+								<li>Entry ID: {entry_id}</li>
+								<li>URL Title: {url_title}</li>
+								<li>Count: {count}</li>
+								<li>Total Results: {total_results}</li>
+								<li>Absolute Count: {absolute_count}</li>
+								<li>Absolute Results: {absolute_results}</li>
+							</ul>
+						</div>
+					</div>
+					{!-- End Testing and Debugging --}
+					<hr />
+					{if rating_no_results}
+						<div class="alert alert-warning" role="alert">
+ 							<p><strong>Sorry, no channel entries were found.</strong> If you continue to have trouble getting channel entries to display, make sure that:</p>
+							<ul>
+								<li>Channel entries exist for your site.</li>
+								<li>At least one channel entry has has a review/rating submitted to it.</li>
+								<li>If any of your entries have a status other than <i>closed</i>, have <i>future</i> entry dates, are <i>expired</i>, etc, you'll need to include the necessary parameters on the <i>Rating:Rank</i> loop for this template.</li>
+							</ul>
+						</div>
+					{/if}
+					{paginate}
+						<ul class="pagination pagination-lg">
+						{pagination_links}
+						{first_page}
+							<li><a href="{pagination_url}">First</a></li>
+						{/first_page}
+						{previous_page}
+							<li><a href="{pagination_url}">&larr; Previous</a></li>
+						{/previous_page}
+						{page}
+							<li{if current_page} class="active"{/if}><a href="{pagination_url}">{pagination_page_number}</a></li>
+						{/page}
+						{next_page}
+							<li><a href="{pagination_url}">Next &raquo;</a></li>
+						{/next_page}
+						{last_page}
+							<li><a href="{pagination_url}">Last</a></li>
+						{/last_page}
+						{/pagination_links}
+						</ul>
+					{/paginate}
+					{/exp:channel:entries}
+				</div>
+
+				<div class="col-md-4">				
+{embed="%prefix%inc/sidebar"}
+				</div>
+      		</div>
+
+			<div class="well ss-pageinfo">
+				<h2>About This Page</h2>
+				<p>The "All Entries" page displays list of all entries for your site. It simply makes it easier for you during testing phase to navigate to your entries and submit ratings for them. Additionally, this page can be filtered by author ID using the list of authors above.</p>
+				<p>It makes use of the following tags:</p>
+				<ul>
+					<li><a href="https://docs.expressionengine.com/v3/channel/channel_entries.html">Channel:Entries</a> to display a list of all entries.</li>
+					<li><a href="https://solspace.com/expressionengine/rating/docs/stats/">Rating:Stats</a> to display stats about ratings for each entry, if available.</li>
+				</ul>
+				<p>The global sidebar on the right makes use of the following tags:</p>
+				<ul>
+					<li><a href="https://docs.expressionengine.com/v3/add-ons/query/index.html">Query Module</a> to create and display a list of authors.</li>
+				</ul>
+			</div>
+
+{embed="%prefix%inc/footer"}

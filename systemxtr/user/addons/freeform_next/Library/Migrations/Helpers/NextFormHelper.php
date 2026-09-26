@@ -1,0 +1,712 @@
+<?php
+/**
+ * Freeform for ExpressionEngine
+ *
+ * @package       Solspace:Freeform
+ * @author        Solspace, Inc.
+ * @copyright     Copyright (c) 2008-2025, Solspace, Inc.
+ * @link          https://docs.solspace.com/expressionengine/freeform/v3/
+ * @license       https://docs.solspace.com/license-agreement/
+ */
+
+namespace Solspace\Addons\FreeformNext\Library\Migrations\Helpers;
+
+use Exception;
+use Solspace\Addons\FreeformNext\Library\Composer\Attributes\FormAttributes;
+use Solspace\Addons\FreeformNext\Library\Composer\Components\FieldInterface;
+use Solspace\Addons\FreeformNext\Library\Composer\Composer;
+use Solspace\Addons\FreeformNext\Library\Exceptions\FreeformException;
+use Solspace\Addons\FreeformNext\Library\Helpers\ExtensionHelper;
+use Solspace\Addons\FreeformNext\Library\Helpers\HashHelper;
+use Solspace\Addons\FreeformNext\Library\Migrations\Objects\ComposerState;
+use Solspace\Addons\FreeformNext\Library\Session\EERequest;
+use Solspace\Addons\FreeformNext\Library\Translations\EETranslator;
+use Solspace\Addons\FreeformNext\Model\FieldModel;
+use Solspace\Addons\FreeformNext\Repositories\FieldRepository;
+use Solspace\Addons\FreeformNext\Repositories\FormRepository;
+use Solspace\Addons\FreeformNext\Repositories\NotificationRepository;
+use Solspace\Addons\FreeformNext\Repositories\StatusRepository;
+use Solspace\Addons\FreeformNext\Services\CrmService;
+use Solspace\Addons\FreeformNext\Services\FieldsService;
+use Solspace\Addons\FreeformNext\Services\FilesService;
+use Solspace\Addons\FreeformNext\Services\FormsService;
+use Solspace\Addons\FreeformNext\Services\MailerService;
+use Solspace\Addons\FreeformNext\Services\MailingListsService;
+use Solspace\Addons\FreeformNext\Services\SettingsService;
+use Solspace\Addons\FreeformNext\Services\StatusesService;
+use Solspace\Addons\FreeformNext\Services\SubmissionsService;
+
+class NextFormHelper
+{
+    public const STRICT_MODE = true;
+
+    /** @var array */
+    public $errors;
+
+    /** @var array */
+    private $currentNewFieldsByLegacyId;
+
+    /**
+     *
+     * @return bool
+     * @throws FreeformException
+     * @throws Exception
+     */
+    public function saveForm(array $classicForm): bool
+    {
+        $this->setCurrentFieldsByLegacyId();
+        $data = $this->convertData($classicForm);
+
+        if (!isset($data['formId'])) {
+            throw new FreeformException('No form ID specified');
+        }
+
+        if (!isset($data['composerState'])) {
+            throw new FreeformException('No composer data present');
+        }
+
+        $formId        = $data['formId'];
+        $form          = FormRepository::getInstance()->getOrCreateForm($formId);
+        $composerState = json_decode($data['composerState'], true);
+
+        $isNew = !$form->id;
+
+        if (array_key_exists('duplicate', $data)) {
+            $oldHandle = $composerState['composer']['properties']['form']['handle'];
+
+            if (preg_match('/^([a-zA-Z0-9]*[a-zA-Z]+)(\d+)$/', $oldHandle, $matches)) {
+                [$string, $mainPart, $iterator] = $matches;
+
+                $newHandle = $mainPart . ((int) $iterator + 1);
+            } else {
+                $newHandle = $oldHandle . '1';
+            }
+
+            $composerState['composer']['properties']['form']['handle'] = $newHandle;
+        }
+
+        $formsService = new FormsService();
+
+        $sessionImplementation = (new SettingsService())->getSessionStorageImplementation();
+
+        $formAttributes = new FormAttributes($formId, $sessionImplementation, new EERequest());
+        $composer       = new Composer(
+            $formsService,
+            new FieldsService(),
+            new SubmissionsService(),
+            new MailerService(),
+            new FilesService(),
+            new MailingListsService(),
+            new CrmService(),
+            new StatusesService(),
+            new EETranslator(),
+            $composerState,
+            $formAttributes
+        );
+
+        $form->setLegacyId($classicForm['form_id']);
+        $form->setLayout($composer);
+
+        if (!ExtensionHelper::call(ExtensionHelper::HOOK_FORM_BEFORE_SAVE, $form, $isNew)) {
+            throw new FreeformException(ExtensionHelper::getLastCallData());
+        }
+
+        $existing = FormRepository::getInstance()->getFormByIdOrHandle($form->handle);
+
+        if ($existing && $existing->id !== $form->id) {
+            throw new FreeformException(sprintf('Handle "%s" already taken', $form->handle));
+        }
+
+        $form->save();
+
+        return true;
+    }
+
+    /**
+     *
+     * @return array
+     * @throws FreeformException
+     */
+    private function convertData(array $classicForm)
+    {
+        $sessionImplementation = (new SettingsService())->getSessionStorageImplementation();
+        $formsService          = new FormsService();
+        $formAttributes        = new FormAttributes('', $sessionImplementation, new EERequest());
+
+        $notificationId     = $this->getNotificationId($classicForm);
+        $notificationEmails = '';
+
+        if ($notificationId) {
+            $notificationEmails = $this->getNotificationEmails($classicForm);
+        }
+
+        $composerState                     = new ComposerState();
+        $composerState->name               = $classicForm['form_label'];
+        $composerState->defaultStatus      = StatusRepository::getInstance()->getStatusByHandle(
+            $classicForm['default_status']
+        );
+        $composerState->notificationId     = $notificationId;
+        $composerState->notificationEmails = $notificationEmails;
+        $composerState->handle             = $classicForm['form_name'];
+        $composerState->description        = $classicForm['form_description'];
+
+        $nextFormFields = [];
+
+        foreach ($classicForm['field_ids'] as $id) {
+            if (array_key_exists($id, $this->currentNewFieldsByLegacyId)) {
+                $nextFormFields[] = $this->currentNewFieldsByLegacyId[$id];
+            }
+        }
+
+        $this->compareClassicAndNextFieldsCount($classicForm, $nextFormFields);
+
+        $classicFormHelper = $this->getClassicFormHelper();
+        $composerId        = $classicFormHelper->getFormComposerId($classicForm['form_id']);
+
+        if (!$composerId) {
+            $result = $this->getNormalFormData($nextFormFields);
+        } else {
+            $result = $this->getComposerFormData($classicForm, $composerId);
+        }
+
+        $composerState->layout    = $result['layout'];
+        $composerState->fields    = $result['preparedFields'];
+        $composerState->pageCount = is_countable($result['layout']) ? count($result['layout']) : 0;
+
+        $composer = new Composer(
+            $formsService,
+            new FieldsService(),
+            new SubmissionsService(),
+            new MailerService(),
+            new FilesService(),
+            new MailingListsService(),
+            new CrmService(),
+            new StatusesService(),
+            new EETranslator(),
+            null,
+            $formAttributes,
+            $composerState
+        );
+
+        $composerState = $composer->getComposerStateJSON();
+
+        $data = [
+            'formId'        => '',
+            'composerState' => $composerState,
+        ];
+
+        return $data;
+    }
+
+    /**
+     * @return int
+     */
+    private function getNotificationId(array $classicForm)
+    {
+        $notificationId = 0;
+
+        if (strtolower($classicForm['notify_admin']) === 'y') {
+            $notification = NotificationRepository::getInstance()->getNotificationByLegacyId(
+                $classicForm['admin_notification_id']
+            );
+
+            if ($notification) {
+                $notificationId = $notification->id;
+            }
+        }
+
+        return $notificationId;
+    }
+
+    /**
+     * @return mixed
+     */
+    private function getNotificationEmails(array $classicForm): string|array
+    {
+        return str_replace('|', "\n", $classicForm['admin_notification_email']);
+    }
+
+    /**
+     * @return array
+     */
+    private function getNormalFormData(array $nextFormFields): array
+    {
+        $result = [
+            'layout'         => [],
+            'preparedFields' => [],
+        ];
+
+        $preparedFields = [];
+        $rows           = [];
+
+        $key = 0;
+        foreach ($nextFormFields as $key => $nextFormField) {
+            $rowHash = HashHelper::hash($key);
+
+            $row['id']      = $rowHash;
+            $row['columns'] = [];
+
+            $preparedField = $this->getPreparedField($nextFormField);
+
+            $preparedFields[] = $preparedField;
+            $row['columns'][] = $preparedField['hash'];
+            $rows[]           = $row;
+        }
+
+        $rowHash          = HashHelper::hash($key + 1);
+        $row['id']        = $rowHash;
+        $row['columns']   = [];
+        $submitButton     = $this->getPreparedSubmitField();
+        $preparedFields[] = $submitButton;
+        $row['columns'][] = $submitButton['hash'];
+        $rows[]           = $row;
+
+        $result['layout']         = [$rows];
+        $result['preparedFields'] = $preparedFields;
+
+        return $result;
+    }
+
+    /**
+     * @param int   $composerId
+     * @return array
+     */
+    private function getComposerFormData(array $classicForm, $composerId): array
+    {
+        $result = [
+            'layout'         => [],
+            'preparedFields' => [],
+        ];
+
+        $classicFormHelper = $this->getClassicFormHelper();
+        $composerData      = $classicFormHelper->getComposerDataById($composerId);
+
+        foreach ($classicForm['field_ids'] as $id) {
+            if (array_key_exists($id, $this->currentNewFieldsByLegacyId)) {
+                $nextFormFields[] = $this->currentNewFieldsByLegacyId[$id];
+            }
+        }
+
+        $preparedFields = [];
+        $rows           = [];
+        $layout         = [];
+
+        foreach ($composerData['rows'] as $key => $composerRow) {
+
+            if (!is_array($composerRow) && $composerRow === "page_break") {
+                $layout[] = $rows;
+                $rows     = [];
+                continue;
+            }
+
+            $rowHash = HashHelper::hash($key);
+
+            $row['id']      = $rowHash;
+            $row['columns'] = [];
+
+            foreach ($composerRow as $rKey => $composerColumn) {
+
+                foreach ($composerColumn as $composerField) {
+
+                    if ($composerField['type'] === 'field') {
+
+                        if (!array_key_exists('fieldId', $composerField)) {
+                            continue;
+                        }
+
+                        $fieldId = $composerField['fieldId'];
+
+                        if (array_key_exists($fieldId, $this->currentNewFieldsByLegacyId)) {
+                            $required = isset($composerField['required']) ? $composerField['required'] === 'yes' : false;
+
+                            $nextFormField = $this->currentNewFieldsByLegacyId[$fieldId];
+                            $preparedField = $this->getPreparedField($nextFormField, $required);
+
+                            $preparedFields[] = $preparedField;
+                            $row['columns'][] = $preparedField['hash'];
+                        }
+                    }
+
+                    if ($composerField['type'] === 'nonfield_submit') {
+
+                        $previousComposerRow = null;
+
+                        if (array_key_exists($rKey - 1, $composerRow)) {
+                            $previousComposerRow = $composerRow[$rKey - 1];
+                        }
+
+                        $preparedField = $this->getPreparedSubmitField($composerField, $previousComposerRow);
+
+                        $preparedFields[] = $preparedField;
+                        $row['columns'][] = $preparedField['hash'];
+                    }
+
+                    if ($composerField['type'] === 'nonfield_paragraph') {
+                        $preparedHtml = $this->getPreparedHtmlField($composerField);
+
+                        $preparedFields[] = $preparedHtml;
+                        $row['columns'][] = $preparedHtml['hash'];
+                    }
+                }
+            }
+
+            if (count($row['columns']) > 0) {
+                $rows[] = $row;
+            }
+        }
+
+        // Add last page to layout
+        $layout[] = $rows;
+
+        $result['layout']         = $layout;
+        $result['preparedFields'] = $preparedFields;
+
+        return $result;
+    }
+
+    /**
+     * @return array
+     */
+    private function getPreparedField(FieldModel $nextFormField, bool $required = false): array
+    {
+        $preparedField                 = [];
+        $preparedField['hash']         = $nextFormField->getHash();
+        $preparedField['id']           = $nextFormField->getId();
+        $preparedField['type']         = $nextFormField->type;
+        $preparedField['handle']       = $nextFormField->handle;
+        $preparedField['label']        = $nextFormField->label;
+        $preparedField['required']     = $required;
+        $preparedField['instructions'] = $nextFormField->instructions;
+        $preparedField['value']        = $nextFormField->value;
+        $preparedField['placeholder']  = $nextFormField->placeholder;
+
+        if ($nextFormField->options) {
+            $preparedField['options'] = $nextFormField->options;
+        }
+
+        if ($nextFormField->fileKinds) {
+            $preparedField['fileKinds'] = $nextFormField->fileKinds;
+        }
+
+        if ($nextFormField->maxFileSizeKB) {
+            $preparedField['maxFileSizeKB'] = $nextFormField->maxFileSizeKB;
+        }
+
+        if ($nextFormField->assetSourceId) {
+            $preparedField['assetSourceId'] = $nextFormField->assetSourceId;
+        }
+
+        if ($nextFormField->getAdditionalProperty('fileCount')) {
+            $preparedField['fileCount'] = $nextFormField->getAdditionalProperty('fileCount');
+        }
+
+        if ($nextFormField->checked) {
+            $preparedField['checked'] = $nextFormField->checked;
+        }
+
+        if ($nextFormField->rows) {
+            $preparedField['rows'] = $nextFormField->rows;
+        }
+
+        $showCustomValues = false;
+
+        if ($nextFormField->additionalProperties) {
+            $additionalProperties = $nextFormField->additionalProperties;
+            if (array_key_exists(
+                    'custom_values',
+                    $additionalProperties
+                ) && $additionalProperties['custom_values'] == 1) {
+                $showCustomValues = true;
+            }
+        }
+
+        $preparedField['showCustomValues'] = $showCustomValues;
+
+        return $preparedField;
+    }
+
+    /**
+     * @param array|null $composerField
+     * @param array|null $previousComposerRow
+     *
+     * @return array
+     */
+    private function getPreparedSubmitField(?array $composerField = null, ?array $previousComposerRow = null)
+    {
+        /** @var FieldModel $nextFormField */
+
+        $preparedField                = [];
+        $preparedField['hash']        = HashHelper::hash($this->getNewId());
+        $preparedField['type']        = FieldInterface::TYPE_SUBMIT;
+        $preparedField['label']       = 'Submit';
+        $preparedField['labelNext']   = 'Submit';
+        $preparedField['labelPrev']   = 'Previous';
+        $preparedField['position']    = 'left';
+        $preparedField['disablePrev'] = true;
+
+        if ($composerField) {
+            $preparedField['label']     = $composerField['html'];
+            $preparedField['labelNext'] = $composerField['html'];
+        }
+
+        if (!$previousComposerRow) {
+            return $preparedField;
+        }
+
+        foreach ($previousComposerRow as $previousComposerField) {
+            if ($previousComposerField && $previousComposerField['type'] === 'nonfield_submit_previous') {
+                $preparedField['labelPrev']   = $previousComposerField['html'];
+                $preparedField['disablePrev'] = false;
+                break;
+            }
+        }
+
+        return $preparedField;
+    }
+
+    /**
+     * @return array
+     */
+    private function getPreparedHtmlField(array $composerField): array
+    {
+        /** @var FieldModel $nextFormField */
+
+        $preparedField          = [];
+        $preparedField['hash']  = HashHelper::hash($this->getNewId());
+        $preparedField['type']  = FieldInterface::TYPE_HTML;
+        $preparedField['value'] = $composerField['html'];
+        $preparedField['label'] = 'HTML';
+
+        return $preparedField;
+    }
+
+    /**
+     * @return int
+     */
+    private function getNewId(): int
+    {
+        return random_int(10000, 99_999_999);
+    }
+
+    /**
+     *
+     * @throws FreeformException
+     */
+    private function compareClassicAndNextFieldsCount(array $classicForm, array $nextFormFields)
+    {
+        $classicFormName       = $classicForm['form_name'];
+        $classicFormFieldCount = is_countable($classicForm['field_ids']) ? count($classicForm['field_ids']) : 0;
+        $nextFormFieldCount    = count($nextFormFields);
+
+        if ($nextFormFieldCount !== $classicFormFieldCount) {
+            $missingCount = $classicFormFieldCount - $nextFormFieldCount;
+            $message      = 'There are missing ' . $missingCount . ' fields for form ' . $classicFormName;
+
+            $this->errors[] = $message;
+
+            if (self::STRICT_MODE) {
+                throw new FreeformException($message);
+            }
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    private function getClassicFieldType(array $classicField)
+    {
+        return $classicField['field_type'];
+    }
+
+    /**
+     * @return array
+     */
+    private function setTypes(array $classicField)
+    {
+        $nextTypeName = $this->getNextFieldTypeFromClassicFieldType($this->getClassicFieldType($classicField));
+
+        $types = $this->getNextTypesArray();
+
+        $valueFields = $types[$nextTypeName];
+
+        foreach ($valueFields as $valueField) {
+            $types[$nextTypeName][$valueField] = $this->getNextValueFromClassicValue($valueField, $classicField);
+        }
+
+        return $types;
+    }
+
+    /**
+     * @return bool|mixed
+     */
+    private function getNextFieldTypeFromClassicFieldType(array $classicType): string|bool
+    {
+        // Classic Field Type => Next Field Type
+        $mapping = [
+            'text' => 'text',
+        ];
+
+        if (array_key_exists($classicType, $mapping)) {
+            return $mapping[$classicType];
+        }
+
+        return false;
+    }
+
+    /**
+     *
+     * @return bool|mixed
+     */
+    private function getNextValueFromClassicValue(array $nextValueField, array $classicField)
+    {
+        $mapping = $this->getNextValueFromClassicValueMapping();
+
+        if (array_key_exists($nextValueField, $mapping)) {
+            $classicValueName = $mapping[$nextValueField];
+
+            if ($classicValueName && array_key_exists($classicValueName, $classicField)) {
+                $value = $classicField[$classicValueName];
+
+                switch ($classicValueName) {
+                    case 'required':
+                        $value = $this->formatClassicRequiredValue($value);
+                        break;
+                }
+
+                return $value;
+            }
+        }
+
+        return false;
+    }
+
+    /* Classic Field Formatting */
+
+    /**
+     * @param string $value
+     *
+     * @return bool
+     */
+    private function formatClassicRequiredValue($value): bool
+    {
+        return $value === 'y';
+    }
+
+    private function setCurrentFieldsByLegacyId(): void
+    {
+        $this->currentNewFieldsByLegacyId = FieldRepository::getInstance()->getAllFieldsByLegacyId();
+    }
+
+    /**
+     * @return bool|ClassicFormHelper
+     */
+    private function getClassicFormHelper()
+    {
+        $formService = ClassicFormHelper::class;
+        if (class_exists($formService)) {
+            /** @var ClassicFormHelper $formService */
+            $formService = new $formService();
+
+            return $formService;
+        }
+
+        return false;
+    }
+
+    /* Classic Field Value Mapping */
+
+    /**
+     * Next Value Field Type => Classic Value Field Type
+     *
+     * @return array
+     */
+    private function getNextValueFromClassicValueMapping(): array
+    {
+        return [
+            'label'        => 'field_label',
+            'handle'       => 'field_name',
+            'instructions' => 'field_description',
+            'required'     => 'required',
+            'type'         => 'field_type',
+            'value'        => null,
+            'placeholder'  => null,
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    private function getNextTypesArray(): array
+    {
+        return [
+            'text'         => [
+                'value'       => '',
+                'placeholder' => '',
+            ],
+            'textarea'     => [
+                'value'       => '',
+                'placeholder' => '',
+                'rows'        => '',
+            ],
+            'email'        => [
+                'placeholder' => '',
+            ],
+            'hidden'       => [
+                'value' => '',
+            ],
+            'checkbox'     => [
+                'value' => '',
+            ],
+            'file'         => [
+                'fileCount'     => '',
+                'assetSourceId' => '',
+                'maxFileSizeKB' => '',
+            ],
+            'rating'       => [
+                'value'         => '',
+                'maxValue'      => '',
+                'colorIdle'     => '',
+                'colorHover'    => '',
+                'colorSelected' => '',
+            ],
+            'datetime'     => [
+                'dateTimeType'   => '',
+                'initialValue'   => '',
+                'placeholder'    => '',
+                'dateOrder'      => '',
+                'dateSeparator'  => '',
+                'clockSeparator' => '',
+            ],
+            'website'      => [
+                'value'       => '',
+                'placeholder' => '',
+            ],
+            'number'       => [
+                'value'              => '',
+                'placeholder'        => '',
+                'minValue'           => '',
+                'maxValue'           => '',
+                'minLength'          => '',
+                'maxLength'          => '',
+                'decimalCount'       => '',
+                'decimalSeparator'   => '',
+                'thousandsSeparator' => '',
+            ],
+            'phone'        => [
+                'value'       => '',
+                'placeholder' => '',
+                'pattern'     => '',
+            ],
+            'confirmation' => [
+                'value'       => '',
+                'placeholder' => '',
+            ],
+            'regex'        => [
+                'value'       => '',
+                'placeholder' => '',
+                'pattern'     => '',
+                'message'     => '',
+            ],
+        ];
+    }
+}

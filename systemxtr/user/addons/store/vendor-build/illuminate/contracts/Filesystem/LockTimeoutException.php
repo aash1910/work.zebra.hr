@@ -1,0 +1,9 @@
+<?php
+
+namespace Store\Dependency\Illuminate\Contracts\Filesystem;
+
+use Exception;
+class LockTimeoutException extends Exception
+{
+    //
+}

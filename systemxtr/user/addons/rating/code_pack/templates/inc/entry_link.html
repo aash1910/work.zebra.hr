@@ -1,0 +1,6 @@
+{exp:query sql="SELECT title, url_title FROM exp_channel_titles WHERE entry_id = '{embed:entry_id}'"}
+<a href="{path='%prefix%main/entry'}/{url_title}/" class="btn btn-sm btn-primary">
+	<span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>&nbsp;
+	View Entry (<strong>{title}</strong>)
+</a>
+{/exp:query}

@@ -1,0 +1,43 @@
+					<!-- Show Top Entries if viewing single entry -->
+					{if segment_2 == "entry" OR segment_2 == "edit" OR segment_2 == "comment_edit"}
+						<h3>Top 10 Entries</h3>
+						<div class="list-group">
+						{exp:rating:rank
+							orderby="overall"
+							limit="10"
+							dynamic="no"
+						}
+							<a href="{url_title_path='%prefix%main/entry'}" class="list-group-item" style="min-height: 48px;">
+								{exp:rating:stats
+									entry_id="{entry_id}"
+									precision="1"
+								}
+									<small class="pull-right">
+										 {stars_overall_avg}
+									</small>
+								{/exp:rating:stats}
+								<span style="padding-top:25px !important;">{title}</span>
+							</a>
+						{if rating_no_results}
+							<div class="alert alert-warning" role="alert">
+ 								<p>Sorry, no results were found.</p>
+							</div>
+						{/if}
+						{/exp:rating:rank}
+						</div>
+					{if:else}
+						<h3>Entries by Authors</h3>
+						<div class="list-group">
+						{exp:query sql="SELECT screen_name, member_id, avatar_filename FROM exp_members ORDER BY member_id ASC LIMIT 10"}
+							<a href="{path='%prefix%main/entries/author'}/{member_id}/" class="list-group-item">
+								<img src="{if avatar_filename}{site_url}/images/avatars/{avatar_filename}{if:else}{exp:rating:theme_folder_url}code_pack/images/no-profile-pic.jpg{/if}" height="35" width="35" alt="{screen_name}'s photo" class="img-rounded" /> &nbsp;
+								{screen_name}
+							</a>
+						{if no_results}
+							<div class="alert alert-warning" role="alert">
+ 								<p>Sorry, no members were found.</p>
+							</div>
+						{/if}
+						{/exp:query}
+						</div>
+					{/if}

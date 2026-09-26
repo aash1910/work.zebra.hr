@@ -1,0 +1,38 @@
+<?php
+
+declare (strict_types=1);
+namespace Store\Dependency\Money\Formatter;
+
+use Store\Dependency\Money\Exception\FormatterException;
+use Store\Dependency\Money\Money;
+use Store\Dependency\Money\MoneyFormatter;
+/**
+ * Formats a Money object using other Money formatters.
+ */
+final class AggregateMoneyFormatter implements MoneyFormatter
+{
+    /**
+     * @var MoneyFormatter[] indexed by currency code
+     * @phpstan-var non-empty-array<non-empty-string, MoneyFormatter> indexed by currency code
+     */
+    private array $formatters;
+    /**
+     * @param MoneyFormatter[] $formatters indexed by currency code
+     * @phpstan-param non-empty-array<non-empty-string, MoneyFormatter> $formatters indexed by currency code
+     */
+    public function __construct(array $formatters)
+    {
+        $this->formatters = $formatters;
+    }
+    public function format(Money $money): string
+    {
+        $currencyCode = $money->getCurrency()->getCode();
+        if (isset($this->formatters[$currencyCode])) {
+            return $this->formatters[$currencyCode]->format($money);
+        }
+        if (isset($this->formatters['*'])) {
+            return $this->formatters['*']->format($money);
+        }
+        throw new FormatterException('No formatter found for currency ' . $currencyCode);
+    }
+}

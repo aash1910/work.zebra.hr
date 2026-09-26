@@ -1,0 +1,93 @@
+{embed="{segment_1}/_header"}
+
+{exp:channel:entries url_title="{segment_3}" limit="1"}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb py-3 bg-body-tertiary rounded-3">
+        <li class="breadcrumb-item"><a href="{path='{segment_1}'}">Example Store</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{title}</li>
+    </ol>
+</nav>
+
+<div class="row g-5">
+    <div class="col-md-7 col-lg-8">
+        <div class="page-header mb-4">
+            <h1 class="h2">{title}
+                <small class="text-body-tertiary fw-normal fs-6 d-block">just another awesome product</small>
+            </h1>
+        </div>
+
+        {exp:store:product
+            entry_id="{entry_id}"
+            form_class="form-horizontal"
+            return="{segment_1}/{segment_2}/{segment_3}"}
+
+            <div class="mb-2">
+                <label class="form-label fw-semibold pe-3 w-25">SKU:</label>
+                <div class="d-inline-block" style="font-size: 14px;">
+                    <span class="store_product_sku"><!-- automatically set --></span>
+                </div>
+            </div>
+
+            {if track_stock}
+                <div class="mb-2">
+                    <label class="form-label fw-semibold pe-3 w-25">Stock Level:</label>
+                    <div class="d-inline-block" style="font-size: 14px;">
+                        <span class="store_product_stock"><!-- automatically set --></span>
+                    </div>
+                </div>
+            {/if}
+
+            <div class="mb-2">
+                <label class="form-label fw-semibold pe-3 w-25">Price:</label>
+                <div class="d-inline-block" style="font-size: 14px;">
+                    {if on_sale}
+                        <del>{regular_price}</del><br />
+                        {price}
+                        <span class="badge bg-success">Save {you_save} ({you_save_percent}%)</span>
+                    {if:else}
+                        {regular_price}
+                    {/if}
+                </div>
+            </div>
+
+            {modifiers}
+                <div class="mb-2">
+                    <label class="form-label fw-semibold pe-3 w-25" for="{modifier_input_name}">{modifier_name}:</label>
+                    <div class="d-inline-block align-middle">
+                        {if modifier_type == 'var' OR modifier_type == 'var_single_sku'}
+                            <select id="{modifier_input_name}" name="{modifier_input_name}" class="form-select">
+                                {modifier_options}
+                                    <option value="{option_id}">
+                                        {option_name} {if price_mod_val} ({price_mod}) {/if}
+                                    </option>
+                                {/modifier_options}
+                            </select>
+                        {if:else}
+                            <input type="text" id="{modifier_input_name}" name="{modifier_input_name}" class="form-control" value="" />
+                        {/if}
+                        <div class="form-text mt-1">{modifier_instructions}</div>
+                    </div>
+                </div>
+            {/modifiers}
+
+            <div class="mb-2">
+                <label class="form-label fw-semibold pe-3 w-25" for="item_qty">Quantity:</label>
+                <div class="d-inline-block" style="font-size: 14px;">
+                    <input type="number" id="item_qty" name="item_qty" class="form-control w-25" value="{min_order_qty}" {if track_stock} max="{total_stock}"{/if}/>
+                </div>
+            </div>
+
+            <div class="mt-4">
+                <button type="submit" name="submit" class="btn btn-primary">Add to Cart</button>
+            </div>
+
+        {/exp:store:product}
+    </div>
+
+    <div class="col-md-5 col-lg-4 order-md-last">
+        {embed="{segment_1}/_cart"}
+    </div>
+</div>
+{/exp:channel:entries}
+
+{embed="{segment_1}/_footer"}

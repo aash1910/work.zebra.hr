@@ -1,0 +1,39 @@
+{exp:rating:comment_form
+	edit="yes" rating_comment_id="{segment_3}"
+	return="%prefix%main/entry/{segment_4}/comment_updated"
+	form:class="ratingCommentForm form-horizontal"
+}
+	{if rating_author_id == "0"}
+		<div class="form-group required">
+			<label for="name" class="col-sm-3 col-md-2 control-label">Name</label>
+			<div class="col-sm-9 col-md-10">
+				<input type="text" name="name" id="name" value="{name}" placeholder="Enter your name here" class="form-control">
+			</div>
+		</div>
+		<div class="form-group required">
+			<label for="email" class="col-sm-3 col-md-2 control-label">Email</label>
+			<div class="col-sm-9 col-md-10">
+				<input type="text" name="email" id="email" value="{email}" placeholder="Enter your email address" class="form-control">
+			</div>
+		</div>
+	{/if}
+	<div class="form-group required">
+		<label for="comment" class="col-sm-3 col-md-2 control-label">Comment</label>
+		<div class="col-sm-9 col-md-10">
+			<textarea name="comment" id="comment" placeholder="Enter your comment here" class="form-control" rows="5">{rating_comment}</textarea>
+		</div>
+	</div>
+	{if captcha}
+		<div class="form-group required">
+			<label for="captcha" class="col-sm-3 col-md-2 control-label">{captcha}</label>
+			<div class="col-sm-9 col-md-10">
+				<input type="text" name="captcha" id="captcha" placeholder="Please enter in the word you see on the left" class="form-control">
+			</div>
+		</div>
+	{/if}
+	<div class="form-group">
+		<div class="col-sm-offset-3 col-sm-offset-2 col-sm-9 col-md-10">
+			<button type="submit" class="btn btn-sm btn-success">Update Comment</button>
+		</div>
+	</div>
+{/exp:rating:comment_form}
