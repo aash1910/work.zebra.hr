@@ -1,0 +1,67 @@
+{preload_replace:my_channel="o-nama"}
+{preload_replace:my_template_group="o-nama"}
+{preload_replace:my_status="not closed"}
+{preload_replace:my_templatetype="single"}
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+
+		<!-- Basic -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>{var_title}</title>	
+
+		<meta name="keywords" content="WebSite Template" />
+		<meta name="description" content="Porto - Multipurpose Website Template">
+		<meta name="author" content="okler.net">
+
+		<!-- Favicon -->
+		<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+		<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+
+{var_scripts_header}
+
+	</head>
+	<body data-plugin-page-transition>
+		<div class="body">
+			{embed="common/_header"} 
+			<div role="main" class="main">
+				<section class="page-header page-header-classic page-header-sm">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-8 order-2 order-md-1 align-self-center p-static">
+								<h1 data-title-border>{var_h1}</h1>
+							</div>
+							<div class="col-md-4 order-1 order-md-2 align-self-center">
+								{var_breadcrumb}
+							</div>
+						</div>
+					</div>
+				</section>
+				<div class="container">
+					<div class="row">
+						<div class="col-md-9">
+						{exp:channel:entries channel="{my_channel}" limit="1" status="{my_status}" orderby="date" sort="desc" disable="categories|member_data|pagination"}
+							{if glavna-slika}
+								<div class="col-md-5"><a href="{glavna-slika}" class="fancybox" title="{title}"><img scr="{slika}">/a></div>
+							{/if}
+							{tekst}
+						{/exp:channel:entries}
+							<div class="clear30"></div>
+						</div>
+						<div class="col-md-3">
+							{var_smaller}
+						</div>
+					</div>
+				</div>
+			</div>
+
+{embed="common/_footer"}
+		</div>
+
+{var_scripts_footer}
+
+	</body>
+</html>

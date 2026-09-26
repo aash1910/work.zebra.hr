@@ -1,0 +1,45 @@
+{!-- SEO title / heading generator --}
+{if "{my_templatetype}" == "index"}
+    {if segment_2 == "prodaja" AND segment_3 != ""}
+        {last_segment_category_name} | 
+    {/if}
+    {exp:channel:info channel="{my_channel}"}{channel_description}{/exp:channel:info}
+{/if}
+{if "{my_templatetype}" == "index-shop"}{if segment_2 == "prodaja" AND segment_3 != ""}{exp:gwcode_categories show="{segment_3_category_id}" style="linear" limit="1" custom_fields="yes"} {if cat_seo}{cat_seo}{if:else}{cat_name}{/if}{/exp:gwcode_categories}{/if}{if segment_2 == ""}{exp:channel:info channel="{my_channel_info}"}{channel_description}{/exp:channel:info} | {site_name}{/if}{/if}
+{if "{my_templatetype}" == "entry" OR "{my_templatetype}" == "entry-shop"}
+    {exp:channel:entries 
+        channel="{my_channel}" 
+        limit="1" 
+        status="{my_status}" 
+        disable="categories|member_data|pagination"
+    }
+        {if "{glavna-seo-naslov}" != "" OR "{shop-seo-naslov}" != ""}
+            {glavna-seo-naslov}{shop-seo-naslov}
+        {if:else}
+            {title}
+        {/if}
+    {/exp:channel:entries}
+{/if}
+
+{!-- if "{my_templatetype}" == "poveznice"}
+    {exp:tag:tag_name tag="{segment_3}" case="title"} | Ponuda | Prodaja
+{/if --}
+
+{if "{my_templatetype}" == "naslov"}
+    {my_naslov}
+{/if}
+
+{if "{my_templatetype}" == "single"}
+    {exp:channel:entries 
+        channel="{my_channel}" 
+        limit="1" 
+        status="{my_status}" 
+        disable="categories|member_data|pagination"
+    }
+        {if glavna-seo-naslov}
+            {glavna-seo-naslov}
+        {if:else}
+            {title}
+        {/if}
+    {/exp:channel:entries}
+{/if}

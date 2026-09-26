@@ -1,0 +1,55 @@
+{exp:channel:entries entry_id="{embed:entryid}"}
+<div class="product">
+									{exp:store:product entry_id="{entry_id}" disable_javascript="yes" parse="inward"}
+										<div class="hidden kosaricaentryid">{entry_id}</div>
+											<h2 class="product-name"><a href="{comment_url_title_auto_path}" title="{title}">{title}</a></h2>
+										<figure class="product-image-area">
+											<a href="{comment_url_title_auto_path}" title="{title}" class="product-image">
+<img src="{site_url}slike/no-image.jpg" class="img-fluid">
+											{if "{total_stock}" < "30"}
+												<span class="product-malakolicina">Ograničena dostupnost!<br>Požuri prije nego što nestane!</span>
+											{/if}
+											{if "{shop-na-akciji}" == "1"}
+												<span class="product-naakciji">-20% uz kupon kod PROMO20</span>
+											{/if}
+											</a>
+											<a href="{site_url}shop/product/{url_title}" class="product-quickview f-ajax-p-brzi fancybox.ajax">
+												<i class="fa fa-share-square-o"></i>
+												<span>Brzi pregled</span>
+											</a>
+											{if on_sale}
+												<div class="product-label"><span class="discount">- {you_save_percent}%</span></div>
+											{/if}
+											{if '{current_time format="%U"}' - {entry_date format="%U"} < 2592000}<div class="product-label"><span class="new">Novo</span></div>{/if}
+											{if '{shop-broj-prodanih}' > '2'}<div class="product-label"><span class="bestseler">Bestseler</span></div>{/if}
+										</figure>
+										<div class="product-details-area">
+	
+											<div class="product-price-box">
+												{if on_sale}
+												<span class="product-price akcijaboja">{price}</span>
+												<span class="old-price">{regular_price}</span>
+												{if:else}
+														<span class="product-price akcijaboja">{price}</span><br>
+														{if "{shop-na-akciji}" == "1"}
+															<span class="product-price akcijaboja2">{shop-akcijska-cijena} €</span><span class="label label-primary ml-xs">-20%</span>
+														{if:else}
+															<span class="product-price akcijaboja">&nbsp;</span>
+														{/if}
+												{/if}
+												<div class="pdvdost">Besplatna dostava i povrat</div>
+											</div>
+	
+											<div class="product-actions">
+												{if no_modifiers}
+													<input type="hidden" name="item_qty" value="1" />
+													<button type="submit" name="submit" title="Dodaj {title} u košaricu" class="add_to_cart_function add_to_cart" data-id="{sku}" data-name="{title}" data-price="{price_val}" data-discount="{you_save_val}" {categories show_group="3"}data-cat{category_count}="{category_name}"{/categories}><i class="fa fa-plus"></i> Dodaj u košaricu</button>
+												{if:else}
+													<a href="{site_url}shop/product/{url_title}" title="Odaberi opcije" class="add_to_cart f-ajax-p-brzi fancybox.ajax"><i class="fa fa-search-plus"></i> Odaberi opcije</a>
+												{/if}
+											</div>
+
+										</div>
+									{/exp:store:product}
+									</div>
+{/exp:channel:entries}

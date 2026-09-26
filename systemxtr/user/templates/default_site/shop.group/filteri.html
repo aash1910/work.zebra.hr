@@ -1,0 +1,425 @@
+{if segment_3 != "" AND segment_3_category_id == ""}
+{redirect="/shop"}
+{/if}
+{preload_replace:my_channel="shop-vidaxl|shop-bimago|shop-bigbuy"}
+{preload_replace:my_channel_info="shop"}
+{preload_replace:my_template_group="shop"}
+{preload_replace:my_status="not closed"}
+{preload_replace:my_templatetype="index-shop"}
+<!DOCTYPE html>
+<html lang="hr">
+	<head>
+
+		<!-- Basic -->
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+		<title>{var_title} | {site_name}</title>
+		{if "{segment_3_category_id}" !=""}<link rel="canonical" href="{site_url}{my_template_group}/{segment_2}/{segment_3}" />{if:else}<link rel="canonical" href="{site_url}{my_template_group}" />{/if}
+			<meta name="description" content='
+{if segment_2 == "prodaja" AND segment_3 != ""}
+	{exp:gwcode_categories cat_id="{segment_3_category_id}" style="linear" limit="1" custom_fields="yes" parse="inward"}
+		{if cat_seo_description}
+			{cat_seo_description}
+		{if:else}
+{if '{cat_id}' % 5 == 0}
+Pogledajte sve proizvode iz kategorije {cat_name}. Trenutačno se u ovoj kategoriji nalazi {exp:query sql="SELECT COUNT(p.entry_id) as cnt FROM exp_category_posts p LEFT JOIN exp_channel_titles e ON e.entry_id = p.entry_id WHERE cat_id = {cat_id} AND status != 'closed'"}{cnt}{/exp:query} proizvod/a.
+{if:elseif '{cat_id}' % 4 == 0}
+Odaberite nešto iz kategorije {cat_name} iz najbolje ponude za tvoj dom i vrt.
+{if:elseif '{cat_id}' % 3 == 0}
+U kategoriji {cat_name} nalaze se proizvodi s povoljnim cijenama. Pogledajte ponudu.
+{if:else}
+U kategoriji nalazi se {exp:query sql="SELECT COUNT(p.entry_id) as cnt FROM exp_category_posts p LEFT JOIN exp_channel_titles e ON e.entry_id = p.entry_id WHERE cat_id = {cat_id} AND status != 'closed'"}{cnt}{/exp:query} proizvod/a. Dostava besplatna. Povrat moguć unutar 14 dana. Rok dostave između 3-5 dana.
+{/if}
+		{/if}
+	{/exp:gwcode_categories}
+{/if}'>
+{if segment_2 == ""}<meta name="description" content='{exp:channel:info channel="{my_channel_info}"}{channel_description}{/exp:channel:info} | {site_name}'>{/if}
+
+		<!-- OG -->
+		<meta property="og:title" content="{var_title}" />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="{site_url}{my_template_group}/{if segment_2}{segment_2}{/if}{if segment_3}/{segment_3}{/if}" />
+		<meta property="og:image" content="{var_og_image}" />
+		<meta property="og:image:width" content="600" />
+		<meta property="og:image:height" content="315" />
+		<meta property="og:site_name" content="{site_name}" />
+		<meta property="og:description" content="{var_title} | {site_name}" />
+		<!-- END OG -->
+
+{var_scripts_header}
+<script type="application/ld+json">
+{
+	"@context": "https://schema.org",
+	"@type": "BreadcrumbList",
+	"itemListElement": [{
+		"@type": "ListItem",
+		"position": 1, 
+		"name": "Naslovna stranica",
+		"item": "{site_url}"
+		},{
+		"@type": "ListItem",
+		"position": 2,
+		"name": "Webshop",
+		"item": "{site_url}shop/"
+		},{
+		"@type": "ListItem",
+		"position": 3,
+		"name": "{segment_3_category_name}",
+		"item": "{site_url}shop/prodaja/vodilice-za-klizna-vrata"
+		}]
+}
+</script>
+
+{!-- exp:gwcode_categories style="linear" cat_id="{last_segment_category_id}" parse="inward" limit="1" custom_fields="yes"}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": "{site_url}{my_template_group}/{if segment_2}{segment_2}{/if}{if segment_3}/{segment_3}{/if}#faq",
+  "inLanguage": "hr-HR",
+  "mainEntity": [
+    {if q1}{
+      "@type": "Question",
+      "name": "{q1}",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{exp:low_replace find="QUOTE" replace="\QUOTE"}{a1}{/exp:low_replace}"
+      }
+    }{/if}
+    {if q2},{ 
+      "@type": "Question",
+      "name": "{q2}",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{exp:low_replace find="QUOTE" replace="\QUOTE"}{a2}{/exp:low_replace}"
+      }
+    }{/if}
+    {if q3},{ 
+      "@type": "Question",
+      "name": "{q3}",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{exp:low_replace find="QUOTE" replace="\QUOTE"}{a3}{/exp:low_replace}"
+      }
+    }{/if}
+    {if q4},{ 
+      "@type": "Question",
+      "name": "{q4}",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{exp:low_replace find="QUOTE" replace="\QUOTE"}{a4}{/exp:low_replace}"
+      }
+    }{/if}
+    {if q5},{ 
+      "@type": "Question",
+      "name": "{q5}",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{exp:low_replace find="QUOTE" replace="\QUOTE"}{a5}{/exp:low_replace}"
+      }
+    }{/if}
+    {if q6},{ 
+      "@type": "Question",
+      "name": "{q6}",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{exp:low_replace find="QUOTE" replace="\QUOTE"}{a6}{/exp:low_replace}"
+      }
+    }{/if}
+  ]
+}
+</script>
+{/exp:gwcode_categories --}
+	</head>
+	<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+		<div class="body">
+			{embed="common/_header"}
+			
+			<div role="main" class="main shop">
+				<section class="page-header pt-md mb-md">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-12">
+								{!-- var_breadcrumb --}
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<h1>
+{!-- var_h1 --}
+{exp:gwcode_categories show="{segment_3_category_id}" style="linear" limit="1"}{cat_name}{/exp:gwcode_categories}
+
+								</h1>
+								<br><span class="absoluteresultsh1"></span>
+							</div>
+						</div>
+					</div>
+				</section>
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+
+
+{!-- FILTERI START --}
+{if "{segment_3_category_id}" != "" AND "{segment_3_category_group_id}" == "1"}
+<div class="clear">&nbsp;</div>
+
+<div class="row">
+
+{!-- exp:gwcode_categories group_id="1" cat_id="{segment_3_category_id}" style="linear" incl_self="no" parse="inward" output_depth="1" custom_fields="yes"}
+  <div class="col-md-2 col-sm-3 col-xs-4">
+    <div class="nitc2">
+    <a href="{site_url}shop/prodaja/{cat_url_title}" title="{cat_name}">
+      <span>{if cat_naziv}{cat_naziv}{if:else}{cat_name}{/if}</span>
+      {if cat_image != ""}
+        <img src="{cat_image}" width="200" height="200">
+      {if:else}
+        <img src="{site_url}slike/no-image-thumb2.jpg" alt="{cat_name}" title="{cat_name}" />
+      {/if}
+    </a>
+    </div>
+  </div>
+{/exp:gwcode_categories --}
+{!-- exp:gwcode_categories group_id="1"}
+    <a href="{site_url}shop/prodaja/{cat_url_title}" title="{cat_name}" {if "{cat_url_title}" == "{segment_3}"}style="font-weight:bold"{/if}>{cat_name}</a>
+{/exp:gwcode_categories --}
+</div>
+
+<div class="clear30">&nbsp;</div>
+
+<div class="filters">
+{exp:pro_search:filters query="{segment_5}" result_page="shop/prodaja/{segment_3}/filteri"}
+
+
+<div class="sortmob">
+
+
+<div class="dropdown filter-visible">
+  <button class="btn btn-tertiary dropdown-toggle" type="button" id="dropdownMenu-sortiraj" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    Sortiraj
+  </button>
+  <ul class="dropdown-menu dropdown-menu-xs-right" aria-labelledby="dropdownMenu-sortiraj">
+    <li><a href="{pro_search:url category='{segment_3_category_id}' orderby_sort="shop-na-akciji|desc"}" rel="nofollow">Promo kod -20% </a></li>
+    {!-- <li><a href="{pro_search:url category='{segment_3_category_id}' orderby_sort="shop-price-for-search|asc"}" rel="nofollow">Cijena od niže prema višoj</a></li>
+    <li><a href="{pro_search:url category='{segment_3_category_id}' orderby_sort="shop-price-for-search|desc"}" rel="nofollow">Cijena od više prema nižoj</a></li> --}
+    <li><a href="{pro_search:url category='{segment_3_category_id}' orderby_sort="view_count_one|asc"}" rel="nofollow">Cijena od niže prema višoj</a></li>
+    <li><a href="{pro_search:url category='{segment_3_category_id}' orderby_sort="view_count_one|desc"}" rel="nofollow">Cijena od više prema nižoj</a></li>
+    <li><a href="{pro_search:url category='{segment_3_category_id}' orderby_sort="title|asc"}" rel="nofollow">A-Z</a></li>
+    <li><a href="{pro_search:url category='{segment_3_category_id}' orderby_sort="title|desc"}" rel="nofollow">Z-A</a></li>
+    <li><a href="{pro_search:url category='{segment_3_category_id}' orderby_sort="entry_date|asc"}" rel="nofollow">Najstariji > Najnoviji</a></li>
+    <li><a href="{pro_search:url category='{segment_3_category_id}' orderby_sort="entry_date|desc"}" rel="nofollow">Najnoviji > Najstariji</a></li>
+  </ul>
+</div>
+
+</div>
+{/exp:pro_search:filters}
+</div>
+<div class="clear">&nbsp;</div>
+
+<script>
+$(document).ready(function() {
+  $( "#fmobbtn" ).click(function() {
+    $( "#fmob" ).slideToggle( "fast" );
+  });
+});
+</script>
+
+{/if}
+{!-- FILTERI END --}
+
+						</div>
+						<div class="col-md-12 p-none">
+							<div id="blog-container">
+							<div class="row products product-thumb-info-list">
+							{exp:pro_search:results channel="{my_channel}" query="{segment_5}" limit="16" paginate="bottom" keywords:mode="all" keywords:loose="right" status="{my_status}" require_query="yes" disable="member_data|categories"}
+							{if no_results}
+							<div class="col-md-12">
+								<div class="alert alert-success">
+									Trenutno nemamo u ponudi proizvode iz kategorije
+										{exp:gwcode_categories cat_id="{segment_3_category_id}" style="linear" limit="1"}<b><a href="{site_url}shop/prodaja/{cat_url_title}" title="{cat_name}">{cat_name}</a></b>{/exp:gwcode_categories}.
+										<br />Posjetite nas uskoro opet jer stalno osvježavamo naš asortiman proizvoda - {exp:gwcode_categories cat_id="{segment_3_category_id}" style="linear" limit="1"}<b><a href="{site_url}shop/prodaja/{cat_url_title}" title="{cat_name}">{cat_name}</a></b> {/exp:gwcode_categories}.
+								</div>
+								<div class="clear20">&nbsp;</div>
+								<h3>Možda će vas zanimati ovi proizvodi:</h3>
+							</div>
+							{embed="shop/mozda"}
+							{/if}
+								<div class="col-12 col-sm-6 col-lg-3">
+									<div class="product">
+									{exp:store:product entry_id="{entry_id}" disable_javascript="yes" parse="inward"}
+										<div class="hidden kosaricaentryid">{entry_id}</div>
+											<h2 class="product-name"><a href="{comment_url_title_auto_path}" title="{title}">{title}</a></h2>
+										<figure class="product-image-area">
+											<a href="{comment_url_title_auto_path}" title="{title}" class="product-image">
+<img src="{site_url}slike/no-image.jpg" class="img-fluid">
+											{if "{total_stock}" < "30"}
+												<span class="product-malakolicina">Ograničena dostupnost!<br>Požuri prije nego što nestane!</span>
+											{/if}
+											{if "{shop-na-akciji}" == "1"}
+												<span class="product-naakciji">-20% uz kupon kod PROMO20</span>
+											{/if}
+											</a>
+											<a href="{site_url}shop/product/{url_title}" class="product-quickview f-ajax-p-brzi fancybox.ajax">
+												<i class="fa fa-share-square-o"></i>
+												<span>Brzi pregled</span>
+											</a>
+											{if on_sale}
+												<div class="product-label"><span class="discount">- {you_save_percent}%</span></div>
+											{/if}
+											{if '{current_time format="%U"}' - {entry_date format="%U"} < 2592000}<div class="product-label"><span class="new">Novo</span></div>{/if}
+											{if '{shop-broj-prodanih}' > '2'}<div class="product-label"><span class="bestseler">Bestseler</span></div>{/if}
+										</figure>
+										<div class="product-details-area">
+	
+											<div class="product-price-box">
+												{if on_sale}
+												<span class="product-price akcijaboja">{price}</span>
+												<span class="old-price">{regular_price}</span>
+												{if:else}
+														<span class="product-price akcijaboja">{price}</span><br>
+														{if "{shop-na-akciji}" == "1"}
+															<span class="product-price akcijaboja2">{shop-akcijska-cijena} €</span><span class="label label-primary ml-xs">-20%</span>
+														{if:else}
+															<span class="product-price akcijaboja">&nbsp;</span>
+														{/if}
+												{/if}
+												<div class="pdvdost">Besplatna dostava i povrat</div>
+											</div>
+	
+											<div class="product-actions">
+												{if no_modifiers}
+													<input type="hidden" name="item_qty" value="1" />
+													<button type="submit" name="submit" title="Dodaj {title} u košaricu" class="add_to_cart_function add_to_cart" data-id="{sku}" data-name="{title}" data-price="{price_val}" data-discount="{you_save_val}" {!-- categories show_group="3"}data-cat{category_count}="{category_name}"{/categories --}><i class="fa fa-plus"></i> Dodaj u košaricu</button>
+												{if:else}
+													<a href="{site_url}shop/product/{url_title}" title="Odaberi opcije" class="add_to_cart f-ajax-p-brzi fancybox.ajax"><i class="fa fa-search-plus"></i> Odaberi opcije</a>
+												{/if}
+											</div>
+
+										</div>
+									{/exp:store:product}
+									</div>
+								</div>
+
+{paginate}
+<div class="clear">&nbsp;</div>
+	{pagination_links}
+	<div class="row{if "{segment_1}" == "shop" OR "{segment_1}" == "rezultati-pretrage-shop"} m-none{/if}">
+		<div class="col-md-12">
+			<ul class="pagination pagination-sm">
+				{previous_page}
+				<li class="page-item"><a href="{pagination_url}" rel="prev" class="page-previous page-link"><i class="fas fa-angle-left"></i></a></li>
+				{/previous_page}
+				{page}
+				<li class="page-item{if current_page} active{/if}"><a href="{pagination_url}" class="page-{pagination_page_number} page-link">{pagination_page_number}</a></li>
+				{/page}
+				{next_page}
+				<li class="page-item"><a href="{pagination_url}" rel="next" class="page-next page-link"><i class="fas fa-angle-right"></i></a></li>
+				{/next_page}
+			</ul>
+		</div>
+	</div>
+	{/pagination_links}
+{/paginate}
+								{if count == "{total_results}"}<span class="absoluteresults">{absolute_results}</span>{/if}
+							{/exp:pro_search:results}
+							</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="clear30">&nbsp;</div>
+							{exp:gwcode_categories style="linear" cat_id="{last_segment_category_id}" parse="inward" limit="1" custom_fields="yes"}
+								{if cat_description}
+									<div class="row">
+										<div class="col-md-12">
+											<div class="cat-description" id="catdesc">
+												{cat_description}
+												{if q1}
+													<h2 id="faq">Često postavljena pitanja (FAQ)</h2>
+												{/if}
+												<ol>
+													{if q1}
+													<li>
+														<p>
+															<b>{q1}</b><br>
+															{a1}
+														</p>
+													</li>
+													{/if}
+													{if q2}
+													<li>
+														<p>
+															<b>{q2}</b><br>
+															{a2}
+														</p>
+													</li>
+													{/if}
+													{if q3}
+													<li>
+														<p>
+															<b>{q3}</b><br>
+															{a3}
+														</p>
+													</li>
+													{/if}
+													{if q4}
+													<li>
+														<p>
+															<b>{q4}</b><br>
+															{a4}
+														</p>
+													</li>
+													{/if}
+													{if q5}
+													<li>
+														<p>
+															<b>{q5}</b><br>
+															{a5}
+														</p>
+													</li>
+													{/if}
+													{if q6}
+													<li>
+														<p>
+															<b>{q6}</b><br>
+															{a6}
+														</p>
+													</li>
+													{/if}
+												</ol>
+											</div>
+										</div>
+									</div>
+								{/if}
+							{/exp:gwcode_categories}
+							<div class="clear30">&nbsp;</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+ 
+			{embed="common/_footer"}
+		</div>
+
+{var_scripts_footer}
+
+<script type="text/javascript">
+$(document).ready(function() {
+	absoluteresults = $('.absoluteresults').text();
+	if (absoluteresults == ""){
+		absoluteresults = 0;
+	}
+	$('.absoluteresultsh1').html("(" + absoluteresults + " proizvoda)");
+});
+</script>
+
+
+	</body>
+</html>

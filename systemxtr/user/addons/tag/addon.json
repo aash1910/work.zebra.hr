@@ -1,0 +1,16 @@
+{
+    "name": "Tag",
+    "shortname": "tag",
+    "version": "7.3.2",
+    "foundation_version": "4.11.0",
+    "description": "Tag your content with keywords and intuitively display relationships between entries.",
+    "license": "EEHarbor",
+    "namespace": "EEHarbor\\Tag",
+    "require": {
+        "php": ">=5.3.*",
+        "expressionengine/core": ">=2.11"
+    },
+    "resources": {
+        "themes": true
+    }
+}

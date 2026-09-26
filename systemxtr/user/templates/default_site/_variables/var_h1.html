@@ -1,0 +1,37 @@
+{!-- Page title generator --}
+{if "{my_templatetype}" == "index"}
+    {if segment_2 == "prodaja" AND segment_3 != ""}
+        {last_segment_category_name} - 
+    {/if}
+    {exp:channel:info channel="{my_channel}"}{channel_description}{/exp:channel:info}
+{/if}
+{if "{my_templatetype}" == "index-shop"}{if segment_2 == "prodaja" AND segment_3 != ""}{segment_3_category_name}{if:else}{exp:channel:info channel="{my_channel_info}"}{/exp:channel:info}{/if}{/if}
+{if "{my_templatetype}" == "entry" OR "{my_templatetype}" == "entry-shop"}
+    {exp:channel:entries 
+        channel="{my_channel}" 
+        limit="1" 
+        status="not closed" 
+        disable="categories|category_fields|custom_fields|member_data|pagination"
+    }
+        {title}
+    {/exp:channel:entries}
+{/if}
+
+{!-- if "{my_templatetype}" == "poveznice"}
+    {exp:tag:tag_name tag="{segment_3}" case="title"}
+{/if --}
+
+{if "{my_templatetype}" == "naslov"}
+    {my_naslov}
+{/if}
+
+{if "{my_templatetype}" == "single"}
+    {exp:channel:entries 
+        channel="{my_channel}" 
+        limit="1" 
+        status="not closed" 
+        disable="categories|category_fields|custom_fields|member_data|pagination"
+    }
+        {title}
+    {/exp:channel:entries}
+{/if}

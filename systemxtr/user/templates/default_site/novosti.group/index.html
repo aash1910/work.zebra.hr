@@ -1,0 +1,91 @@
+{preload_replace:my_channel="novosti"}
+{preload_replace:my_template_group="novosti"}
+{preload_replace:my_status="not closed"}
+{preload_replace:my_templatetype="index"}
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+
+		<!-- Basic -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>{var_title}</title>	
+
+		<meta name="keywords" content="WebSite Template" />
+		<meta name="description" content="Porto - Multipurpose Website Template">
+		<meta name="author" content="okler.net">
+
+{var_scripts_header}
+
+	</head>
+	<body data-plugin-page-transition>
+		<div class="body">
+			{embed="common/_header"} 
+			<div role="main" class="main">
+				<section class="page-header page-header-classic page-header-sm">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-8 order-2 order-md-1 align-self-center p-static">
+								<h1 data-title-border>{var_h1}</h1>
+							</div>
+							<div class="col-md-4 order-1 order-md-2 align-self-center">
+								{var_breadcrumb}
+							</div>
+						</div>
+					</div>
+				</section>
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-9">
+						{exp:channel:entries channel="{my_channel}" limit="10" status="{my_status}" orderby="date" sort="desc" disable="categories|member_data|pagination"}
+								<article class="post post-medium">
+									<div class="row mb-3">
+										<div class="col-lg-5">
+											<div class="post-image">
+												<a href="{comment_url_title_auto_path}">
+													{if glavna-slika}
+													<img src="{glavna-slika}" class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0" alt="" />
+													{/if}
+												</a>
+											</div>
+										</div>
+										<div class="col-lg-7">
+											<div class="post-content">
+												<h2 class="font-weight-semibold pt-4 pt-lg-0 text-5 line-height-4 mb-2"><a href="{comment_url_title_auto_path}">{title}</a></h2>
+												{tekst}
+												<br>----<br>
+												{tekst | strip_tags | truncate:100}
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col">
+											<div class="post-meta">
+												<span><i class="far fa-calendar-alt"></i>{entry_date format="%F %d, %Y"}</span>
+												{if author_id}<span><i class="far fa-user"></i>By <a href="{path='members/profile'}">{author}</a></span>{/if}
+												{if has_categories}<span><i class="far fa-folder"></i>{categories backspace="2"}<a href="{path='site/category/{category_url_title}'}">{category_name}</a>,{/categories}</span>{/if}
+												{if comment_total != 0}<span><i class="far fa-comments"></i><a href="{comment_url_title_auto_path}">{comment_total} {if comment_total == "1"}Comment{if:else}Comments{/if}</a></span>{/if}
+												<span class="d-block d-sm-inline-block float-sm-end mt-3 mt-sm-0"><a href="{coment_url_title_auto_path}" class="btn btn-xs btn-light text-1 text-uppercase">Saznajte više</a></span>
+											</div>
+										</div>
+									</div>
+								</article>
+						{/exp:channel:entries}
+							<div class="clear30"></div>
+						</div>
+						<div class="col-md-3">
+							{var_smaller}
+						</div>
+					</div>
+				</div>
+			</div>
+
+{embed="common/_footer"}
+		</div>
+
+{var_scripts_footer}
+
+	</body>
+</html>

@@ -1,0 +1,19 @@
+{layout="visitor_example/layout" page_title="Register"}
+
+{layout:set name="content"}
+    <h2>Member Detail</h2>
+
+    {if logged_in AND logged_in_group_id == 1}
+        {exp:visitor:details member_id="{segment_3}"}
+            <table class="table" cellspacing="0" cellpadding="5">
+                <tr><td><b>member_firstname</b></td><td>{visitor:member_firstname}</td></tr>
+                <tr><td><b>member_lastname</b></td><td>{visitor:member_lastname}</td></tr>
+                <tr><td><b>email</b></td><td>{visitor:email}</td></tr>
+                <tr><td><b>username</b></td><td>{visitor:username}</td></tr>
+                <tr><td><b>screen_name</b></td><td>{visitor:screen_name}</td></tr>
+            </table>
+        {/exp:visitor:details}
+    {if:else}
+        <div class="alert error">You do not have permission to view this page</div>
+    {/if}
+{/layout:set}

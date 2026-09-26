@@ -1,0 +1,183 @@
+{embed="{segment_1}/_header"}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb py-3 bg-body-tertiary rounded-3">
+        <li class="breadcrumb-item"><a href="{path='{segment_1}'}">Example Store</a></li>
+        <li class="breadcrumb-item"><a href="{path='{segment_1}/checkout'}">Checkout</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Customer Details</li>
+    </ol>
+</nav>
+
+
+<div class="row g-5">
+  <div class="col-12">
+    <div class="page-header d-flex align-items-center mb-4">
+        <h1 class="h2 col-10">Customer Details
+          <small class="text-body-tertiary fw-normal fs-6 d-block">Enter your billing and shipping information. This ensures we can process your order and deliver your items to the correct address. All required fields must be completed to continue.</small>
+        </h1>
+        <div class="progress col-2">
+            <div class="progress-bar bg-info progress-bar-striped" role="progressbar" style="width: 60%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+    </div>
+  </div>
+</div>
+
+  {exp:store:checkout
+    form_class="row checkout-shipping-form needs-validation"
+    next="{segment_1}/checkout-shipping"
+    register_member="no"
+    error_handling="inline"
+    error_delimiters='<div class="invalid-feedback">|</div>'
+    require="name|address1|city|order_email"}
+
+    {if no_items}
+        {redirect="{segment_1}/checkout"}
+    {/if}
+
+      <div class="col-md-12 col-lg-6 mb-4">
+        <h2 class="h4 mb-3">Billing address</h2>
+        <div class="row g-3">
+          <div class="col-12">
+            <label for="billing_name" class="form-label">Name <span class="required text-danger">*</span></label>
+            <input type="text" class="form-control {if error:billing_name}is-invalid{/if}" id="billing_name" name="billing_name" value="{billing_name}">
+            {error:billing_name}
+          </div>
+          <div class="col-12">
+            <label for="billing_address1" class="form-label">Address <span class="required text-danger">*</span></label>
+            <input type="text" class="form-control {if error:billing_address1}is-invalid{/if}" id="billing_address1" name="billing_address1" value="{billing_address1}">
+            {error:billing_address1}
+          </div>
+          <div class="col-12">
+            <label for="billing_address2" class="form-label">Address 2 <span class="text-muted" style="font-size: 14px;">(Optional)</span></label>
+            <input type="text" class="form-control" id="billing_address2" name="billing_address2" value="{billing_address2}">
+            {error:billing_address2}
+          </div>
+          <div class="col-md-6">
+            <label for="billing_country" class="form-label">Country</label>
+            {field:billing_country}
+            {error:billing_country}
+          </div>
+          <div class="col-md-6">
+            <label for="billing_state" class="form-label">State</label>
+            {field:billing_state}
+            {error:billing_state}
+          </div>
+          <div class="col-12">
+            <label for="billing_postcode" class="form-label">Postcode</label>
+            <input type="text" class="form-control" id="billing_postcode" name="billing_postcode" value="{billing_postcode}">
+            {error:billing_postcode}
+          </div>
+          <div class="col-12">
+            <label for="billing_city" class="form-label">City <span class="required text-danger">*</span></label>
+            <input type="text" class="form-control {if error:billing_city}is-invalid{/if}" id="billing_city" name="billing_city" value="{billing_city}">
+            {error:billing_city}
+          </div>
+          <div class="col-12">
+            <label for="billing_phone" class="form-label">Phone</label>
+            <input type="text" class="form-control" id="billing_phone" name="billing_phone" value="{billing_phone}">
+            {error:billing_phone}
+          </div>
+          <div class="col-12">
+            <label for="order_email" class="form-label">Email <span class="required text-danger">*</span></label>
+            <input type="email" class="form-control {if error:order_email}is-invalid{/if}" id="order_email" name="order_email" value="{order_email}">
+            {error:order_email}
+          </div>
+          <div class="col-12">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control {if error:password}is-invalid{/if}" id="password" name="password" value="">
+            {error:password}
+          </div>
+          <div class="col-12">
+            <label for="password_confirm" class="form-label">Confirm Password</label>
+            <input type="password" class="form-control {if error:password_confirm}is-invalid{/if}" id="password_confirm" name="password_confirm" value="">
+            {error:password_confirm}
+          </div>
+          <div class="col-12">
+            <label for="order_custom9" class="form-label">order_custom9</label>
+            <input type="text" class="form-control" id="order_custom9" name="order_custom9" value="{order_custom9}">
+            {error:order_custom9}
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-12 col-lg-6 mb-4">
+        <div class="d-flex mb-3 align-items-center">
+          <h2 class="h4 mb-0">Shipping address</h2>
+          <div class="form-check mb-0">
+            {field:shipping_same_as_billing}
+            <label for="shipping_same_as_billing" class="form-check-label">
+              Shipping address is the same as my billing address
+            </label>
+          </div>
+        </div>
+
+        <div id="shipping_details_drawer">
+          <div class="row g-3">
+            <div class="col-12">
+              <label for="shipping_name" class="form-label">Name <span class="required text-danger">*</span></label>
+              <input type="text" class="form-control {if error:shipping_name}is-invalid{/if}" id="shipping_name" name="shipping_name" value="{shipping_name}">
+              {error:shipping_name}
+            </div>
+            <div class="col-12">
+              <label for="shipping_address1" class="form-label">Address <span class="required text-danger">*</span></label>
+              <input type="text" class="form-control {if error:shipping_address1}is-invalid{/if}" id="shipping_address1" name="shipping_address1" value="{shipping_address1}">
+              {error:shipping_address1}
+            </div>
+            <div class="col-12">
+              <label for="shipping_address2" class="form-label">Address 2 <span class="text-muted">(Optional)</span></label>
+              <input type="text" class="form-control" id="shipping_address2" name="shipping_address2" value="{shipping_address2}">
+              {error:shipping_address2}
+            </div>
+            <div class="col-md-6">
+              <label for="shipping_country" class="form-label">Country</label>
+              {field:shipping_country}
+              {error:shipping_country}
+            </div>
+            <div class="col-md-6">
+              <label for="shipping_state" class="form-label">State</label>
+              {field:shipping_state}
+              {error:shipping_state}
+            </div>
+            <div class="col-12">
+              <label for="shipping_postcode" class="form-label">Postcode</label>
+              <input type="text" class="form-control" id="shipping_postcode" name="shipping_postcode" value="{shipping_postcode}">
+              {error:shipping_postcode}
+            </div>
+            <div class="col-12">
+              <label for="shipping_city" class="form-label">City <span class="required text-danger">*</span></label>
+              <input type="text" class="form-control {if error:shipping_address1}is-invalid{/if}" id="shipping_city" name="shipping_city" value="{shipping_city}">
+              {error:shipping_city}
+            </div>
+            <div class="col-12">
+              <label for="shipping_phone" class="form-label">Phone</label>
+              <input type="text" class="form-control" id="shipping_phone" name="shipping_phone" value="{shipping_phone}">
+              {error:shipping_phone}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="d-flex justify-content-between">
+          <a href="{path='{segment_1}/checkout'}" class="btn btn-dark">Back</a>
+          <button class="btn btn-primary" name="next" type="submit">Review Order</button>
+        </div>
+      </div>
+{/exp:store:checkout}
+
+<script type="text/javascript">
+$(function() {
+    $('#shipping_same_as_billing').change(function() {
+        if (this.checked) {
+            $('#shipping_details_drawer').slideUp();
+        } else {
+            $('#shipping_details_drawer').slideDown();
+        }
+    });
+    if ($('#shipping_same_as_billing').is(':checked')) {
+        $('#shipping_details_drawer').hide();
+    }
+});
+</script>
+
+{embed="{segment_1}/_footer"}

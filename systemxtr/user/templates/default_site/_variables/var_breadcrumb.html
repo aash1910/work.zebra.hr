@@ -1,0 +1,92 @@
+<ul class="breadcrumb d-block text-md-end">
+    <li><a href="{homepage}" title="{site_name}">{site_name}</a></li>
+
+    {if "{my_templatetype}" == "index"}
+        <li>
+            <a href="{exp:channel:info channel='{my_channel}'}{channel_url}{/exp:channel:info}" 
+               title="{exp:channel:info channel='{my_channel}'}{channel_description}{/exp:channel:info}">
+               {exp:channel:info channel='{my_channel}'}{channel_description}{/exp:channel:info}
+            </a>
+        </li>
+
+        {if segment_3 != ""}
+            {exp:channel:categories
+                channel="{my_channel}"
+                style="linear"
+                show="{segment_3}"
+                show_parent="yes"
+                show_empty="no"
+                backspace="0"
+            }
+                {if parent_id != 0}
+                    <li><a href="{path='{my_template_group}/prodaja/{parent_url_title}'}">{parent_name}</a></li>
+                {/if}
+                <li><a href="{path='{my_template_group}/prodaja/{category_url_title}'}">{category_name}</a></li>
+            {/exp:channel:categories}
+        {/if}
+    {/if}
+
+    {if "{my_templatetype}" == "entry"}
+        <li>
+            <a href="{exp:channel:info channel='{my_channel}'}{channel_url}{/exp:channel:info}" 
+               title="{exp:channel:info channel='{my_channel}'}{channel_description}{/exp:channel:info}">
+               {exp:channel:info channel='{my_channel}'}{channel_description}{/exp:channel:info}
+            </a>
+        </li>
+
+        {exp:channel:entries
+            channel="{my_channel}"
+            limit="1"
+            status="not closed"
+            disable="category_fields|member_data|pagination"
+        }
+            {categories show_parent="yes" backspace="0"}
+                <li><a href="{path='{my_template_group}/prodaja/{category_url_title}'}">{category_name}</a></li>
+            {/categories}
+            <li>{title}</li>
+        {/exp:channel:entries}
+    {/if}
+
+    {if "{my_templatetype}" == "entry-shop"}
+        <li>
+            <a href="{exp:channel:info channel='{my_channel}'}{channel_url}{/exp:channel:info}" 
+               title="{exp:channel:info channel='{my_channel}'}{channel_description}{/exp:channel:info}">
+               {exp:channel:info channel='{my_channel}'}{channel_description}{/exp:channel:info}
+            </a>
+        </li>
+
+        {exp:channel:entries
+            channel="{my_channel}"
+            limit="1"
+            status="not closed"
+            disable="custom_fields|member_data|pagination"
+        }
+            {categories show_parent="yes" backspace="0"}
+                <li><a href="{path='{my_template_group}/prodaja/{category_url_title}'}">{category_name}</a></li>
+            {/categories}
+            <li>{title}</li>
+        {/exp:channel:entries}
+    {/if}
+
+    {!-- if "{my_templatetype}" == "poveznice"}
+        <li>
+            <a href="{exp:channel:info channel='{my_channel}'}{channel_url}{/exp:channel:info}" 
+               title="{exp:channel:info channel='{my_channel}'}{channel_description}{/exp:channel:info}">
+               {exp:channel:info channel='{my_channel}'}{channel_description}{/exp:channel:info}
+            </a>
+        </li>
+        <li>Poveznica: {exp:tag:tag_name tag="{segment_3}" case="title"}</li>
+    {/if --}
+
+    {if "{my_templatetype}" == "naslov"}
+        <li>{my_naslov}</li>
+    {/if}
+
+    {if "{my_templatetype}" == "single"}
+        <li>{exp:channel:entries 
+                channel="{my_channel}" 
+                limit="1" 
+                disable="categories|category_fields|member_data|pagination"}{title}{/exp:channel:entries}
+        </li>
+    {/if}
+</ul>

@@ -1,0 +1,87 @@
+			<footer id="footer" class="footer-texts-more-lighten">
+				<div class="container">
+					<div class="row py-4 my-5">
+						<div class="col-md-6 col-lg-3 mb-5 mb-lg-0">
+							<h5 class="text-4 text-color-light mb-3">CONTACT INFO</h5>
+							<ul class="list list-unstyled">
+								<li class="pb-1 mb-2">
+									<span class="d-block font-weight-normal line-height-1 text-color-light">ADDRESS</span> 
+									Lorem Ipsum
+								</li>
+
+							</ul>
+							<ul class="social-icons social-icons-clean-with-border social-icons-medium">
+								<li class="social-icons-instagram">
+									<a href="http://www.instagram.com/" class="no-footer-css" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+								</li>
+								<li class="social-icons-x mx-2">
+									<a href="http://www.twitter.com/" class="no-footer-css" target="_blank" title="Twitter"><i class="fab fa-x-twitter"></i></a>
+								</li>
+								<li class="social-icons-facebook">
+									<a href="http://www.facebook.com/" class="no-footer-css" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+								</li>
+							</ul>
+						</div>
+						<div class="col-md-6 col-lg-2 mb-5 mb-lg-0">
+							<h5 class="text-4 text-color-light mb-3">USEFUL LINKS</h5>
+							<ul class="list list-unstyled mb-0">
+								<li class="mb-0"><a href="#">Lorem Ipsum</a></li>
+								<li class="mb-0"><a href="#">Lorem Ipsum</a></li>
+								<li class="mb-0"><a href="#">Lorem Ipsum</a></li>
+								<li class="mb-0"><a href="#">Lorem Ipsum</a></li>
+								<li class="mb-0"><a href="#">Lorem Ipsum</a></li>
+								<li class="mb-0"><a href="#">Lorem Ipsum</a></li>
+								<li class="mb-0"><a href="#">Lorem Ipsum</a></li>
+							</ul>
+						</div>
+						<div class="col-md-6 col-lg-4 mb-5 mb-md-0">
+
+						</div>
+						<div class="col-md-6 col-lg-3">
+
+						</div>
+					</div>
+				</div>
+				<div class="container">
+					<div class="footer-copyright footer-copyright-style-2 pt-4 pb-5">
+						<div class="row">
+							<div class="col-12 text-center">
+								<p class="mb-0">WMD</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</footer>
+			
+{!-- exp:consent:alert}
+  <div class="alert {alert_type}">
+    <p>{alert_message}</p>
+  </div>
+{/exp:consent:alert --}
+
+{!-- exp:consent:form}
+  {if no_results}
+    <h1>No Consent Requests to Display</h1>
+  {/if}
+
+  {consents}
+    <fieldset>
+      <dl>
+        <dt>{consent_title}</dt>
+        <dd>{consent_request}</dd>
+      </dl>
+      <label>
+        <input type="radio" name="{consent_short_name}" value="y" {if consent_granted}checked{/if}>
+        Accept
+      </label>
+      <label>
+        <input type="radio" name="{consent_short_name}" value="n" {if ! consent_granted}checked{/if}>
+        Decline
+      </label>
+    </fieldset>
+  {/consents}
+
+  <fieldset>
+    <input type="submit" name="submit" value="Save">
+  </fieldset>
+{/exp:consent:form --}

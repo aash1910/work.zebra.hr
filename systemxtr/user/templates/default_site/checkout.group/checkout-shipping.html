@@ -1,0 +1,63 @@
+{embed="{segment_1}/_header"}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb py-3 bg-body-tertiary rounded-3">
+        <li class="breadcrumb-item"><a href="{path='{segment_1}'}">Example Store</a></li>
+        <li class="breadcrumb-item"><a href="{path='{segment_1}/checkout'}">Checkout</a></li>
+        <li class="breadcrumb-item"><a href="{path='{segment_1}/checkout2'}">Customer Details</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Shipping Method</li>
+    </ol>
+</nav>
+
+<div class="row g-5">
+    <div class="col-12">
+        <div class="page-header d-flex align-items-center mb-4">
+            <h1 class="h2 col-10">Shipping Method
+                <small class="text-body-tertiary fw-normal fs-6 d-block">Select your preferred shipping method. Shipping costs and delivery times may vary by option. Your choice here will affect the final total.</small>
+            </h1>
+            <div class="progress col-2">
+                <div class="progress-bar bg-info progress-bar-striped" role="progressbar" style="width: 60%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-3 checkout-shipping-form customer-details-form">
+    <div class="col-md-12 col-lg-6">
+{exp:store:checkout
+    form_class="form-horizontal"
+    next="{segment_1}/checkout3"
+    error_handling="inline"
+    error_delimiters='<span class="help-inline">|</span>'}
+
+        <select name="shipping_method" class="form-select">
+            <option value="">Select shipping method...</option>
+            {shipping_method_options}
+        </select>
+    </div>
+
+    {if shipping_method}
+        {shipping_methods}
+            {if method_selected}
+                <div class="alert alert-info my-3">
+                    <strong>Selected Shipping Method:</strong><br>
+                    <span class="d-block">{shipping_method:name} (ID: {shipping_method:id})</span>
+                    <span class="d-block">Price: {shipping_method:amount}</span>
+                </div>
+            {/if}
+        {/shipping_methods}
+    {/if}
+
+    <div class="col-12">
+        <div class="d-flex gap-2 mt-3">
+            <a href="{path='{segment_1}/checkout2'}" class="btn btn-dark">Back</a>
+            <input type="submit" name="update_cart" value="Update Totals" class="btn btn-dark" />
+            <input type="submit" name="empty_cart" value="Empty Cart" class="btn btn-danger" />
+            <input type="submit" name="next" value="Continue to Payment" class="btn btn-primary ms-auto" />
+        </div>
+    </div>
+{/exp:store:checkout}
+</div>
+
+
+{embed="{segment_1}/_footer"}

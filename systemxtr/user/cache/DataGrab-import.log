@@ -1,0 +1,1245 @@
+21:24:39 07/16/2026 ======== ENV ========
+21:24:39 07/16/2026 max_execution_time: 90
+21:24:39 07/16/2026 max_input_time: 600
+21:24:39 07/16/2026 max_input_vars: 30000
+21:24:39 07/16/2026 memory_limit: 8G
+21:24:39 07/16/2026 Import settings: {
+    "import": {
+        "type": "sql",
+        "import_type": "entry",
+        "channel": "5",
+        "limit": "50",
+        "id": 5,
+        "passkey": "",
+        "site_id": "1"
+    },
+    "datatype": {
+        "server": "zebra.hr",
+        "database": "zebra_import",
+        "username": "zebra_import",
+        "password": "Gnw-QztsDR-2",
+        "query": "select * from tia_copy1"
+    },
+    "config": {
+        "update": "1",
+        "unique": [
+            "shop-sku"
+        ],
+        "author": "1",
+        "author_field": "",
+        "author_check": "screen_name",
+        "offset": "0",
+        "limit": "50",
+        "title": "name",
+        "title_suffix": "",
+        "url_title": "",
+        "url_title_suffix": "",
+        "date": "",
+        "expiry_date": "",
+        "timestamp": "",
+        "delete_old": "n",
+        "soft_delete": "n",
+        "id": "5",
+        "entry_status": "default",
+        "update_status": "",
+        "c_groups": "1|2",
+        "update_edit_date": "n",
+        "cat_default_1": "",
+        "cat_field_1": "",
+        "cat_delimiter_1": ",",
+        "cat_sub_delimiter_1": "\/",
+        "cat_allow_numeric_names_1": "",
+        "cat_default_2": "",
+        "cat_field_2": "",
+        "cat_delimiter_2": ",",
+        "cat_sub_delimiter_2": "\/",
+        "cat_allow_numeric_names_2": ""
+    },
+    "cf": {
+        "shop-slike": {
+            "image1": "image1",
+            "image2": "image2",
+            "image3": "image3",
+            "image4": "image4",
+            "image5": "image5",
+            "image6": "image6",
+            "image7": "image7",
+            "image8": "image8",
+            "image9": "image9",
+            "image10": "",
+            "image11": "",
+            "image12": "",
+            "image13": "",
+            "image14": "",
+            "image15": "",
+            "image16": "",
+            "image17": "",
+            "image18": "",
+            "image19": "",
+            "image20": "",
+            "image21": "",
+            "image22": "",
+            "image23": "",
+            "image24": "",
+            "image25": "",
+            "image26": "",
+            "image27": "",
+            "image28": "",
+            "image29": ""
+        },
+        "shop-kratki-opis": {
+            "value": ""
+        },
+        "shop-poveznice": {
+            "value": ""
+        },
+        "shop-povezani-proizvodi": {
+            "value": "",
+            "relationship_field": "",
+            "separator": ""
+        },
+        "shop-izdvojeno": {
+            "value": ""
+        },
+        "shop-podnaslov": {
+            "value": ""
+        },
+        "shop-tehnicke-karakteristike": {
+            "value": ""
+        },
+        "shop-product": {
+            "price": {
+                "value": "price"
+            },
+            "sku": {
+                "value": ""
+            },
+            "weight": {
+                "value": ""
+            },
+            "width": {
+                "value": ""
+            },
+            "length": {
+                "value": ""
+            },
+            "height": {
+                "value": ""
+            },
+            "handling_surcharge": {
+                "value": ""
+            },
+            "free_shipping": {
+                "value": ""
+            },
+            "modifiers": {
+                "value": ""
+            },
+            "stock": {
+                "value": ""
+            },
+            "generate_skus": {
+                "value": "n"
+            },
+            "reset_stock": {
+                "value": "n"
+            }
+        },
+        "shop-seo-naslov": {
+            "value": ""
+        },
+        "shop-opis": {
+            "value": ""
+        },
+        "shop-sku": {
+            "value": "SKU"
+        },
+        "preporucena-cijena": {
+            "value": ""
+        },
+        "shop-boja": {
+            "value": ""
+        },
+        "shop-materijal": {
+            "value": ""
+        },
+        "shop-tehnicke-karakteristike-imp": {
+            "value": ""
+        },
+        "shop-opis-imp": {
+            "value": ""
+        },
+        "shop-kratki-opis-imp": {
+            "value": ""
+        },
+        "shop-sifra": {
+            "value": ""
+        },
+        "nova-kat": {
+            "value": ""
+        },
+        "novofield": {
+            "value": ""
+        },
+        "shop-redosljed": {
+            "value": ""
+        },
+        "shop-ean": {
+            "value": ""
+        },
+        "shop-broj-paketa": {
+            "value": ""
+        },
+        "shop-brand": {
+            "value": ""
+        },
+        "shop-name": {
+            "value": ""
+        },
+        "shop-size": {
+            "value": ""
+        },
+        "shop-pattern": {
+            "value": ""
+        },
+        "shop-finishing": {
+            "value": ""
+        },
+        "shop-akcijska-cijena": {
+            "value": ""
+        },
+        "shop-dostava": {
+            "value": ""
+        },
+        "shop-otoci": {
+            "value": ""
+        },
+        "shop-cijene": {
+            "value": ""
+        },
+        "shop-najniza": {
+            "value": ""
+        },
+        "shop-seo-opis": {
+            "value": ""
+        },
+        "shop-broj-prodanih": {
+            "value": ""
+        },
+        "shop-vidaxl-video": {
+            "value": ""
+        },
+        "shop-indeksiraj": {
+            "value": ""
+        },
+        "shop-intrastat": {
+            "value": ""
+        },
+        "shop-bigbuy-gpsrdesc": {
+            "value": ""
+        },
+        "shop-promijenjen-naziv": {
+            "value": ""
+        },
+        "shop-last-update": {
+            "value": ""
+        },
+        "shop-vidaxl-duplicates-noindex": {
+            "value": ""
+        },
+        "shop-days-on-sale": {
+            "value": ""
+        },
+        "shop-days-off-sale": {
+            "value": ""
+        },
+        "ever_on_sale": {
+            "value": ""
+        },
+        "shop-skipexport": {
+            "value": ""
+        },
+        "shop-na-akciji": {
+            "value": ""
+        },
+        "shop-price-for-search": {
+            "value": ""
+        },
+        "switch_test": {
+            "value": ""
+        },
+        "test_za_insert": {
+            "value": ""
+        }
+    },
+    "cm": {
+        "structure": {
+            "execute_on_action": "update",
+            "url": "",
+            "template": "",
+            "parent_id": "",
+            "parent_title": ""
+        }
+    }
+}
+21:24:39 07/16/2026 ====== END ENV ======
+21:24:39 07/16/2026 QUEUING
+21:24:39 07/16/2026 WAITING
+21:24:39 07/16/2026 Starting new import consumer.
+21:24:39 07/16/2026 RUNNING
+21:24:39 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:24:39 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:24:40 07/16/2026 Entry updated.
+21:24:40 07/16/2026 Calling after_channel_entry_save() hook.
+21:24:41 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 1.92 seconds.
+21:24:41 07/16/2026 ImportEntry PID: 2541837
+21:24:41 07/16/2026 RUNNING
+21:24:41 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:24:41 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:24:42 07/16/2026 Entry updated.
+21:24:42 07/16/2026 Calling after_channel_entry_save() hook.
+21:24:42 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.8 seconds.
+21:24:42 07/16/2026 ImportEntry PID: 2541837
+21:24:42 07/16/2026 RUNNING
+21:24:42 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:24:42 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:24:43 07/16/2026 Entry updated.
+21:24:43 07/16/2026 Calling after_channel_entry_save() hook.
+21:24:43 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.75 seconds.
+21:24:43 07/16/2026 ImportEntry PID: 2541837
+21:24:43 07/16/2026 RUNNING
+21:24:43 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:24:43 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:24:43 07/16/2026 Entry updated.
+21:24:43 07/16/2026 Calling after_channel_entry_save() hook.
+21:24:44 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.85 seconds.
+21:24:44 07/16/2026 ImportEntry PID: 2541837
+21:24:44 07/16/2026 RUNNING
+21:24:44 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:24:44 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:24:44 07/16/2026 Entry updated.
+21:24:44 07/16/2026 Calling after_channel_entry_save() hook.
+21:24:44 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.76 seconds.
+21:24:44 07/16/2026 ImportEntry PID: 2541837
+21:24:44 07/16/2026 RUNNING
+21:24:44 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:24:44 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:24:45 07/16/2026 Entry updated.
+21:24:45 07/16/2026 Calling after_channel_entry_save() hook.
+21:24:45 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.81 seconds.
+21:24:45 07/16/2026 ImportEntry PID: 2541837
+21:24:45 07/16/2026 RUNNING
+21:24:45 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:24:45 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:24:46 07/16/2026 Entry updated.
+21:24:46 07/16/2026 Calling after_channel_entry_save() hook.
+21:24:46 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.82 seconds.
+21:24:46 07/16/2026 ImportEntry PID: 2541837
+21:24:46 07/16/2026 RUNNING
+21:24:46 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:24:46 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:24:47 07/16/2026 Entry updated.
+21:24:47 07/16/2026 Calling after_channel_entry_save() hook.
+21:24:47 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.78 seconds.
+21:24:47 07/16/2026 ImportEntry PID: 2541837
+21:24:47 07/16/2026 RUNNING
+21:24:47 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:24:47 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:24:47 07/16/2026 Entry updated.
+21:24:47 07/16/2026 Calling after_channel_entry_save() hook.
+21:24:48 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.78 seconds.
+21:24:48 07/16/2026 ImportEntry PID: 2541837
+21:24:48 07/16/2026 RUNNING
+21:24:48 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:24:48 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:24:48 07/16/2026 Entry updated.
+21:24:48 07/16/2026 Calling after_channel_entry_save() hook.
+21:24:48 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.77 seconds.
+21:24:48 07/16/2026 ImportEntry PID: 2541837
+21:24:48 07/16/2026 RUNNING
+21:24:48 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:24:48 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:24:49 07/16/2026 Entry updated.
+21:24:49 07/16/2026 Calling after_channel_entry_save() hook.
+21:24:49 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.8 seconds.
+21:24:49 07/16/2026 ImportEntry PID: 2541837
+21:24:49 07/16/2026 RUNNING
+21:24:49 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:24:49 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:24:50 07/16/2026 Entry updated.
+21:24:50 07/16/2026 Calling after_channel_entry_save() hook.
+21:24:50 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.81 seconds.
+21:24:50 07/16/2026 ImportEntry PID: 2541837
+21:24:50 07/16/2026 RUNNING
+21:24:50 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:24:50 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:24:51 07/16/2026 Entry updated.
+21:24:51 07/16/2026 Calling after_channel_entry_save() hook.
+21:24:51 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.85 seconds.
+21:24:51 07/16/2026 ImportEntry PID: 2541837
+21:24:51 07/16/2026 RUNNING
+21:24:51 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:24:51 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:24:51 07/16/2026 Entry updated.
+21:24:51 07/16/2026 Calling after_channel_entry_save() hook.
+21:24:52 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.77 seconds.
+21:24:52 07/16/2026 ImportEntry PID: 2541837
+21:24:52 07/16/2026 RUNNING
+21:24:52 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:24:52 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:24:52 07/16/2026 Entry updated.
+21:24:52 07/16/2026 Calling after_channel_entry_save() hook.
+21:24:52 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.75 seconds.
+21:24:52 07/16/2026 ImportEntry PID: 2541837
+21:24:52 07/16/2026 RUNNING
+21:24:52 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:24:52 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:24:53 07/16/2026 Entry updated.
+21:24:53 07/16/2026 Calling after_channel_entry_save() hook.
+21:24:53 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.73 seconds.
+21:24:53 07/16/2026 ImportEntry PID: 2541837
+21:24:53 07/16/2026 RUNNING
+21:24:53 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:24:53 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:24:54 07/16/2026 Entry updated.
+21:24:54 07/16/2026 Calling after_channel_entry_save() hook.
+21:24:54 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.77 seconds.
+21:24:54 07/16/2026 ImportEntry PID: 2541837
+21:24:54 07/16/2026 RUNNING
+21:24:54 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:24:54 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:24:54 07/16/2026 Entry updated.
+21:24:54 07/16/2026 Calling after_channel_entry_save() hook.
+21:24:55 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.93 seconds.
+21:24:55 07/16/2026 ImportEntry PID: 2541837
+21:24:55 07/16/2026 RUNNING
+21:24:55 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:24:55 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:24:55 07/16/2026 Entry updated.
+21:24:55 07/16/2026 Calling after_channel_entry_save() hook.
+21:24:56 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.82 seconds.
+21:24:56 07/16/2026 ImportEntry PID: 2541837
+21:24:56 07/16/2026 RUNNING
+21:24:56 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:24:56 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:24:56 07/16/2026 Entry updated.
+21:24:56 07/16/2026 Calling after_channel_entry_save() hook.
+21:24:56 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.78 seconds.
+21:24:56 07/16/2026 ImportEntry PID: 2541837
+21:24:56 07/16/2026 RUNNING
+21:24:56 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:24:56 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:24:57 07/16/2026 Entry updated.
+21:24:57 07/16/2026 Calling after_channel_entry_save() hook.
+21:24:57 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.77 seconds.
+21:24:57 07/16/2026 ImportEntry PID: 2541837
+21:24:57 07/16/2026 RUNNING
+21:24:57 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:24:57 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:24:58 07/16/2026 Entry updated.
+21:24:58 07/16/2026 Calling after_channel_entry_save() hook.
+21:24:58 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.76 seconds.
+21:24:58 07/16/2026 ImportEntry PID: 2541837
+21:24:58 07/16/2026 RUNNING
+21:24:58 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:24:58 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:24:58 07/16/2026 Entry updated.
+21:24:58 07/16/2026 Calling after_channel_entry_save() hook.
+21:24:59 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.76 seconds.
+21:24:59 07/16/2026 ImportEntry PID: 2541837
+21:24:59 07/16/2026 RUNNING
+21:24:59 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:24:59 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:24:59 07/16/2026 Entry updated.
+21:24:59 07/16/2026 Calling after_channel_entry_save() hook.
+21:24:59 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.76 seconds.
+21:24:59 07/16/2026 ImportEntry PID: 2541837
+21:24:59 07/16/2026 RUNNING
+21:24:59 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:00 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:00 07/16/2026 Entry updated.
+21:25:00 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:00 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.77 seconds.
+21:25:00 07/16/2026 ImportEntry PID: 2541837
+21:25:00 07/16/2026 RUNNING
+21:25:00 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:00 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:01 07/16/2026 Entry updated.
+21:25:01 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:01 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.85 seconds.
+21:25:01 07/16/2026 ImportEntry PID: 2541837
+21:25:01 07/16/2026 RUNNING
+21:25:01 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:01 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:02 07/16/2026 Entry updated.
+21:25:02 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:02 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.95 seconds.
+21:25:02 07/16/2026 ImportEntry PID: 2541837
+21:25:02 07/16/2026 RUNNING
+21:25:02 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:02 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:03 07/16/2026 Entry updated.
+21:25:03 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:03 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.88 seconds.
+21:25:03 07/16/2026 ImportEntry PID: 2541837
+21:25:03 07/16/2026 RUNNING
+21:25:03 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:03 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:04 07/16/2026 Entry updated.
+21:25:04 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:04 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.9 seconds.
+21:25:04 07/16/2026 ImportEntry PID: 2541837
+21:25:04 07/16/2026 RUNNING
+21:25:04 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:04 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:04 07/16/2026 Entry updated.
+21:25:04 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:05 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.89 seconds.
+21:25:05 07/16/2026 ImportEntry PID: 2541837
+21:25:05 07/16/2026 RUNNING
+21:25:05 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:05 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:05 07/16/2026 Entry updated.
+21:25:05 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:06 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.85 seconds.
+21:25:06 07/16/2026 ImportEntry PID: 2541837
+21:25:06 07/16/2026 RUNNING
+21:25:06 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:06 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:06 07/16/2026 Entry updated.
+21:25:06 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:06 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.85 seconds.
+21:25:06 07/16/2026 ImportEntry PID: 2541837
+21:25:06 07/16/2026 RUNNING
+21:25:06 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:07 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:07 07/16/2026 Entry updated.
+21:25:07 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:07 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.81 seconds.
+21:25:07 07/16/2026 ImportEntry PID: 2541837
+21:25:07 07/16/2026 RUNNING
+21:25:07 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:07 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:08 07/16/2026 Entry updated.
+21:25:08 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:08 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.81 seconds.
+21:25:08 07/16/2026 ImportEntry PID: 2541837
+21:25:08 07/16/2026 RUNNING
+21:25:08 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:08 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:09 07/16/2026 Entry updated.
+21:25:09 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:09 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.84 seconds.
+21:25:09 07/16/2026 ImportEntry PID: 2541837
+21:25:09 07/16/2026 RUNNING
+21:25:09 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:09 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:10 07/16/2026 Entry updated.
+21:25:10 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:10 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.88 seconds.
+21:25:10 07/16/2026 ImportEntry PID: 2541837
+21:25:10 07/16/2026 RUNNING
+21:25:10 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:10 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:10 07/16/2026 Entry updated.
+21:25:10 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:11 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.84 seconds.
+21:25:11 07/16/2026 ImportEntry PID: 2541837
+21:25:11 07/16/2026 RUNNING
+21:25:11 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:11 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:11 07/16/2026 Entry updated.
+21:25:11 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:11 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.82 seconds.
+21:25:11 07/16/2026 ImportEntry PID: 2541837
+21:25:11 07/16/2026 RUNNING
+21:25:11 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:12 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:12 07/16/2026 Entry updated.
+21:25:12 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:12 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.8 seconds.
+21:25:12 07/16/2026 ImportEntry PID: 2541837
+21:25:12 07/16/2026 RUNNING
+21:25:12 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:12 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:13 07/16/2026 Entry updated.
+21:25:13 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:13 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.8 seconds.
+21:25:13 07/16/2026 ImportEntry PID: 2541837
+21:25:13 07/16/2026 RUNNING
+21:25:13 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:13 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:14 07/16/2026 Entry updated.
+21:25:14 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:14 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.8 seconds.
+21:25:14 07/16/2026 ImportEntry PID: 2541837
+21:25:14 07/16/2026 RUNNING
+21:25:14 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:14 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:14 07/16/2026 Entry updated.
+21:25:14 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:15 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.81 seconds.
+21:25:15 07/16/2026 ImportEntry PID: 2541837
+21:25:15 07/16/2026 RUNNING
+21:25:15 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:15 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:15 07/16/2026 Entry updated.
+21:25:15 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:16 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 1 seconds.
+21:25:16 07/16/2026 ImportEntry PID: 2541837
+21:25:16 07/16/2026 RUNNING
+21:25:16 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:16 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:16 07/16/2026 Entry updated.
+21:25:16 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:17 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.96 seconds.
+21:25:17 07/16/2026 ImportEntry PID: 2541837
+21:25:17 07/16/2026 RUNNING
+21:25:17 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:17 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:17 07/16/2026 Entry updated.
+21:25:17 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:17 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.84 seconds.
+21:25:17 07/16/2026 ImportEntry PID: 2541837
+21:25:17 07/16/2026 RUNNING
+21:25:17 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:18 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:18 07/16/2026 Entry updated.
+21:25:18 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:18 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.85 seconds.
+21:25:18 07/16/2026 ImportEntry PID: 2541837
+21:25:18 07/16/2026 RUNNING
+21:25:18 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:18 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:19 07/16/2026 Entry updated.
+21:25:19 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:19 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.87 seconds.
+21:25:19 07/16/2026 ImportEntry PID: 2541837
+21:25:19 07/16/2026 RUNNING
+21:25:19 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:19 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:20 07/16/2026 Entry updated.
+21:25:20 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:21 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 2.09 seconds.
+21:25:21 07/16/2026 ImportEntry PID: 2541837
+21:25:21 07/16/2026 RUNNING
+21:25:21 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:21 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:22 07/16/2026 Entry updated.
+21:25:22 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:22 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.82 seconds.
+21:25:22 07/16/2026 ImportEntry PID: 2541837
+21:25:22 07/16/2026 RUNNING
+21:25:22 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:22 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:23 07/16/2026 Entry updated.
+21:25:23 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:23 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.9 seconds.
+21:25:23 07/16/2026 ImportEntry PID: 2541837
+21:25:23 07/16/2026 WAITING
+21:25:23 07/16/2026 WORKER STOPPED: success
+21:25:23 07/16/2026 Starting new import consumer.
+21:25:23 07/16/2026 RUNNING
+21:25:23 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:23 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:23 07/16/2026 Starting new import consumer.
+21:25:23 07/16/2026 RUNNING
+21:25:23 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:24 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:24 07/16/2026 Entry updated.
+21:25:24 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:24 07/16/2026 Entry updated.
+21:25:24 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:24 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.98 seconds.
+21:25:24 07/16/2026 ImportEntry PID: 2542635
+21:25:24 07/16/2026 RUNNING
+21:25:24 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:24 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:25 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 1.06 seconds.
+21:25:25 07/16/2026 ImportEntry PID: 2542638
+21:25:25 07/16/2026 RUNNING
+21:25:25 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:25 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:25 07/16/2026 Entry updated.
+21:25:25 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:25 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.87 seconds.
+21:25:25 07/16/2026 ImportEntry PID: 2542635
+21:25:25 07/16/2026 RUNNING
+21:25:25 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:25 07/16/2026 Entry updated.
+21:25:25 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:25 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:26 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.98 seconds.
+21:25:26 07/16/2026 ImportEntry PID: 2542638
+21:25:26 07/16/2026 RUNNING
+21:25:26 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:26 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:26 07/16/2026 Entry updated.
+21:25:26 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:26 07/16/2026 Entry updated.
+21:25:26 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:26 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 1.02 seconds.
+21:25:26 07/16/2026 ImportEntry PID: 2542635
+21:25:26 07/16/2026 RUNNING
+21:25:26 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:26 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:26 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.85 seconds.
+21:25:26 07/16/2026 ImportEntry PID: 2542638
+21:25:26 07/16/2026 RUNNING
+21:25:26 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:27 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:27 07/16/2026 Entry updated.
+21:25:27 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:27 07/16/2026 Entry updated.
+21:25:27 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:27 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.95 seconds.
+21:25:27 07/16/2026 ImportEntry PID: 2542635
+21:25:27 07/16/2026 RUNNING
+21:25:27 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:27 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:27 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.89 seconds.
+21:25:27 07/16/2026 ImportEntry PID: 2542638
+21:25:27 07/16/2026 RUNNING
+21:25:27 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:27 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:28 07/16/2026 Entry updated.
+21:25:28 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:28 07/16/2026 Entry updated.
+21:25:28 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:28 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.97 seconds.
+21:25:28 07/16/2026 ImportEntry PID: 2542635
+21:25:28 07/16/2026 RUNNING
+21:25:28 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:28 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:28 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 1.05 seconds.
+21:25:28 07/16/2026 ImportEntry PID: 2542638
+21:25:28 07/16/2026 RUNNING
+21:25:28 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:28 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:29 07/16/2026 Entry updated.
+21:25:29 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:29 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.87 seconds.
+21:25:29 07/16/2026 ImportEntry PID: 2542635
+21:25:29 07/16/2026 RUNNING
+21:25:29 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:29 07/16/2026 Entry updated.
+21:25:29 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:29 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:29 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.99 seconds.
+21:25:29 07/16/2026 ImportEntry PID: 2542638
+21:25:29 07/16/2026 RUNNING
+21:25:29 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:29 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:30 07/16/2026 Entry updated.
+21:25:30 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:30 07/16/2026 Entry updated.
+21:25:30 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 1.02 seconds.
+21:25:30 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:30 07/16/2026 ImportEntry PID: 2542635
+21:25:30 07/16/2026 RUNNING
+21:25:30 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:30 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:30 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.9 seconds.
+21:25:30 07/16/2026 ImportEntry PID: 2542638
+21:25:30 07/16/2026 RUNNING
+21:25:30 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:30 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:31 07/16/2026 Entry updated.
+21:25:31 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:31 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.83 seconds.
+21:25:31 07/16/2026 ImportEntry PID: 2542635
+21:25:31 07/16/2026 RUNNING
+21:25:31 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:31 07/16/2026 Entry updated.
+21:25:31 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:31 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:31 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.84 seconds.
+21:25:31 07/16/2026 ImportEntry PID: 2542638
+21:25:31 07/16/2026 RUNNING
+21:25:31 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:31 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:31 07/16/2026 Entry updated.
+21:25:31 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:32 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.91 seconds.
+21:25:32 07/16/2026 ImportEntry PID: 2542635
+21:25:32 07/16/2026 RUNNING
+21:25:32 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:32 07/16/2026 Entry updated.
+21:25:32 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:32 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:32 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.91 seconds.
+21:25:32 07/16/2026 ImportEntry PID: 2542638
+21:25:32 07/16/2026 RUNNING
+21:25:32 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:32 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:32 07/16/2026 Entry updated.
+21:25:32 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:33 07/16/2026 Entry updated.
+21:25:33 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:33 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 1.02 seconds.
+21:25:33 07/16/2026 ImportEntry PID: 2542635
+21:25:33 07/16/2026 RUNNING
+21:25:33 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:33 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:33 07/16/2026 Entry updated.
+21:25:33 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:34 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 1.58 seconds.
+21:25:34 07/16/2026 ImportEntry PID: 2542638
+21:25:34 07/16/2026 RUNNING
+21:25:34 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:34 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.91 seconds.
+21:25:34 07/16/2026 ImportEntry PID: 2542635
+21:25:34 07/16/2026 RUNNING
+21:25:34 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:34 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:34 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:34 07/16/2026 Entry updated.
+21:25:34 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:34 07/16/2026 Entry updated.
+21:25:34 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:34 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.89 seconds.
+21:25:34 07/16/2026 ImportEntry PID: 2542638
+21:25:34 07/16/2026 RUNNING
+21:25:34 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:35 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:35 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.95 seconds.
+21:25:35 07/16/2026 ImportEntry PID: 2542635
+21:25:35 07/16/2026 RUNNING
+21:25:35 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:35 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:35 07/16/2026 Entry updated.
+21:25:35 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:35 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.85 seconds.
+21:25:35 07/16/2026 ImportEntry PID: 2542638
+21:25:35 07/16/2026 RUNNING
+21:25:35 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:35 07/16/2026 Entry updated.
+21:25:35 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:35 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:36 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.95 seconds.
+21:25:36 07/16/2026 ImportEntry PID: 2542635
+21:25:36 07/16/2026 RUNNING
+21:25:36 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:36 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:36 07/16/2026 Entry updated.
+21:25:36 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:36 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.89 seconds.
+21:25:36 07/16/2026 ImportEntry PID: 2542638
+21:25:36 07/16/2026 RUNNING
+21:25:36 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:36 07/16/2026 Entry updated.
+21:25:36 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:36 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:37 07/16/2026 Entry updated.
+21:25:37 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:37 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.88 seconds.
+21:25:37 07/16/2026 ImportEntry PID: 2542638
+21:25:37 07/16/2026 RUNNING
+21:25:37 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:37 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:38 07/16/2026 Entry updated.
+21:25:38 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:38 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.94 seconds.
+21:25:38 07/16/2026 ImportEntry PID: 2542638
+21:25:38 07/16/2026 RUNNING
+21:25:38 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:38 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:38 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 2.76 seconds.
+21:25:38 07/16/2026 ImportEntry PID: 2542635
+21:25:38 07/16/2026 RUNNING
+21:25:38 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:38 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:39 07/16/2026 Entry updated.
+21:25:39 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:39 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.85 seconds.
+21:25:39 07/16/2026 ImportEntry PID: 2542638
+21:25:39 07/16/2026 RUNNING
+21:25:39 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:39 07/16/2026 Entry updated.
+21:25:39 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:39 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:39 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.94 seconds.
+21:25:39 07/16/2026 ImportEntry PID: 2542635
+21:25:39 07/16/2026 RUNNING
+21:25:39 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:39 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:40 07/16/2026 Entry updated.
+21:25:40 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:40 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.92 seconds.
+21:25:40 07/16/2026 ImportEntry PID: 2542638
+21:25:40 07/16/2026 RUNNING
+21:25:40 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:40 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:40 07/16/2026 Entry updated.
+21:25:40 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:40 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.96 seconds.
+21:25:40 07/16/2026 ImportEntry PID: 2542635
+21:25:40 07/16/2026 RUNNING
+21:25:40 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:40 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:41 07/16/2026 Entry updated.
+21:25:41 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:41 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.93 seconds.
+21:25:41 07/16/2026 ImportEntry PID: 2542638
+21:25:41 07/16/2026 RUNNING
+21:25:41 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:41 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:41 07/16/2026 Entry updated.
+21:25:41 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:41 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.93 seconds.
+21:25:41 07/16/2026 ImportEntry PID: 2542635
+21:25:41 07/16/2026 RUNNING
+21:25:41 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:41 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:41 07/16/2026 Entry updated.
+21:25:41 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:42 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.92 seconds.
+21:25:42 07/16/2026 ImportEntry PID: 2542638
+21:25:42 07/16/2026 RUNNING
+21:25:42 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:42 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:42 07/16/2026 Entry updated.
+21:25:42 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:42 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.89 seconds.
+21:25:42 07/16/2026 ImportEntry PID: 2542635
+21:25:42 07/16/2026 RUNNING
+21:25:42 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:42 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:42 07/16/2026 Entry updated.
+21:25:42 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:43 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.85 seconds.
+21:25:43 07/16/2026 ImportEntry PID: 2542638
+21:25:43 07/16/2026 RUNNING
+21:25:43 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:43 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:43 07/16/2026 Entry updated.
+21:25:43 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:43 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.83 seconds.
+21:25:43 07/16/2026 ImportEntry PID: 2542635
+21:25:43 07/16/2026 RUNNING
+21:25:43 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:43 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:43 07/16/2026 Entry updated.
+21:25:43 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:43 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.82 seconds.
+21:25:43 07/16/2026 ImportEntry PID: 2542638
+21:25:43 07/16/2026 RUNNING
+21:25:43 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:44 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:44 07/16/2026 Entry updated.
+21:25:44 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:44 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.83 seconds.
+21:25:44 07/16/2026 ImportEntry PID: 2542635
+21:25:44 07/16/2026 RUNNING
+21:25:44 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:44 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:44 07/16/2026 Entry updated.
+21:25:44 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:44 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.83 seconds.
+21:25:44 07/16/2026 ImportEntry PID: 2542638
+21:25:44 07/16/2026 RUNNING
+21:25:44 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:44 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:44 07/16/2026 Entry updated.
+21:25:44 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:45 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.88 seconds.
+21:25:45 07/16/2026 ImportEntry PID: 2542635
+21:25:45 07/16/2026 RUNNING
+21:25:45 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:45 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:45 07/16/2026 Entry updated.
+21:25:45 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:45 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.85 seconds.
+21:25:45 07/16/2026 ImportEntry PID: 2542638
+21:25:45 07/16/2026 RUNNING
+21:25:45 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:45 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:45 07/16/2026 Entry updated.
+21:25:45 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:45 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.83 seconds.
+21:25:45 07/16/2026 ImportEntry PID: 2542635
+21:25:45 07/16/2026 RUNNING
+21:25:45 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:46 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:46 07/16/2026 Entry updated.
+21:25:46 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:46 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.88 seconds.
+21:25:46 07/16/2026 ImportEntry PID: 2542638
+21:25:46 07/16/2026 RUNNING
+21:25:46 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:46 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:46 07/16/2026 Entry updated.
+21:25:46 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:46 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.88 seconds.
+21:25:46 07/16/2026 ImportEntry PID: 2542635
+21:25:46 07/16/2026 RUNNING
+21:25:46 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:46 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:47 07/16/2026 Entry updated.
+21:25:47 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:47 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.92 seconds.
+21:25:47 07/16/2026 ImportEntry PID: 2542638
+21:25:47 07/16/2026 RUNNING
+21:25:47 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:47 07/16/2026 Entry updated.
+21:25:47 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:47 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:47 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.87 seconds.
+21:25:47 07/16/2026 ImportEntry PID: 2542635
+21:25:47 07/16/2026 RUNNING
+21:25:47 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:47 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:48 07/16/2026 Entry updated.
+21:25:48 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:48 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.93 seconds.
+21:25:48 07/16/2026 ImportEntry PID: 2542638
+21:25:48 07/16/2026 RUNNING
+21:25:48 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:48 07/16/2026 Entry updated.
+21:25:48 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:48 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:48 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.9 seconds.
+21:25:48 07/16/2026 ImportEntry PID: 2542635
+21:25:48 07/16/2026 RUNNING
+21:25:48 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:48 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:49 07/16/2026 Entry updated.
+21:25:49 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:49 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.97 seconds.
+21:25:49 07/16/2026 ImportEntry PID: 2542638
+21:25:49 07/16/2026 RUNNING
+21:25:49 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:49 07/16/2026 Entry updated.
+21:25:49 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:49 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:49 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.91 seconds.
+21:25:49 07/16/2026 ImportEntry PID: 2542635
+21:25:49 07/16/2026 RUNNING
+21:25:49 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:49 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:49 07/16/2026 Entry updated.
+21:25:49 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:50 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.87 seconds.
+21:25:50 07/16/2026 ImportEntry PID: 2542638
+21:25:50 07/16/2026 RUNNING
+21:25:50 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:50 07/16/2026 Entry updated.
+21:25:50 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:50 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:50 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.88 seconds.
+21:25:50 07/16/2026 ImportEntry PID: 2542635
+21:25:50 07/16/2026 RUNNING
+21:25:50 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:50 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:50 07/16/2026 Entry updated.
+21:25:50 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:51 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.88 seconds.
+21:25:51 07/16/2026 ImportEntry PID: 2542638
+21:25:51 07/16/2026 RUNNING
+21:25:51 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:51 07/16/2026 Entry updated.
+21:25:51 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:51 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:51 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.88 seconds.
+21:25:51 07/16/2026 ImportEntry PID: 2542635
+21:25:51 07/16/2026 RUNNING
+21:25:51 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:51 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:51 07/16/2026 Entry updated.
+21:25:51 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:51 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.91 seconds.
+21:25:51 07/16/2026 ImportEntry PID: 2542638
+21:25:51 07/16/2026 RUNNING
+21:25:51 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:51 07/16/2026 Entry updated.
+21:25:51 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:52 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:52 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.94 seconds.
+21:25:52 07/16/2026 ImportEntry PID: 2542635
+21:25:52 07/16/2026 RUNNING
+21:25:52 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:52 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:52 07/16/2026 Entry updated.
+21:25:52 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:52 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.89 seconds.
+21:25:52 07/16/2026 ImportEntry PID: 2542638
+21:25:52 07/16/2026 RUNNING
+21:25:52 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:52 07/16/2026 Entry updated.
+21:25:52 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:52 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:53 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.9 seconds.
+21:25:53 07/16/2026 ImportEntry PID: 2542635
+21:25:53 07/16/2026 RUNNING
+21:25:53 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:53 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:53 07/16/2026 Entry updated.
+21:25:53 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:53 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.8 seconds.
+21:25:53 07/16/2026 ImportEntry PID: 2542638
+21:25:53 07/16/2026 RUNNING
+21:25:53 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:53 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:53 07/16/2026 Entry updated.
+21:25:53 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:54 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.87 seconds.
+21:25:54 07/16/2026 ImportEntry PID: 2542635
+21:25:54 07/16/2026 RUNNING
+21:25:54 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:54 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:54 07/16/2026 Entry updated.
+21:25:54 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:54 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.89 seconds.
+21:25:54 07/16/2026 ImportEntry PID: 2542638
+21:25:54 07/16/2026 RUNNING
+21:25:54 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:54 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:54 07/16/2026 Entry updated.
+21:25:54 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:54 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.93 seconds.
+21:25:54 07/16/2026 ImportEntry PID: 2542635
+21:25:54 07/16/2026 RUNNING
+21:25:54 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:55 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:55 07/16/2026 Entry updated.
+21:25:55 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:55 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.88 seconds.
+21:25:55 07/16/2026 ImportEntry PID: 2542638
+21:25:55 07/16/2026 RUNNING
+21:25:55 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:55 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:55 07/16/2026 Entry updated.
+21:25:55 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:55 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.91 seconds.
+21:25:55 07/16/2026 ImportEntry PID: 2542635
+21:25:55 07/16/2026 RUNNING
+21:25:55 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:56 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:56 07/16/2026 Entry updated.
+21:25:56 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:56 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.93 seconds.
+21:25:56 07/16/2026 ImportEntry PID: 2542638
+21:25:56 07/16/2026 RUNNING
+21:25:56 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:56 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:56 07/16/2026 Entry updated.
+21:25:56 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:56 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.91 seconds.
+21:25:56 07/16/2026 ImportEntry PID: 2542635
+21:25:56 07/16/2026 RUNNING
+21:25:56 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:56 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:56 07/16/2026 Entry updated.
+21:25:56 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:57 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.88 seconds.
+21:25:57 07/16/2026 ImportEntry PID: 2542638
+21:25:57 07/16/2026 RUNNING
+21:25:57 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:57 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:57 07/16/2026 Entry updated.
+21:25:57 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:57 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.87 seconds.
+21:25:57 07/16/2026 ImportEntry PID: 2542635
+21:25:57 07/16/2026 RUNNING
+21:25:57 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:57 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:57 07/16/2026 Entry updated.
+21:25:57 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:58 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.89 seconds.
+21:25:58 07/16/2026 ImportEntry PID: 2542638
+21:25:58 07/16/2026 RUNNING
+21:25:58 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:58 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:58 07/16/2026 Entry updated.
+21:25:58 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:58 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.91 seconds.
+21:25:58 07/16/2026 ImportEntry PID: 2542635
+21:25:58 07/16/2026 RUNNING
+21:25:58 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:58 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:58 07/16/2026 Entry updated.
+21:25:58 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:59 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.89 seconds.
+21:25:59 07/16/2026 ImportEntry PID: 2542638
+21:25:59 07/16/2026 RUNNING
+21:25:59 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:59 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:59 07/16/2026 Entry updated.
+21:25:59 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:59 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.91 seconds.
+21:25:59 07/16/2026 ImportEntry PID: 2542635
+21:25:59 07/16/2026 RUNNING
+21:25:59 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:25:59 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:25:59 07/16/2026 Entry updated.
+21:25:59 07/16/2026 Calling after_channel_entry_save() hook.
+21:25:59 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.95 seconds.
+21:25:59 07/16/2026 ImportEntry PID: 2542638
+21:25:59 07/16/2026 RUNNING
+21:25:59 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:26:00 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] is a new entry.
+21:26:00 07/16/2026 Entry updated.
+21:26:00 07/16/2026 Calling after_channel_entry_save() hook.
+21:26:00 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.93 seconds.
+21:26:00 07/16/2026 ImportEntry PID: 2542635
+21:26:00 07/16/2026 RUNNING
+21:26:00 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:26:00 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] already exists. Updating.
+21:26:00 07/16/2026 Entry added
+21:26:00 07/16/2026 Calling after_channel_entry_save() hook.
+21:26:00 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.92 seconds.
+21:26:00 07/16/2026 ImportEntry PID: 2542638
+21:26:00 07/16/2026 RUNNING
+21:26:00 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:26:01 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] is a new entry.
+21:26:01 07/16/2026 Entry updated.
+21:26:01 07/16/2026 Calling after_channel_entry_save() hook.
+21:26:01 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.99 seconds.
+21:26:01 07/16/2026 ImportEntry PID: 2542635
+21:26:01 07/16/2026 RUNNING
+21:26:01 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:26:01 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] is a new entry.
+21:26:01 07/16/2026 Entry added
+21:26:01 07/16/2026 Calling after_channel_entry_save() hook.
+21:26:01 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.86 seconds.
+21:26:01 07/16/2026 ImportEntry PID: 2542638
+21:26:01 07/16/2026 RUNNING
+21:26:01 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:26:01 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] is a new entry.
+21:26:02 07/16/2026 Entry added
+21:26:02 07/16/2026 Calling after_channel_entry_save() hook.
+21:26:02 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.81 seconds.
+21:26:02 07/16/2026 ImportEntry PID: 2542635
+21:26:02 07/16/2026 RUNNING
+21:26:02 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:26:02 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] is a new entry.
+21:26:02 07/16/2026 Entry added
+21:26:02 07/16/2026 Calling after_channel_entry_save() hook.
+21:26:02 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.88 seconds.
+21:26:02 07/16/2026 ImportEntry PID: 2542638
+21:26:02 07/16/2026 RUNNING
+21:26:02 07/16/2026 --- Begin Importing [Dewalt DW733 debljača 1800W 317mm]
+21:26:02 07/16/2026 [Dewalt DW733 debljača 1800W 317mm] is a new entry.
+21:26:02 07/16/2026 Entry added
+21:26:02 07/16/2026 Calling after_channel_entry_save() hook.
+21:26:03 07/16/2026 Entry added
+21:26:03 07/16/2026 Calling after_channel_entry_save() hook.
+21:26:03 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 1.15 seconds.
+21:26:03 07/16/2026 ImportEntry PID: 2542635
+21:26:03 07/16/2026 RUNNING
+21:26:03 07/16/2026 --- Import of [Dewalt DW733 debljača 1800W 317mm] took 0.92 seconds.
+21:26:03 07/16/2026 ImportEntry PID: 2542638
+21:26:03 07/16/2026 RUNNING
+21:26:06 07/16/2026 WAITING
+21:26:06 07/16/2026 WORKER STOPPED: success
+21:26:06 07/16/2026 COMPLETED
+21:26:06 07/16/2026 Added 2 entries
+21:26:06 07/16/2026 Clearing all cache
+21:26:06 07/16/2026 Updated 39 entries
+21:26:06 07/16/2026 Displaying import response as HTML. Not an Ajax request.
+21:26:06 07/16/2026 WAITING
+21:26:06 07/16/2026 WORKER STOPPED: success
+21:26:06 07/16/2026 COMPLETED
+21:26:06 07/16/2026 Added 4 entries
+21:26:06 07/16/2026 Clearing all cache
+21:26:06 07/16/2026 Updated 39 entries

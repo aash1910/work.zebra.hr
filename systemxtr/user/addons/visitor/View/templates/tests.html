@@ -1,0 +1,39 @@
+{layout="visitor_example/layout" page_title="Change Group"}
+
+{layout:set name="content"}
+    <h2>Testing Page</h2>
+    <p>This layout is for testing purposes only and can be deleted.</p>
+
+    {if logged_in}
+        <p>Test the global vars</p>
+
+        <table cellspacing="0" cellpadding="5" border="1">
+        <tbody>
+            <tr><td><b>url_title:</b></td><td><span id="url_title">{visitor:global:url_title}</span></td></tr>
+            <tr><td><b>expiration_date:</b></td><td><span id="expiration_date">{visitor:global:expiration_date}</span></td></tr>
+            <tr><td><b>categories_piped:</b></td><td><span id="categories_piped">{visitor:global:categories_piped}</span></td></tr>
+            <tr><td><b>member_account:</b></td><td><span id="member_account">{visitor:global:member_account}</span></td></tr>
+            <tr><td><b>field_id_2:</b></td><td><span id="field_id_2">{visitor:global:field_id_2}</span></td></tr>
+            <tr><td><b>member_firstname:</b></td><td><span id="member_firstname">{visitor:global:member_firstname}</span></td></tr>
+            <tr><td><b>field_id_3:</b></td><td><span id="field_id_3">{visitor:global:field_id_3}</span></td></tr>
+            <tr><td><b>member_lastname:</b></td><td><span id="member_lastname">{visitor:global:member_lastname}</span></td></tr>
+            <tr><td><b>field_id_4:</b></td><td><span id="field_id_4">{visitor:global:field_id_4}</span></td></tr>
+            <tr><td><b>member_gender:</b></td><td><span id="member_gender">{visitor:global:member_gender}</span></td></tr>
+            <tr><td><b>field_id_5:</b></td><td><span id="field_id_5">{visitor:global:field_id_5}</span></td></tr>
+            <tr><td><b>member_birthday:</b></td><td><span id="member_birthday">{visitor:global:member_birthday}</span></td></tr>
+            <tr><td><b>field_id_6:</b></td><td><span id="field_id_6">{visitor:global:field_id_6}</span></td></tr>
+            <tr><td><b>member_signature:</b></td><td><span id="member_signature">{visitor:global:member_signature}</span></td></tr>
+            <tr><td><b>field_id_7:</b></td><td><span id="field_id_7">{visitor:global:field_id_7}</span></td></tr>
+            <tr><td><b>member_location:</b></td><td><span id="member_location">{visitor:global:member_location}</span></td></tr>
+            <tr><td><b>field_id_8:</b></td><td><span id="field_id_8">{visitor:global:field_id_8}</span></td></tr>
+            <tr><td><b>non_existant_field:</b></td><td><span id="non_existant_field">{visitor:global:non_existant_field}</span></td></tr>
+        </tbody>
+        </table>
+
+    {if:else}
+        <p>You are not logged in.</p>
+        <br />
+
+        <p><a class="btn btn-primary" href="{path=visitor_example/login}">Login</a> &nbsp;&nbsp;&nbsp; <a class="btn btn-primary" href="{path=visitor_example/register}">Register</a></p>
+    {/if}
+{/layout:set}

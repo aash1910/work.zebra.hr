@@ -1,0 +1,145 @@
+{embed="{segment_1}/_header"}
+
+{exp:store:orders order_hash="{segment_3}"}
+
+{if no_orders}
+{redirect="404"}
+{/if}
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb py-3 bg-body-tertiary rounded-3">
+    <li class="breadcrumb-item"><a href="{path='{segment_1}'}">Example Store</a></li>
+    <li class="breadcrumb-item"><a href="{path='{segment_1}/my_orders'}">My Orders</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Order #{order_id}</li>
+  </ol>
+</nav>
+
+<div class="row g-5">
+  <div class="col-12">
+    <div class="page-header d-flex align-items-center mb-4">
+      <h1 class="h2">Order Summary / Tax Invoice
+        <small class="text-body-tertiary fw-normal fs-6 d-block">Your order is complete! You can review your order details below. If you have any questions, please contact our support team.
+        </small>
+      </h1>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-4">
+    <fieldset>
+      <legend class="h4">Summary</legend>
+      <div class="mb-3">
+        <b>Order ID:</b> {order_id}<br />
+        <b>Date:</b> {order_date format="%j %M %Y"}<br />
+        <b>Status:</b> {order_status}<br />
+        <b>Total:</b> {order_total}<br />
+        <b>Paid:</b> {if is_order_paid}Yes{if:else}No{/if}
+      </div>
+    </fieldset>
+  </div>
+  <div class="col-md-4">
+    <fieldset>
+      <legend class="h4">Billing Details</legend>
+      <div class="mb-3">
+        <div><b>{billing_name}</b></div>
+        <div>{billing_address1}</div>
+        <div>{billing_address2}</div>
+        <div>{billing_city} {billing_postcode}</div>
+        <div>{billing_state_name}</div>
+        <div>{billing_country_name}</div>
+        <div>{billing_phone}</div>
+        <div>{order_email}</div>
+      </div>
+    </fieldset>
+  </div>
+  <div class="col-md-4">
+    <fieldset>
+      <legend class="h4">Shipping Details</legend>
+      <div class="mb-3">
+        {if shipping_same_as_billing}
+        Same as Billing Details
+        {if:else}
+        <div><b>{shipping_name}</b></div>
+        <div>{shipping_address1}</div>
+        <div>{shipping_address2}</div>
+        <div>{shipping_city} {shipping_postcode}</div>
+        <div>{shipping_state_name}</div>
+        <div>{shipping_country_name}</div>
+        <div>{shipping_phone}</div>
+        {/if}
+      </div>
+    </fieldset>
+  </div>
+</div>
+
+<div class="table-responsive mt-4">
+  <table class="table align-middle border">
+    <thead>
+      <tr>
+        <th style="width:60%">Product</th>
+        <th class="text-end">Price</th>
+        <th class="text-center">Qty</th>
+        <th class="text-end">Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      {items}
+      <tr>
+        <td>
+          <h4><a href="{path='{segment_1}/product'}/{url_title}">{title}</a></h4>
+          <p><small>
+            <b>SKU:</b> {sku}<br />
+            {modifiers}
+            <b>{modifier_name}</b>: {modifier_value} {if price_mod_val}({price_mod}){/if}<br />
+            {/modifiers}
+            </small></p>
+        </td>
+        <td class="text-end">{price}</td>
+        <td class="text-center">{item_qty}</td>
+        <td class="text-end">{item_subtotal}</td>
+      </tr>
+      {/items}
+      <tr>
+        <th colspan="3">Subtotal</th>
+        <th class="text-end">{order_subtotal}</th>
+      </tr>
+      {if order_shipping_val}
+      <tr>
+        <td colspan="3">Shipping</td>
+        <td class="text-end">{order_shipping}</td>
+      </tr>
+      {/if}
+      {if order_handling_val}
+      <tr>
+        <td colspan="3">Handling</td>
+        <td class="text-end">{order_handling}</td>
+      </tr>
+      {/if}
+      {if order_tax_val}
+      <tr>
+        <td colspan="3">{tax_name} ({tax_percent}%)</td>
+        <td class="text-end">{order_tax}</td>
+      </tr>
+      {/if}
+      {adjustments}
+        {if adjustment:type == "discount"}
+          <tr class="table-warning fw-bold">
+            <td colspan="3">
+              {adjustment:name}
+              {if discount:code} <span class="text-secondary small">({discount:code})</span>{/if}
+            </td>
+            <td class="text-end">{adjustment:amount}</td>
+          </tr>
+        {/if}
+      {/adjustments}
+      <tr>
+        <th colspan="3">Total</th>
+        <th class="text-end">{order_total}</th>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+{/exp:store:orders}
+
+{embed="{segment_1}/_footer"}

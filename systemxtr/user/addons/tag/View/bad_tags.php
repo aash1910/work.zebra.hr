@@ -1,0 +1,4 @@
+<?php $this->extend('_layouts/table_form_wrapper'); ?>
+
+<!-- using $this and not $caller on purpose here -->
+    <?php echo $this->embed('ee:_shared/table', $bad_tags_table); ?>

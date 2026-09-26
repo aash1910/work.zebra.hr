@@ -1,0 +1,93 @@
+<div id="cookie-consent" class="cookie-consent">
+  <div class="cookie-modal">
+    <h3>Cookie Preferences</h3>
+
+    <!-- Necessary cookies -->
+    <section class="cookie-section">
+      <h4>Necessary Cookies</h4>
+      <ul>
+        {exp:cookie:registry category="necessary"}
+          <li>{cookie_name}</li>
+        {/exp:cookie:registry}
+      </ul>
+      <p>These cookies are essential and always active.</p>
+    </section>
+
+    <!-- Performance cookies -->
+    <section class="cookie-section">
+      <h4>Performance Cookies</h4>
+      {exp:consent:request consent="performance_cookies" json="yes" attr:id="performance-consent"}
+        <p>{consent_request_copy}</p>
+        <ul>
+          {exp:cookie:registry category="performance"}
+            <li>{cookie_name}</li>
+          {/exp:cookie:registry}
+        </ul>
+        <button type="button" class="btn-accept" data-consent="performance_cookies" data-accept="yes">Accept</button>
+        <button type="button" class="btn-decline" data-consent="performance_cookies" data-accept="no">Decline</button>
+      {/exp:consent:request}
+    </section>
+
+    <!-- Targeting cookies -->
+    <section class="cookie-section">
+      <h4>Targeting Cookies</h4>
+      {exp:consent:request consent="targeting_cookies" json="yes" attr:id="targeting-consent"}
+        <p>{consent_request_copy}</p>
+        <ul>
+          {exp:cookie:registry category="targeting"}
+            <li>{cookie_name}</li>
+          {/exp:cookie:registry}
+        </ul>
+        <button type="button" class="btn-accept" data-consent="targeting_cookies" data-accept="yes">Accept</button>
+        <button type="button" class="btn-decline" data-consent="targeting_cookies" data-accept="no">Decline</button>
+      {/exp:consent:request}
+    </section>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  function sendConsent(consentName, accept) {
+    fetch('/?ACT={exp:consent:save_action}', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      body: new URLSearchParams({
+        consent_name: consentName,
+        consent_value: accept ? 'y' : 'n'
+      })
+    })
+    .then(r => r.json())
+    .then(data => {
+      console.log('Consent saved:', consentName, accept, data);
+      if (!accept) clearCookies(consentName);
+    });
+  }
+
+  function clearCookies(consentName) {
+    let selectors = {
+      'performance_cookies': "{exp:cookie:registry category='performance'}",
+      'targeting_cookies': "{exp:cookie:registry category='targeting'}"
+    };
+    let cookieNames = selectors[consentName].split('|');
+    cookieNames.forEach(name => {
+      if (name) {
+        document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;';
+      }
+    });
+  }
+
+  document.querySelectorAll('.btn-accept, .btn-decline').forEach(btn => {
+    btn.addEventListener('click', function(){
+      sendConsent(this.dataset.consent, this.dataset.accept === 'yes');
+    });
+  });
+});
+</script>
+
+<style>
+.cookie-consent {position:fixed;bottom:0;left:0;right:0;background:#000a;color:#fff;padding:20px;z-index:9999;font-family:sans-serif;}
+.cookie-modal {max-width:700px;margin:auto;background:#111;padding:20px;border-radius:12px;}
+.cookie-section {margin-bottom:20px;}
+.btn-accept,.btn-decline{padding:8px 14px;margin-right:10px;border:none;border-radius:4px;cursor:pointer}
+.btn-accept{background:#28a745;color:#fff}.btn-decline{background:#dc3545;color:#fff}
+</style>

@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,6BAA8B,CAC5B,OAAO,CAAE,IAAI",
+"sources": ["src/edit-block-definition.scss"],
+"names": [],
+"file": "edit-block-definition.css"
+}

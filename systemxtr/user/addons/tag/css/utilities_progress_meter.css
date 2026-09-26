@@ -1,0 +1,50 @@
+.progress-bar {
+	width: 				50%;
+	float:				left;
+}
+
+#update_percent {
+	float:				left;
+	font-weight:		bold;
+	font-size:			110%;
+	margin:				0 10px;
+}
+
+#progress_inidicator {
+	border:				none;
+	margin-bottom:		-3px;
+}
+
+#number_updated {
+	margin-top:			10px;
+}
+
+#number_updated .notice {
+	font-weight: 		bold;
+}
+
+#tag_field_sync,
+#pause_tag_counts,
+#resume_tag_counts {
+	cursor:				pointer;
+}
+
+#progress,
+#finished_message,
+#pause_tag_counts,
+#resume_tag_counts {
+	display:			none;
+}
+
+#finished_message {
+	border:				1px solid var(--ee-success);
+	background-color:	var(--ee-success-light);
+	padding:			15px;
+	margin-top:			10px;
+	border-radius:		5px;
+}
+
+#finished_message p {
+	font-weight:		500;
+	color:				var(--ee-text-primary);
+}

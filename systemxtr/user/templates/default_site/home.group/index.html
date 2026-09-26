@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+
+		<!-- Basic -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>ZEBRA</title>	
+
+		<!-- Favicon -->
+		<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+		<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+
+{var_scripts_header}
+
+	</head>
+	<body data-plugin-page-transition>
+		<div class="body">
+			{embed="common/_header"} 
+			<div role="main" class="main">
+				<div class="owl-carousel-wrapper position-relative" style="height: 670px">
+					<div class="owl-carousel-loader">
+						<div class="bounce-loader">
+							<div class="bounce1"></div>
+							<div class="bounce2"></div>
+							<div class="bounce3"></div>
+						</div>
+					</div>
+					<div class="owl-carousel dots-inside dots-horizontal-center show-dots-hover nav-inside nav-inside-plus nav-dark nav-md nav-font-size-md show-nav-hover mb-0" data-plugin-options="{'responsive': {'0': {'items': 1}, '479': {'items': 1}, '768': {'items': 1}, '979': {'items': 1}, '1199': {'items': 1}}, 'loop': false, 'autoHeight': false, 'margin': 0, 'dots': true, 'dotsVerticalOffset': '-75px', 'nav': true, 'animateIn': 'fadeIn', 'animateOut': 'fadeOut', 'mouseDrag': false, 'touchDrag': false, 'pullDrag': false, 'autoplay': true, 'autoplayTimeout': 9000, 'autoplayHoverPause': true, 'rewind': true}">
+
+{exp:channel:entries channel="pocetna-stranica" limit="1" disable="member_data|pagination|categories" status="not closed" dynamic="no"}
+{rotator}
+						<div class="position-relative overlay overlay-color-primary overlay-show overlay-op-8" data-dynamic-height="['670px','670px','670px','550px','500px']" style="background-image: url({rotator:file}); background-size: cover; background-position: center; height: 670px;">
+							<div class="container position-relative z-index-3 h-100">
+								<div class="row justify-content-center align-items-center h-100">
+									<div class="col-lg-6">
+										<div class="d-flex flex-column align-items-center">
+											<h3 class="position-relative text-color-light text-4 line-height-5 font-weight-medium px-4 mb-2 appear-animation" data-appear-animation="fadeInDownShorter" data-plugin-options="{'minWindowWidth': 0}">
+												<span class="position-absolute right-100pct top-50pct transform3dy-n50 opacity-3">
+													<img src="img/slides/slide-title-border.png" class="w-auto appear-animation" data-appear-animation="fadeInLeftShorter" data-appear-animation-delay="250" data-plugin-options="{'minWindowWidth': 0}" alt="" />
+												</span>
+												{rotator:tekst1}
+												<span class="position-absolute left-100pct top-50pct transform3dy-n50 opacity-3">
+													<img src="img/slides/slide-title-border.png" class="w-auto appear-animation" data-appear-animation="fadeInRightShorter" data-appear-animation-delay="250" data-plugin-options="{'minWindowWidth': 0}" alt="" />
+												</span>
+											</h3>
+											<h2 class="porto-big-title text-color-light font-weight-extra-bold mb-3" data-plugin-animated-letters data-plugin-options="{'startDelay': 1000, 'minWindowWidth': 0, 'animationSpeed': 300, 'animationName': 'fadeInRightShorterOpacity', 'letterClass': 'd-inline-block'}">ZEBRA</h2>
+											<p class="text-4 text-color-light font-weight-light text-center mb-0" data-plugin-animated-letters data-plugin-options="{'startDelay': 2000, 'minWindowWidth': 0}">{rotator:tekst2}</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+{/rotator}
+{/exp:channel:entries}
+					</div>
+				</div>
+
+			</div>
+
+{embed="common/_footer"}
+		</div>
+
+{var_scripts_footer}
+
+	</body>
+</html>

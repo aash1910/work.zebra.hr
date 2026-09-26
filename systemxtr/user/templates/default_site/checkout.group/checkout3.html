@@ -1,0 +1,322 @@
+{embed="{segment_1}/_header"}
+
+<!-- Add required viewport meta tag for Stripe Elements -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb py-3 bg-body-tertiary rounded-3">
+    <li class="breadcrumb-item"><a href="{path='{segment_1}'}">Example Store</a></li>
+    <li class="breadcrumb-item"><a href="{path='{segment_1}/checkout'}">Checkout</a></li>
+    <li class="breadcrumb-item"><a href="{path='{segment_1}/checkout2'}">Customer Details</a></li>
+    <li class="breadcrumb-item"><a href="{path='{segment_1}/checkout-shipping'}">Shipping Method</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Confirm Order</li>
+  </ol>
+</nav>
+
+<div class="row g-5">
+  <div class="col-12">
+    <div class="page-header d-flex align-items-center mb-4">
+      <h1 class="h2 col-10">Confirm Order
+        <small class="text-body-tertiary fw-normal fs-6 d-block">Review your order details and enter your payment information to complete your purchase. Please confirm that all information is correct before placing your order.</small>
+      </h1>
+
+      <div class="progress col-2">
+          <div class="progress-bar bg-info progress-bar-striped" role="progressbar" style="width: 90%;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{exp:store:checkout
+  form_class="form-horizontal"
+  return="{segment_1}/order/ORDER_HASH"
+  error_handling="inline"
+  error_delimiters='<span class="d-inline mx-2 text-danger">|</span>'
+  form_id="checkout-form"}
+
+{if no_items}
+{redirect="{segment_1}/checkout"}
+{/if}
+
+<div class="row">
+  <div class="col-md-8">
+    <div class="row">
+      <div class="col-md-6">
+        <fieldset>
+          <legend class="h4">Billing Details</legend>
+          <div class="mb-3">
+            <div><b>{billing_name}</b></div>
+            <div>{billing_address1}</div>
+            <div>{billing_address2}</div>
+            <div>{billing_city} {billing_postcode}</div>
+            <div>{billing_state_name}</div>
+            <div>{billing_country_name}</div>
+            <div>{billing_phone}</div>
+            <div>{order_email}</div>
+          </div>
+        </fieldset>
+      </div>
+      <div class="col-md-6">
+        <fieldset>
+          <legend class="h4">Shipping Details</legend>
+          <div class="mb-3">
+            {if shipping_same_as_billing_checked}
+            <p>Same as Billing Details</p>
+            {if:else}
+            <div><b>{shipping_name}</b></div>
+            <div>{shipping_address1}</div>
+            <div>{shipping_address2}</div>
+            <div>{shipping_city} {shipping_postcode}</div>
+            <div>{shipping_state_name}</div>
+            <div>{shipping_country_name}</div>
+            <div>{shipping_phone}</div>
+            {/if}
+          </div>
+        </fieldset>
+      </div>
+    </div>
+
+    <hr class="border-primary">
+    <div class="row">
+      <div class="col-12">
+        <fieldset>
+          <legend class="h4 mb-3">Payment</legend>
+
+          <!-- Gateway Selection -->
+          <div class="mb-3">
+            <label class="form-label d-block">Payment Method</label>
+            <div>
+              {exp:store:gateways selected="{embed:gateway}"}
+                <label class="form-check-label">
+                  <input type="radio" name="payment_method" value="{gateway_short_name}" {selected_gateway}>
+                  {gateway_title}
+                </label>
+              {/exp:store:gateways}
+            </div>
+          </div>
+
+          {if error:payment_method}
+          <div class="mb-3">
+            <div class="alert alert-danger">{error:payment_method}</div>
+          </div>
+          {/if}
+
+          <!-- Stripe payment form (conditionally visible) -->
+          <div id="stripe-payment-form" class="mb-3">
+            <div class="row">
+              <div class="col-12">
+                <label for="card-element" class="form-label me-1">Card</label>
+                <div id="card-element" class="form-control d-inline-block align-middle" style="height:auto; min-height:38px; width: 90%;"></div>
+                <div id="card-errors" class="text-danger ms-5 ps-5 mt-2" role="alert"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dummy payment form (conditionally visible) -->
+          <div id="dummy-payment-form" class="mb-4" style="display:none;">
+            <div class="row g-3 align-items-end">
+              <div class="col-md-6">
+                <label for="dummy_card_no" class="form-label">Card No</label>
+                <input type="text" id="dummy_card_no" name="payment[card_no]" class="form-control" />
+              </div>
+              <div class="col-md-3">
+                <label for="dummy_exp_month" class="form-label">Expiry</label>
+                <div class="input-group">
+                  <select id="dummy_exp_month" name="payment[exp_month]" class="form-select">
+                    <option value=""></option>
+                    {exp_month_options}
+                  </select>
+                  <select id="dummy_exp_year" name="payment[exp_year]" class="form-select">
+                    <option value=""></option>
+                    {exp_year_options}
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <label for="dummy_csc" class="form-label">CSC</label>
+                <input type="text" id="dummy_csc" name="payment[csc]" class="form-control" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Hidden input for the Stripe payment method ID -->
+          <input type="hidden" name="payment[payment_method]" id="payment_method_id" value="">
+          <input type="hidden" name="commit" value="commit">
+        </fieldset>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-body">
+        <fieldset>
+          <legend>Order Summary</legend>
+
+          <table class="table table-sm">
+            <thead>
+              <tr>
+                <th style="width:60%">Product</th>
+                <th class="text-end">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              {items}
+              <tr>
+                <td>{item_qty} × {title}</td>
+                <td class="text-end">{item_subtotal}</td>
+              </tr>
+              {/items}
+              <tr>
+                <th>Subtotal</th>
+                <th class="text-end">{order_subtotal}</th>
+              </tr>
+              {if shipping_method}
+              <tr>
+                <td>Shipping ({shipping_method_name})</td>
+                <td class="text-end">{order_shipping}</td>
+              </tr>
+              {/if}
+              {if order_handling_val}
+              <tr>
+                <td>Handling</td>
+                <td class="text-end">{order_handling}</td>
+              </tr>
+              {/if}
+              {if order_tax_val != 0 && tax_name != ''}
+              <tr>
+                <td>{tax_name} ({tax_percent}%)</td>
+                <td class="text-end">{order_tax}</td>
+              </tr>
+              {/if}
+
+              {adjustments}
+                {if adjustment:type == "discount"}
+                  <tr class="table-warning fw-bold">
+                    <td>
+                      {adjustment:name}
+                      {if discount:code} <span class="text-secondary small">({discount:code})</span>{/if}
+                    </td>
+                    <td class="text-end">{adjustment:amount}</td>
+                  </tr>
+                {/if}
+              {/adjustments}
+              <tr>
+                <th>Total</th>
+                <th class="text-end">{order_total}</th>
+              </tr>
+            </tbody>
+          </table>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+
+<div class="d-flex gap-2">
+    <a href="{path='{segment_1}/checkout-shipping'}" class="btn btn-dark">Back</a>
+    <input type="submit" id="submit-button" name="submitBtn" value="Place Order" class="btn btn-primary">
+</div>
+
+<!-- Load Stripe.js -->
+<script src="https://js.stripe.com/v3/"></script>
+
+<script>
+  var stripeKey = '{exp:store:settings setting="stripe_publishable_key"}';
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var form = document.getElementById('checkout-form');
+    var methodInput = document.getElementById('payment_method_id');
+    var errorElement = document.getElementById('card-errors');
+    var submitButton = document.getElementById('submit-button');
+    var stripeForm = document.getElementById('stripe-payment-form');
+    var dummyForm = document.getElementById('dummy-payment-form');
+
+    if (!stripeKey) {
+      // Hide Stripe payment form if no key is set
+      if (stripeForm) stripeForm.style.display = 'none';
+    }
+
+    var stripe, elements, card;
+    if (stripeKey) {
+      stripe = Stripe(stripeKey);
+      elements = stripe.elements();
+      card = elements.create('card');
+      card.mount('#card-element');
+
+      card.on('change', function(event) {
+        errorElement.textContent = event.error ? event.error.message : '';
+      });
+    }
+
+    form.addEventListener('submit', function(e) {
+      var selectedGateway = document.querySelector('input[name="payment_method"]:checked');
+      if (selectedGateway && selectedGateway.value === 'Stripe_PaymentIntents') {
+        if (!stripeKey) {
+          errorElement.textContent = 'Stripe is not configured.';
+          e.preventDefault();
+          return;
+        }
+        e.preventDefault();
+        submitButton.disabled = true;
+        errorElement.textContent = '';
+        stripe.createPaymentMethod({
+          type: 'card',
+          card: card,
+          billing_details: {
+            name: '{billing_name}',
+            email: '{order_email}',
+            address: {
+              line1: '{billing_address1}',
+              line2: '{billing_address2}',
+              city: '{billing_city}',
+              state: '{billing_state}',
+              postal_code: '{billing_postcode}',
+              country: '{billing_country}'
+            }
+          }
+        }).then(function(result) {
+          if (result.error) {
+            errorElement.textContent = result.error.message;
+            submitButton.disabled = false;
+          } else {
+            methodInput.value = result.paymentMethod.id;
+            form.submit();
+          }
+        });
+      }
+      // For non-Stripe gateways, allow normal form submission
+    });
+
+    // Gateway selection logic
+    function updatePaymentForms() {
+      var selected = document.querySelector('input[name="payment_method"]:checked');
+      if (selected && selected.value === 'Stripe_PaymentIntents') {
+        if (stripeKey) {
+          stripeForm.style.display = '';
+        } else {
+          stripeForm.style.display = 'none';
+        }
+      } else {
+        stripeForm.style.display = 'none';
+      }
+      if (selected && selected.value === 'Dummy') {
+        dummyForm.style.display = '';
+      } else {
+        dummyForm.style.display = 'none';
+      }
+    }
+
+    // Initial call
+    updatePaymentForms();
+
+    // Listen for changes
+    document.querySelectorAll('input[name="payment_method"]').forEach(function(radio) {
+      radio.addEventListener('change', updatePaymentForms);
+    });
+  });
+</script>
+{/exp:store:checkout}
+
+{embed="{segment_1}/_footer"}

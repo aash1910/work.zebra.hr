@@ -1,0 +1,14 @@
+{if consent:performance_cookies}
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-XXXX');
+  </script>
+{/if}
+{if consent:targeting_cookies}
+  <!-- Mailchimp / Meta Pixel / Ads / Other marketing scripts -->
+  <script src="https://chimpstatic.com/mcjs-connected/js/users/xxxx.js"></script>
+{/if}

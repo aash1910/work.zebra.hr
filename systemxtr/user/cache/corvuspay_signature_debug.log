@@ -1,0 +1,289 @@
+2026-07-29T19:29:59+00:00
+Signature string:
+amount138.94cancel_urlhttps://work.zebra.hr/index.php/store_example/checkout3cardholder_addressAdresa BB Bjelovarcardholder_cityGradcardholder_countryHRcardholder_country_codeHRcardholder_emailtestshopper13@gmail.comcardholder_nametestcardholder_surnameshoppercardholder_zip_code43000cartNarudzba: 39 Proizvod:   Bočni stolić u francuskom stilu metalni 82 x 39 x 76 cm bijeli - Bijela 1x1Standardx1currencyEURlanguagehrorder_number39payment_allY0299payment_all_dynamictruerequire_completetruestore_id3670success_urlhttps://work.zebra.hr/index.php?ACT=47&H=ca4f361dc69cb6ce5f4bb65baa92b68fversion1.6
+Calculated signature: 291d3f667516e2da2c70f4f0ac08435adf3924583aea314ea29cc61343d2cbf6
+Parameters:
+Array
+(
+    [amount] => 138.94
+    [cancel_url] => https://work.zebra.hr/index.php/store_example/checkout3
+    [cardholder_address] => Adresa BB Bjelovar
+    [cardholder_city] => Grad
+    [cardholder_country] => HR
+    [cardholder_country_code] => HR
+    [cardholder_email] => testshopper13@gmail.com
+    [cardholder_name] => test
+    [cardholder_surname] => shopper
+    [cardholder_zip_code] => 43000
+    [cart] => Narudzba: 39 Proizvod:   Bočni stolić u francuskom stilu metalni 82 x 39 x 76 cm bijeli - Bijela 1x1Standardx1
+    [currency] => EUR
+    [language] => hr
+    [order_number] => 39
+    [payment_all] => Y0299
+    [payment_all_dynamic] => true
+    [require_complete] => true
+    [store_id] => 3670
+    [success_url] => https://work.zebra.hr/index.php?ACT=47&H=ca4f361dc69cb6ce5f4bb65baa92b68f
+    [version] => 1.6
+)
+
+------------------------------------------------------------
+2026-07-29T19:30:18+00:00
+Signature string:
+ACT47Hca4f361dc69cb6ce5f4bb65baa92b68fapproval_code512404languagehrorder_number39
+Calculated signature: ebcfa2cb835916bc08317e6a2c9250b8f0415708ea2d7f073d25e58aa39766a1
+Parameters:
+Array
+(
+    [ACT] => 47
+    [H] => ca4f361dc69cb6ce5f4bb65baa92b68f
+    [approval_code] => 512404
+    [language] => hr
+    [order_number] => 39
+)
+
+------------------------------------------------------------
+2026-07-29T19:31:05+00:00
+Signature string:
+amount138.94cancel_urlhttps://work.zebra.hr/index.php/store_example/checkout3cardholder_addressAdresa BBcardholder_cityBjelovarcardholder_countryHRcardholder_country_codeHRcardholder_emailtestshopper13@gmail.comcardholder_nametestcardholder_surnameshoppercardholder_zip_code43000cartNarudzba: 40 Proizvod:   Bočni stolić u francuskom stilu metalni 82 x 39 x 76 cm bijeli - Bijela 1x1currencyEURlanguagehrorder_number40payment_allY0299payment_all_dynamictruerequire_completetruestore_id3670success_urlhttps://work.zebra.hr/index.php?ACT=47&H=568e2532f8b54f075f6bcf8fd8a7f7afversion1.6
+Calculated signature: ea863089ffa4bd3f31b7898a40c970378ed603e054b36edd92d95b56b93ab329
+Parameters:
+Array
+(
+    [amount] => 138.94
+    [cancel_url] => https://work.zebra.hr/index.php/store_example/checkout3
+    [cardholder_address] => Adresa BB
+    [cardholder_city] => Bjelovar
+    [cardholder_country] => HR
+    [cardholder_country_code] => HR
+    [cardholder_email] => testshopper13@gmail.com
+    [cardholder_name] => test
+    [cardholder_surname] => shopper
+    [cardholder_zip_code] => 43000
+    [cart] => Narudzba: 40 Proizvod:   Bočni stolić u francuskom stilu metalni 82 x 39 x 76 cm bijeli - Bijela 1x1
+    [currency] => EUR
+    [language] => hr
+    [order_number] => 40
+    [payment_all] => Y0299
+    [payment_all_dynamic] => true
+    [require_complete] => true
+    [store_id] => 3670
+    [success_url] => https://work.zebra.hr/index.php?ACT=47&H=568e2532f8b54f075f6bcf8fd8a7f7af
+    [version] => 1.6
+)
+
+------------------------------------------------------------
+2026-07-29T19:39:29+00:00
+Signature string:
+amount138.94cancel_urlhttps://work.zebra.hr/index.php?ACT=47&H=b89b18c7fce9a5ad1d5139f62c94506bcardholder_addressAdresa BBcardholder_cityBjelovarcardholder_countryHRcardholder_country_codeHRcardholder_emailtestshopper13@gmail.comcardholder_nametestcardholder_surnameshoppercardholder_zip_code43000cartNarudzba: 41 Proizvod:   Bočni stolić u francuskom stilu metalni 82 x 39 x 76 cm bijeli - Bijela 1x1currencyEURlanguagehrorder_number41payment_allY0299payment_all_dynamictruerequire_completetruestore_id3670success_urlhttps://work.zebra.hr/index.php?ACT=47&H=b89b18c7fce9a5ad1d5139f62c94506bversion1.6
+Calculated signature: ca5eb34766a9b4334b936ae92f707559b785e0648720af2a2ffe7b2b4b689b34
+Parameters:
+Array
+(
+    [amount] => 138.94
+    [cancel_url] => https://work.zebra.hr/index.php?ACT=47&H=b89b18c7fce9a5ad1d5139f62c94506b
+    [cardholder_address] => Adresa BB
+    [cardholder_city] => Bjelovar
+    [cardholder_country] => HR
+    [cardholder_country_code] => HR
+    [cardholder_email] => testshopper13@gmail.com
+    [cardholder_name] => test
+    [cardholder_surname] => shopper
+    [cardholder_zip_code] => 43000
+    [cart] => Narudzba: 41 Proizvod:   Bočni stolić u francuskom stilu metalni 82 x 39 x 76 cm bijeli - Bijela 1x1
+    [currency] => EUR
+    [language] => hr
+    [order_number] => 41
+    [payment_all] => Y0299
+    [payment_all_dynamic] => true
+    [require_complete] => true
+    [store_id] => 3670
+    [success_url] => https://work.zebra.hr/index.php?ACT=47&H=b89b18c7fce9a5ad1d5139f62c94506b
+    [version] => 1.6
+)
+
+------------------------------------------------------------
+2026-07-29T19:39:39+00:00
+Signature string:
+ACT47Hb89b18c7fce9a5ad1d5139f62c94506blanguagehrorder_number41
+Calculated signature: 037a987313175ac42bca374c120cd6debe5f21949ded44a8e4f9fe724abf0f3d
+Parameters:
+Array
+(
+    [ACT] => 47
+    [H] => b89b18c7fce9a5ad1d5139f62c94506b
+    [language] => hr
+    [order_number] => 41
+)
+
+------------------------------------------------------------
+2026-07-29T19:46:04+00:00
+Signature string:
+amount138.94cancel_urlhttps://work.zebra.hr/index.php?ACT=47&H=ccfb0ecf7bce1a2ac408bfc66227b2aecardholder_addressAdresa BB Bjelovarcardholder_cityGradcardholder_countryHRcardholder_country_codeHRcardholder_emailtestshopper13@gmail.comcardholder_nametestcardholder_surnameshoppercardholder_zip_code43000cartNarudzba: 42 Proizvod:   Bočni stolić u francuskom stilu metalni 82 x 39 x 76 cm bijeli - Bijela 1x1Standardx1currencyEURlanguagehrorder_number42payment_allY0299payment_all_dynamictruerequire_completetruestore_id3670success_urlhttps://work.zebra.hr/index.php?ACT=47&H=ccfb0ecf7bce1a2ac408bfc66227b2aeversion1.6
+Calculated signature: bae6788ffb927e7a892eb0b46970c3d48e78a61b3ba3065ecb70746ef371bcb9
+Parameters:
+Array
+(
+    [amount] => 138.94
+    [cancel_url] => https://work.zebra.hr/index.php?ACT=47&H=ccfb0ecf7bce1a2ac408bfc66227b2ae
+    [cardholder_address] => Adresa BB Bjelovar
+    [cardholder_city] => Grad
+    [cardholder_country] => HR
+    [cardholder_country_code] => HR
+    [cardholder_email] => testshopper13@gmail.com
+    [cardholder_name] => test
+    [cardholder_surname] => shopper
+    [cardholder_zip_code] => 43000
+    [cart] => Narudzba: 42 Proizvod:   Bočni stolić u francuskom stilu metalni 82 x 39 x 76 cm bijeli - Bijela 1x1Standardx1
+    [currency] => EUR
+    [language] => hr
+    [order_number] => 42
+    [payment_all] => Y0299
+    [payment_all_dynamic] => true
+    [require_complete] => true
+    [store_id] => 3670
+    [success_url] => https://work.zebra.hr/index.php?ACT=47&H=ccfb0ecf7bce1a2ac408bfc66227b2ae
+    [version] => 1.6
+)
+
+------------------------------------------------------------
+2026-07-29T19:46:12+00:00
+Signature string:
+languagehrorder_number42
+Calculated signature: e97b409486b4c4db3511a18f51ec30713ed4cea74f8d19b06bb2d73ac1a5ca66
+Parameters:
+Array
+(
+    [language] => hr
+    [order_number] => 42
+)
+
+------------------------------------------------------------
+2026-07-29T19:46:24+00:00
+Signature string:
+amount138.94cancel_urlhttps://work.zebra.hr/index.php?ACT=47&H=056da47575ca199a7671e0c16957f7c6cardholder_addressAdresa BB Bjelovarcardholder_cityGradcardholder_countryHRcardholder_country_codeHRcardholder_emailtestshopper13@gmail.comcardholder_nametestcardholder_surnameshoppercardholder_zip_code43000cartNarudzba: 43 Proizvod:   Bočni stolić u francuskom stilu metalni 82 x 39 x 76 cm bijeli - Bijela 1x1Standardx1currencyEURlanguagehrorder_number43payment_allY0299payment_all_dynamictruerequire_completetruestore_id3670success_urlhttps://work.zebra.hr/index.php?ACT=47&H=056da47575ca199a7671e0c16957f7c6version1.6
+Calculated signature: bbd379be73df059d89bb07a1391cf4ef9b7a5f856f48ed608edaffefd27574a5
+Parameters:
+Array
+(
+    [amount] => 138.94
+    [cancel_url] => https://work.zebra.hr/index.php?ACT=47&H=056da47575ca199a7671e0c16957f7c6
+    [cardholder_address] => Adresa BB Bjelovar
+    [cardholder_city] => Grad
+    [cardholder_country] => HR
+    [cardholder_country_code] => HR
+    [cardholder_email] => testshopper13@gmail.com
+    [cardholder_name] => test
+    [cardholder_surname] => shopper
+    [cardholder_zip_code] => 43000
+    [cart] => Narudzba: 43 Proizvod:   Bočni stolić u francuskom stilu metalni 82 x 39 x 76 cm bijeli - Bijela 1x1Standardx1
+    [currency] => EUR
+    [language] => hr
+    [order_number] => 43
+    [payment_all] => Y0299
+    [payment_all_dynamic] => true
+    [require_complete] => true
+    [store_id] => 3670
+    [success_url] => https://work.zebra.hr/index.php?ACT=47&H=056da47575ca199a7671e0c16957f7c6
+    [version] => 1.6
+)
+
+------------------------------------------------------------
+2026-07-29T19:46:50+00:00
+Signature string:
+approval_code615969languagehrorder_number43
+Calculated signature: f564d3c12d9ade0054dc0a59d499e14cf382ef8693c2c1561becb17867239701
+Parameters:
+Array
+(
+    [approval_code] => 615969
+    [language] => hr
+    [order_number] => 43
+)
+
+------------------------------------------------------------
+2026-08-06T15:34:14+00:00
+Signature string:
+amount138.94cancel_urlhttps://work.zebra.hr/index.php?ACT=47&H=a55e6cfee901ac1a42d1972611eb8128cardholder_addressAdresa BB Bjelovarcardholder_cityGradcardholder_countryHRcardholder_country_codeHRcardholder_emailtestshopper13@gmail.comcardholder_nametestcardholder_surnameshoppercardholder_zip_code43000cartNarudzba: 10-44 Proizvod:   Bočni stolić u francuskom stilu metalni 82 x 39 x 76 cm bijeli - Bijela 1x1Standardx1currencyEURlanguagehrorder_number10-44payment_allY0299payment_all_dynamictruerequire_completetruestore_id3670success_urlhttps://work.zebra.hr/index.php?ACT=47&H=a55e6cfee901ac1a42d1972611eb8128version1.6
+Calculated signature: 3a02ee2591cb15d2633806b8b2efa149b22a6e2f3c48c13c9fc6e97d01a0a8fb
+Parameters:
+Array
+(
+    [amount] => 138.94
+    [cancel_url] => https://work.zebra.hr/index.php?ACT=47&H=a55e6cfee901ac1a42d1972611eb8128
+    [cardholder_address] => Adresa BB Bjelovar
+    [cardholder_city] => Grad
+    [cardholder_country] => HR
+    [cardholder_country_code] => HR
+    [cardholder_email] => testshopper13@gmail.com
+    [cardholder_name] => test
+    [cardholder_surname] => shopper
+    [cardholder_zip_code] => 43000
+    [cart] => Narudzba: 10-44 Proizvod:   Bočni stolić u francuskom stilu metalni 82 x 39 x 76 cm bijeli - Bijela 1x1Standardx1
+    [currency] => EUR
+    [language] => hr
+    [order_number] => 10-44
+    [payment_all] => Y0299
+    [payment_all_dynamic] => true
+    [require_complete] => true
+    [store_id] => 3670
+    [success_url] => https://work.zebra.hr/index.php?ACT=47&H=a55e6cfee901ac1a42d1972611eb8128
+    [version] => 1.6
+)
+
+------------------------------------------------------------
+2026-08-06T15:35:05+00:00
+Signature string:
+approval_code544154languagehrorder_number10-44
+Calculated signature: c9b899013c8b720ef4b50dd1afa8435cd6baa01ebd18bee8c9d659bc3c9da81e
+Parameters:
+Array
+(
+    [approval_code] => 544154
+    [language] => hr
+    [order_number] => 10-44
+)
+
+------------------------------------------------------------
+2026-08-06T15:55:42+00:00
+Signature string:
+amount138.94cancel_urlhttps://work.zebra.hr/index.php?ACT=47&H=8207e94585c2c446c33e7509cb390a56cardholder_addressAdresa BB Bjelovarcardholder_cityGradcardholder_countryHRcardholder_country_codeHRcardholder_emailtestshopper13@gmail.comcardholder_nametestcardholder_surnameshoppercardholder_zip_code43000cartNarudzba: 11-45 Proizvod:   Bočni stolić u francuskom stilu metalni 82 x 39 x 76 cm bijeli - Bijela 1x1Standardx1currencyEURlanguagehrorder_number11-45payment_allY0299payment_all_dynamictruerequire_completetruestore_id3670success_urlhttps://work.zebra.hr/index.php?ACT=47&H=8207e94585c2c446c33e7509cb390a56version1.6
+Calculated signature: b13b72f789e454637b3bf1480a8f4faebbe045860b351f4448ba0a47954b48a1
+Parameters:
+Array
+(
+    [amount] => 138.94
+    [cancel_url] => https://work.zebra.hr/index.php?ACT=47&H=8207e94585c2c446c33e7509cb390a56
+    [cardholder_address] => Adresa BB Bjelovar
+    [cardholder_city] => Grad
+    [cardholder_country] => HR
+    [cardholder_country_code] => HR
+    [cardholder_email] => testshopper13@gmail.com
+    [cardholder_name] => test
+    [cardholder_surname] => shopper
+    [cardholder_zip_code] => 43000
+    [cart] => Narudzba: 11-45 Proizvod:   Bočni stolić u francuskom stilu metalni 82 x 39 x 76 cm bijeli - Bijela 1x1Standardx1
+    [currency] => EUR
+    [language] => hr
+    [order_number] => 11-45
+    [payment_all] => Y0299
+    [payment_all_dynamic] => true
+    [require_complete] => true
+    [store_id] => 3670
+    [success_url] => https://work.zebra.hr/index.php?ACT=47&H=8207e94585c2c446c33e7509cb390a56
+    [version] => 1.6
+)
+
+------------------------------------------------------------
+2026-08-06T16:10:48+00:00
+Signature string:
+languagehrorder_number11-45
+Calculated signature: 4bd118efb264be77d6db1417706b016aca2524d787939876b01541a3875e1a32
+Parameters:
+Array
+(
+    [language] => hr
+    [order_number] => 11-45
+)
+
+------------------------------------------------------------

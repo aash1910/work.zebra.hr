@@ -1,0 +1,36 @@
+{exp:customresources:import_channel_images_from_external_db}
+
+<script>
+var statusEl = document.getElementById('import-status');
+var status = statusEl ? statusEl.getAttribute('data-status') : 'running';
+
+if (status === 'done') {
+    statusEl.style.color = 'green';
+    statusEl.innerText = 'Import Complete! No more images to process.';
+} else {
+    var url_string = window.location.href;
+    var url = new URL(url_string);
+    var from = url.searchParams.get("from");
+    from = parseInt(from);
+    var newfrom = from + 20;
+    setTimeout(function(){
+        newurl = "{site_url}home/import_channel_images_from_external_db?total=20&from=" + newfrom;
+        window.location.href = newurl;
+        localStorage.setItem("newfrom", newfrom);
+    }, 5000);
+}
+</script>
+
+{!-- <script>
+var url_string = window.location.href;
+var url = new URL(url_string);
+var from = url.searchParams.get("from");
+from = parseInt(from);
+var newfrom = from+5;
+	setTimeout(function(){
+		newurl = "https://work.zebra.hr/home/import_channel_images_from_external_db?total=5&from="+newfrom;
+		window.location.href = newurl;
+		localStorage.setItem("newfrom", newfrom);
+	}, 5000);
+console.log(from);
+</script> --}

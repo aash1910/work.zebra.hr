@@ -1,0 +1,1 @@
+a:3:{s:4:"time";i:1778695983;s:3:"ttl";i:0;s:4:"data";O:8:"stdClass":4:{s:7:"version";s:5:"5.3.0";s:4:"date";s:10:"1776404100";s:13:"dateFormatted";s:14:"April 17, 2026";s:5:"notes";s:61:"<ul><li>[Added] GraphQL support when using Coilpack</li></ul>";}}

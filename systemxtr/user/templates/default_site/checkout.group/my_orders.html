@@ -1,0 +1,66 @@
+{embed="{segment_1}/_header"}
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb py-3 bg-body-tertiary rounded-3">
+    <li class="breadcrumb-item"><a href="{path='{segment_1}'}">Example Store</a></li>
+    <li class="breadcrumb-item active" aria-current="page">My Orders</li>
+  </ol>
+</nav>
+
+<div class="row g-5">
+  <div class="col-12">
+    <div class="page-header d-flex align-items-center mb-4">
+      <h1 class="h2">My Orders
+        <small class="text-body-tertiary fw-normal fs-6 d-block">display all orders from the current member</small>
+      </h1>
+    </div>
+  </div>
+</div>
+
+{if logged_out}
+<div class="alert alert-danger">You must be logged in to access this page.</div>
+{/if}
+{if logged_in}
+
+<div class="table-responsive mt-4">
+  <table class="table align-middle border">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th style="width:40%">Items</th>
+        <th>Date</th>
+        <th>Total</th>
+        <th>Status</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {exp:store:orders member_id='CURRENT_USER' order_by='order_date' sort='desc'}
+
+      {if no_orders}
+      <tr>
+        <td colspan="5">You haven't placed any orders yet!</td>
+      </tr>
+      {/if}
+
+      <tr>
+        <td>{order_id}</td>
+        <td>
+          {items}
+          {item_qty} &times; {title}<br />
+          {/items}
+        </td>
+        <td>{order_date format="%j %M %Y"}</td>
+        <td>{order_total}</td>
+        <td>{order_status}</td>
+        <td><a href="{path='{segment_1}/order/{order_hash}'}">Details</a></td>
+      </tr>
+
+      {/exp:store:orders}
+    </tbody>
+  </table>
+</div>
+
+{/if}
+
+{embed="{segment_1}/_footer"}

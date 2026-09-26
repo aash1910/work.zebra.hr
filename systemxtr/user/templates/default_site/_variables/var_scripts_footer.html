@@ -1,0 +1,29 @@
+<!-- Vendor -->
+<script src="{site_url}vendor/plugins/js/plugins.min.js"></script>
+
+<!-- Theme Base, Components and Settings -->
+<script src="{site_url}js/theme.js"></script>
+
+<script src="{site_url}vendor/circle-flip-slideshow/js/jquery.flipshow.min.js"></script>
+
+<script src="{site_url}js/views/view.home.js"></script>
+
+<script src="{site_url}js/theme.init.js"></script>
+
+<script src="{site_url}customjs/jquery.smartsuggest.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  $('#smartsuggest').smartSuggest({
+    src: '{site_url}home/smartsuggest/'
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  $('#smartsuggestmobile').smartSuggest({
+    src: '{site_url}home/smartsuggest'
+  });
+});
+</script>

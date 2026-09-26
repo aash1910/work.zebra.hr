@@ -1,0 +1,82 @@
+{preload_replace:my_channel="shop-vidaxl|shop-bimago|shop-bigbuy"}
+{preload_replace:my_channel_info="shop"}
+{preload_replace:my_template_group="shop"}
+{preload_replace:my_status="not closed"}
+{preload_replace:my_templatetype="index-shop"}
+
+<!DOCTYPE html>
+<html lang="hr">
+	<head>
+		<!-- Basic -->
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+		<title>KATEGORIJE | {site_name}</title>
+
+		<!-- OG -->
+		<meta property="og:title" content="{var_title}" />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="{site_url}{my_template_group}/{if segment_2}{segment_2}{/if}{if segment_3}/{segment_3}{/if}" />
+		<meta property="og:image" content="{var_og_image}" />
+		<meta property="og:image:width" content="600" />
+		<meta property="og:image:height" content="315" />
+		<meta property="og:site_name" content="{site_name}" />
+		<meta property="og:description" content="{var_title} | {site_name}" />
+		<!-- END OG -->
+
+{var_scripts_header}
+
+	</head>
+	<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+		<div class="body">
+			{exp:speedy:fragment tags="header" key="header_item" global="yes"}{embed="common/_header"}{/exp:speedy:fragment}
+			<div role="main" class="main shop">
+				<section class="page-header pt-md mb-md">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-12">
+								{!-- var_breadcrumb --}
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<h1>KATEGORIJE</h1>
+								<br><span class="absoluteresultsh1"></span>
+							</div>
+						</div>
+					</div>
+				</section>
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+{exp:gwcode_categories group_id="1"}
+    <a href="{site_url}shop/prodaja/{cat_url_title}" title="{cat_name}" {if "{cat_url_title}" == "{segment_3}"}style="font-weight:bold"{/if} target="_blank">{cat_name}</a>
+{/exp:gwcode_categories}
+
+						</div>
+
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="clear30">&nbsp;</div>
+
+							<div class="clear30">&nbsp;</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+ 
+			{embed="common/_footer"}
+		</div>
+
+{var_scripts_footer}
+
+
+{/exp:speedy:fragment}
+	</body>
+</html>

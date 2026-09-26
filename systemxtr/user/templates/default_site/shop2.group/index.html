@@ -1,0 +1,156 @@
+{preload_replace:my_channel="shop-vidaxl|shop-bimago|shop-bigbuy"}
+{preload_replace:my_channel_info="shop"}
+{preload_replace:my_template_group="shop"}
+{preload_replace:my_status="not closed"}
+{preload_replace:my_templatetype="index-shop"}
+
+<!DOCTYPE html>
+<html lang="hr">
+	<head>
+{exp:speedy:fragment ttl="36000" tags="index-shop2-head" key="index-shop-head"}
+		<!-- Basic -->
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+		<title>{var_title} | {site_name}</title>
+
+		<!-- OG -->
+		<meta property="og:title" content="{var_title}" />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="{site_url}{my_template_group}/{if segment_2}{segment_2}{/if}{if segment_3}/{segment_3}{/if}" />
+		<meta property="og:image" content="{var_og_image}" />
+		<meta property="og:image:width" content="600" />
+		<meta property="og:image:height" content="315" />
+		<meta property="og:site_name" content="{site_name}" />
+		<meta property="og:description" content="{var_title} | {site_name}" />
+		<!-- END OG -->
+
+{var_scripts_header}
+
+
+{/exp:speedy:fragment}
+	</head>
+	<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+		<div class="body">
+			{exp:speedy:fragment tags="header" key="header_item" global="yes"}{embed="common/_header"}{/exp:speedy:fragment}
+{exp:speedy:fragment ttl="36000" tags="index-shop2-body" key="index-shop-body"}
+			<div role="main" class="main shop">
+				<section class="page-header pt-md mb-md">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-12">
+								{!-- var_breadcrumb --}
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<h1>
+
+								</h1>
+								<br><span class="absoluteresultsh1"></span>
+							</div>
+						</div>
+					</div>
+				</section>
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+
+
+{!-- FILTERI START --}
+{if "{segment_3_category_id}" != "" AND "{segment_3_category_group_id}" == "1"}
+<div class="clear">&nbsp;</div>
+
+
+
+<div class="clear30">&nbsp;</div>
+
+<div class="filters">
+{exp:pro_search:filters query="{segment_5}" result_page="shop/prodaja/{segment_3}/filteri"}
+
+
+<div class="sortmob">
+
+
+<div class="dropdown filter-visible">
+  <button class="btn btn-tertiary dropdown-toggle" type="button" id="dropdownMenu-sortiraj" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    Sortiraj
+  </button>
+  <ul class="dropdown-menu dropdown-menu-xs-right" aria-labelledby="dropdownMenu-sortiraj">
+    <li><a href="{pro_search:url category='{segment_3_category_id}' orderby_sort="shop-na-akciji|desc"}" rel="nofollow">Promo kod -20% </a></li>
+    {!-- <li><a href="{pro_search:url category='{segment_3_category_id}' orderby_sort="shop-price-for-search|asc"}" rel="nofollow">Cijena od niže prema višoj</a></li>
+    <li><a href="{pro_search:url category='{segment_3_category_id}' orderby_sort="shop-price-for-search|desc"}" rel="nofollow">Cijena od više prema nižoj</a></li> --}
+    <li><a href="{pro_search:url category='{segment_3_category_id}' orderby_sort="view_count_one|asc"}" rel="nofollow">Cijena od niže prema višoj</a></li>
+    <li><a href="{pro_search:url category='{segment_3_category_id}' orderby_sort="view_count_one|desc"}" rel="nofollow">Cijena od više prema nižoj</a></li>
+    <li><a href="{pro_search:url category='{segment_3_category_id}' orderby_sort="title|asc"}" rel="nofollow">A-Z</a></li>
+    <li><a href="{pro_search:url category='{segment_3_category_id}' orderby_sort="title|desc"}" rel="nofollow">Z-A</a></li>
+    <li><a href="{pro_search:url category='{segment_3_category_id}' orderby_sort="entry_date|asc"}" rel="nofollow">Najstariji > Najnoviji</a></li>
+    <li><a href="{pro_search:url category='{segment_3_category_id}' orderby_sort="entry_date|desc"}" rel="nofollow">Najnoviji > Najstariji</a></li>
+  </ul>
+</div>
+
+</div>
+{/exp:pro_search:filters}
+</div>
+<div class="clear">&nbsp;</div>
+
+<script>
+$(document).ready(function() {
+  $( "#fmobbtn" ).click(function() {
+    $( "#fmob" ).slideToggle( "fast" );
+  });
+});
+</script>
+
+{/if}
+{!-- FILTERI END --}
+
+
+						</div>
+						<div class="col-md-12 p-none">
+							<div id="blog-container">
+							<div class="row products product-thumb-info-list">
+							{exp:fast_entries channel="{my_channel}" limit="32" orderby="view_count_one|date" sort="asc|desc"}
+							<div class="col-12 col-sm-6 col-lg-3">
+							{embed="common/_product-template" entryid="{entry_id}"}
+							</div>
+							{if count == "1"}<span class="absoluteresults" style="display:none">{total_results}</span>{/if}
+							{/exp:fast_entries}
+							</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="clear30">&nbsp;</div>
+
+							<div class="clear30">&nbsp;</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+ 
+			{embed="common/_footer"}
+		</div>
+
+{var_scripts_footer}
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+	absoluteresults = $('.absoluteresults').text();
+	if (absoluteresults == ""){
+		absoluteresults = 0;
+	}
+	$('.absoluteresultsh1').html("(" + absoluteresults + " proizvoda)");
+});
+</script>
+
+{/exp:speedy:fragment}
+	</body>
+</html>
