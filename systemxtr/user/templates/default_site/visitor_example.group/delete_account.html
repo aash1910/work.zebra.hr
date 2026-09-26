@@ -1,0 +1,33 @@
+{layout="visitor_example/layout" page_title="Register"}
+
+{layout:set name="content"}
+    <h2>Account &raquo; Delete</h2>
+
+    {if logged_in}
+        {exp:visitor:delete_form error_handling="inline" return="/visitor_example/delete_account/success"}
+            <div class="alert info">To delete your account, you must enter your current password.</div>
+
+            <fieldset>
+                <p>
+                    <label for="password" class="form-label">Current password:</label>
+                    <input type="password" name="password" id="password" class="form-text" />
+                </p>
+            </fieldset>
+
+            <div class="alert error" {if !'{error:password}'}style="display:none;"{/if}>
+                {error:password}
+            </div>
+
+            <input type="submit" value="Delete" class="btn btn-warning"/>
+        {/exp:visitor:delete_form}
+    {if:else}
+        {if segment_3 == "success"}
+            <div class="alert success">Account Deleted!</div>
+        {/if}
+
+        <p>You are not logged in.</p>
+        <br />
+
+        <p><a class="btn btn-primary" href="{path=visitor_example/login}">Login</a> &nbsp;&nbsp;&nbsp; <a class="btn btn-primary" href="{path=visitor_example/register}">Register</a></p>
+    {/if}
+{/layout:set}

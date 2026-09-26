@@ -1,0 +1,116 @@
+{layout="visitor_example/layout" page_title="Register"}
+
+{layout:set name="content"}
+    <h2>Register</h2>
+
+    {if last_segment == "success"}
+        <h4>Account Created!</h4>
+
+        {if logged_in}
+            <p>We took the liberty of logging you in already!</p>
+
+            <h4>Go forth and do stuff!</h4>
+        {if:else}
+            <p>You can now <a href="{path=visitor_example/login}">login</a>.</p>
+            <p>Depending on your member activation settings you will receive an email to confirm your registration.</p>
+        {/if}
+    {if:elseif logged_in}
+        <p>You are already registered and logged in.</p>
+        <br />
+
+        <p><a class="btn btn-primary" href="{path=visitor_example/profile}">Go to Profile</a> &nbsp;&nbsp;&nbsp; <a class="btn btn-sm btn-warning" href="{path=logout}">Logout</a></p>
+    {if:else}
+        {exp:visitor:registration_form return="visitor_example/register/success" error_handling="inline"}
+
+        <p>* Required fields</p>
+
+        {field_errors}{error}{/field_errors}
+
+        <fieldset>
+            <h4>Login details</h4>
+
+            <p>
+                <label for="username">Email*:</label>
+                <input type="text" name="email" id="email" value="{if email}{email}{/if}"/><br />
+                <em>(this will be your login/username if 'use email as username' has been set)</em>
+            </p>
+
+            <p>
+                <label for="password">Password*:</label>
+                <input type="password" name="password" id="password" value="{if password}{password}{/if}"/>
+            </p>
+
+            <p>
+                <label for="password_confirm">Confirm password*:</label>
+                <input type="password" name="password_confirm" id="password_confirm" value="{if password_confirm}{password_confirm}{/if}"/>
+            </p>
+
+            <p>
+                <label for="terms_of_service">Terms of service:</label>
+                <div>All messages posted at this site express the views of the author, and do not necessarily reflect the views of the owners and administrators
+                    of this site.By registering at this site you agree not to post any messages that are obscene, vulgar, slanderous, hateful, threatening, or that violate any laws. We will
+                    permanently ban all users who do so.We reserve the right to remove, edit, or move any messages for any reason.</div>
+            </p>
+
+            <p>
+                <label><input type='checkbox' name='accept_terms' value='y' {if accept_terms == "y"}checked="checked"{/if} /> I accept these terms</label>
+            </p>
+
+            {if captcha}
+            <p>
+                <label for="captcha">{lang:captcha}*</label>
+                {captcha}<br/>
+                <input type="text" id="captcha" name="captcha" value="" size="20" maxlength="20" style="width:140px;"/>
+            </p>
+            {/if}
+        </fieldset>
+
+        <fieldset>
+            <h4>Extra fields</h4>
+
+            <p>
+                <label for="member_firstname">{label:member_firstname}:</label>
+                <input type="text" name="member_firstname" id="member_firstname" value="{if member_firstname}{member_firstname}{/if}"/>
+            </p>
+
+            <p>
+                <label for="member_lastname">{label:member_lastname}:</label>
+                <input type="text" name="member_lastname" id="member_lastname" value="{if member_lastname}{member_lastname}{/if}"/>
+            </p>
+
+            <p>
+                <label for="member_gender">{label:member_gender}</label>
+                {options:member_gender}
+                <input type="radio" id="member_gender" name="member_gender" value="{option_value}" {checked} />{option_value}
+                {/options:member_gender}
+            </p>
+
+            <p>
+                <label for="member_address">{label:member_birthday}</label>
+                <input type="text" name="member_birthday" id="member_birthday" value="{member_birthday}" maxlength="23" size="25"/>
+            </p>
+
+            {!--
+            <p>
+                <label for="member_address">{label:member_birthday} Select</label>
+                {native:birthday_month}
+                {native:birthday_day}
+                {native:birthday_year}
+            </p>
+            --}
+
+            <p>
+                <label for="member_signature">Member Signature</label>
+                <input type="text" name="member_signature" id="member_signature" value="{if member_signature}{member_signature}{/if}"/>
+            </p>
+            <p>
+                <label for="member_location">Member Location</label>
+                <input type="text" name="member_location" id="member_location" value="{if member_location}{member_location}{/if}"/>
+            </p>
+        </fieldset>
+
+        <input type="submit" value="Register" class="btn btn-primary" />
+
+        {/exp:visitor:registration_form}
+    {/if}
+{/layout:set}

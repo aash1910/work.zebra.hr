@@ -1,0 +1,34 @@
+{layout="visitor_example/layout" page_title="Register"}
+
+{layout:set name="content"}
+    <h2>Login</h2>
+
+    {if logged_in}
+        <p>You are already registered and logged in.</p>
+        <br />
+
+        <p><a class="btn btn-primary" href="{path=visitor_example/profile}">Go to Profile</a> &nbsp;&nbsp;&nbsp; <a class="btn btn-sm btn-warning" href="{path=logout}">Logout</a></p>
+    {if:else}
+        {exp:visitor:login_form return="/visitor_example/profile"}
+            <fieldset>
+                <p>
+                    <label for="email">Email:</label>
+                    <input type="text" name="username" id="username" />
+                </p>
+                <p>
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" id="password" />
+                </p>
+
+                {if auto_login}
+                <p>
+                    <label for="remember_me">Remember me?</label>
+                    <input class='checkbox' type='checkbox' name='auto_login' value='1'  />
+                </p>
+                {/if}
+            </fieldset>
+
+            <input type="submit" name="submit" value="Login" class="btn btn-primary" />
+        {/exp:visitor:login_form}
+    {/if}
+{/layout:set}

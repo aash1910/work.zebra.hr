@@ -1,0 +1,37 @@
+{layout="visitor_example/layout" page_title="Change Login"}
+
+{layout:set name="content"}
+    <h2>Account - Change Login</h2>
+
+    {if logged_in}
+        {if segment_3 == "success"}
+            <div class="alert success">Login Updated!</div>
+        {/if}
+
+        {exp:visitor:update_form return="visitor_example/change_login/success"}
+            <fieldset>
+                <p>
+                    <label for="existing_email" class="form-label">Current Login Email:</label>
+                    <input type="text" name="existing_email" id="existing_email" class="form-text" disabled="true" value="{username}" />
+                </p>
+                <p>
+                    <label for="EE_email" class="form-label">New Login Email:</label>
+                    <input type="text" name="username" id="username" class="form-text" value="{username}" />
+                </p>
+                <br />
+
+                <p>
+                    <label for="current_password" class="form-label">In order to change your password, please provide your current password:</label>
+                    <input type="password" name="current_password" id="current_password" class="form-text"  />
+                </p>
+            </fieldset>
+
+            <p><input type="submit" value="Submit" class="btn btn-primary" /></p>
+        {/exp:visitor:update_form}
+    {if:else}
+        <p>You are not logged in.</p>
+        <br />
+
+        <p><a class="btn btn-primary" href="{path=visitor_example/login}">Login</a> &nbsp;&nbsp;&nbsp; <a class="btn btn-primary" href="{path=visitor_example/register}">Register</a></p>
+    {/if}
+{/layout:set}

@@ -42,6 +42,14 @@ spl_autoload_register(
         $class_name = trim($class_name, '\\');
         $class_name = str_replace('\\', '/', $class_name);
 
+        $local_path = PATH_THIRD . 'visitor/FluxCapacitor/' . $class_name . '.php';
+
+        if (file_exists($local_path)) {
+            include $local_path;
+
+            return;
+        }
+
         // Make sure the phar exists.
         if (file_exists($phar_path)) {
             // If the phar extension is loaded, use that, otherwise, use the self-extraction method.
